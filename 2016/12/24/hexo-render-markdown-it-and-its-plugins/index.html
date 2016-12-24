@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hexo,markdown," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="¶起因
+我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 [ ] 、 [x] 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。
+在谷歌的过程中，当我看到 github 上某位仁兄的抱怨说多种 hexo 的 markdown render">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 的 markdown-it 渲染引擎和其相关插件">
+<meta property="og:url" content="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶起因
+我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 [ ] 、 [x] 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。
+在谷歌的过程中，当我看到 github 上某位仁兄的抱怨说多种 hexo 的 markdown render">
+<meta property="og:updated_time" content="2016-12-24T15:34:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo 的 markdown-it 渲染引擎和其相关插件">
+<meta name="twitter:description" content="¶起因
+我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 [ ] 、 [x] 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。
+在谷歌的过程中，当我看到 github 上某位仁兄的抱怨说多种 hexo 的 markdown render">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/"/>
+
+
+
+
+
+  <title> Hexo 的 markdown-it 渲染引擎和其相关插件 | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">while(imoLife){ imo = imo + 1; }</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hexo 的 markdown-it 渲染引擎和其相关插件
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T21:17:01+08:00">
+                2016-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/24/hexo-render-markdown-it-and-its-plugins/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/24/hexo-render-markdown-it-and-its-plugins/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h2>
+<p>我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 <code>[ ]</code> 、 <code>[x]</code> 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。</p>
+<p>在谷歌的过程中，当我看到 <a href="https://github.com/hexojs/hexo/issues/2161" target="_blank" rel="external">github 上某位仁兄的抱怨</a>说多种 hexo 的 markdown renderer 都对此问题无解的时候，一度陷入了绝望，甚至已经抱有了最终将使用非 markdown 语法（比如说，采用<a href="http://zhoupq.com/%E7%94%A8-HTML-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0-MarkDown-Task-List/" target="_blank" rel="external">使用 html 来实现 checkbox 的不太优雅的解决方案</a>）的视死如归的觉悟。好在，暮然回首，markdown-it 却在灯火阑珊处。</p>
+<h2 id="配置"><a class="header-anchor" href="#配置">¶</a>配置</h2>
+<ol>
+<li>修改 hexo 的 markdown 渲染引擎：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> hexo-blog.github.io/ <span class="comment"># 首先进入你的 hexo 的根目录</span></div><div class="line">$ npm un hexo-renderer-marked --save <span class="comment"># 卸载 hexo 默认的 markdown 渲染引擎</span></div><div class="line">$ npm i hexo-renderer-markdown-it --save <span class="comment"># 安装 markdown-it</span></div></pre></td></tr></table></figure>
+<ol start="2">
+<li>下载 markdown-it 的 markdown-it-checkbox 插件：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> node_modules/hexo-renderer-markdown-it/</div><div class="line">$ npm install markdown-it-checkbox --save</div></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 hexo 的全局配置文件 <code>_config.yml</code> 添加以下：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Markdown-it config</span></div><div class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></div><div class="line">markdown:</div><div class="line">  render:</div><div class="line">    html: <span class="literal">true</span> <span class="comment"># Doesn't escape HTML content so the tags will appear as html.</span></div><div class="line">    xhtmlOut: <span class="literal">false</span> <span class="comment"># Parser will not produce XHTML compliant code.</span></div><div class="line">    breaks: <span class="literal">true</span> <span class="comment"># Parser produces `&lt;br&gt;` tags every time there is a line break in the source document.</span></div><div class="line">    linkify: <span class="literal">false</span> <span class="comment"># Returns text links as text.</span></div><div class="line">    typographer: <span class="literal">true</span> <span class="comment"># Substitution of common typographical elements will take place.</span></div><div class="line">    quotes: <span class="string">'“”‘’'</span> <span class="comment"># "double" will be turned into “single”</span></div><div class="line">                   <span class="comment"># 'single' will be turned into ‘single’</span></div><div class="line">  plugins:</div><div class="line">    - markdown-it-abbr</div><div class="line">    - markdown-it-checkbox <span class="comment"># 本行启用了 checkbox 插件</span></div><div class="line">    - markdown-it-emoji <span class="comment"># 如果你想在 md 中使用 emoji 表情的话，需要另外下载相关插件</span></div><div class="line">    - markdown-it-footnote</div><div class="line">    - markdown-it-ins</div><div class="line">    - markdown-it-sub</div><div class="line">    - markdown-it-sup</div><div class="line">  anchors:</div><div class="line">    level: 2 <span class="comment"># Minimum level for ID creation. (Ex. h2 to h6)</span></div><div class="line">    collisionSuffix: <span class="string">'v'</span> <span class="comment"># A suffix that is prepended to the number given if the ID is repeated.</span></div><div class="line">    permalink: <span class="literal">true</span> <span class="comment"># If true, creates an anchor tag with a permalink besides the heading.</span></div><div class="line">    permalinkClass: header-anchor <span class="comment"># Class used for the permalink anchor tag.</span></div><div class="line">    permalinkSymbol: ¶ <span class="comment"># The symbol used to make the permalink.</span></div></pre></td></tr></table></figure>
+<ol start="4">
+<li>重启 hexo 服务器，刷新 localhost 页面：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
+<h2 id="效果"><a class="header-anchor" href="#效果">¶</a>效果</h2>
+<p>最终，在文章中的显示效果：</p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0"> 本行前面的复选框是使用 </label><code>[ ]</code> 语法实现的</li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1"> 本行前面的复选框是使用 </label><code>[x]</code> 语法实现的</li>
+</ul>
+<h2 id="to-do-待改进的遗留问题"><a class="header-anchor" href="#to-do-待改进的遗留问题">¶</a>To Do - 待改进的遗留问题</h2>
+<ul>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2"> 样式不太美观</label>
+<ul>
+<li>用的是浏览器默认样式（体验不好），且不符合本文目前使用 NexT 主题风格。</li>
+<li>书写时需要在 <code>[ ]</code> 后加两个空格，否则复选框和文字之间会没有空隙。</li>
+</ul>
+</li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3"> 非只读模式（可勾选和取消勾选）</label></li>
+</ul>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
+<li><a href="http://yangfch3.com/2016/05/08/hexo-experiences/hexo-renderer-marked-it.txt" target="_blank" rel="external">配置 hexo-renderer-markdown-it</a></li>
+<li><a href="https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Advanced-Configuration" target="_blank" rel="external">hexo-renderer-markdown-it 在 github 上的文档</a></li>
+<li><a href="https://www.npmjs.com/package/hexo-renderer-markdown-it" target="_blank" rel="external">hexo-renderer-markdown-it 在 npm 上的文档</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: Lucida Grande;">
+        —— THE END ——
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+            <a href="/tags/markdown/" rel="tag"># markdown</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/24/IFE-2016-SP-task17/" rel="next" title="IFE-2016-SP-task17">
+                <i class="fa fa-chevron-left"></i> IFE-2016-SP-task17
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/24/hexo-render-markdown-it-and-its-plugins/"
+     data-title="Hexo 的 markdown-it 渲染引擎和其相关插件"
+     data-content=""
+     data-url="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/24/hexo-render-markdown-it-and-its-plugins/"
+           data-title="Hexo 的 markdown-it 渲染引擎和其相关插件" data-url="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">¶起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">¶配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">¶效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-do-待改进的遗留问题"><span class="nav-number">4.</span> <span class="nav-text">¶To Do - 待改进的遗留问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">¶参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
