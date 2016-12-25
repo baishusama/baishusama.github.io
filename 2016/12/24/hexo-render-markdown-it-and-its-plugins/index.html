@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -94,7 +94,7 @@
 <meta property="og:description" content="¶起因
 我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 [ ] 、 [x] 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。
 在谷歌的过程中，当我看到 github 上某位仁兄的抱怨说多种 hexo 的 markdown render">
-<meta property="og:updated_time" content="2016-12-24T15:34:55.000Z">
+<meta property="og:updated_time" content="2016-12-25T10:18:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 的 markdown-it 渲染引擎和其相关插件">
 <meta name="twitter:description" content="¶起因
@@ -136,7 +136,7 @@
   <title> Hexo 的 markdown-it 渲染引擎和其相关插件 | imo++ </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -286,7 +286,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <span class="post-meta-item-text">Posted on</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T21:17:01+08:00">
                 2016-12-24
               </time>
@@ -332,43 +332,58 @@
       
         <h2 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h2>
 <p>我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 <code>[ ]</code> 、 <code>[x]</code> 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。</p>
-<p>在谷歌的过程中，当我看到 <a href="https://github.com/hexojs/hexo/issues/2161" target="_blank" rel="external">github 上某位仁兄的抱怨</a>说多种 hexo 的 markdown renderer 都对此问题无解的时候，一度陷入了绝望，甚至已经抱有了最终将使用非 markdown 语法（比如说，采用<a href="http://zhoupq.com/%E7%94%A8-HTML-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0-MarkDown-Task-List/" target="_blank" rel="external">使用 html 来实现 checkbox 的不太优雅的解决方案</a>）的视死如归的觉悟。好在，暮然回首，markdown-it 却在灯火阑珊处。</p>
+<p>在谷歌的过程中，当我看到 <a href="https://github.com/hexojs/hexo/issues/2161" target="_blank" rel="external">github 上某位仁兄的抱怨</a>说多种 hexo 的 markdown renderer 都对此问题无解的时候，一度陷入了绝望，甚至已经抱有了最终将使用非 markdown 语法（比如说，采用<a href="http://zhoupq.com/%E7%94%A8-HTML-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0-MarkDown-Task-List/" target="_blank" rel="external">使用 html 来实现 checkbox 的不太优雅的解决方案</a>）的视死如归的觉悟。好在，暮然回首，<a href="https://markdown-it.github.io/markdown-it/" target="_blank" rel="external">markdown-it</a> 却在灯火阑珊处。</p>
 <h2 id="配置"><a class="header-anchor" href="#配置">¶</a>配置</h2>
 <ol>
-<li>修改 hexo 的 markdown 渲染引擎：</li>
+<li>
+<p>修改 hexo 的 markdown 渲染引擎：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> hexo-blog.github.io/ <span class="comment"># 首先进入你的 hexo 的根目录</span></div><div class="line">$ npm un hexo-renderer-marked --save <span class="comment"># 卸载 hexo 默认的 markdown 渲染引擎</span></div><div class="line">$ npm i hexo-renderer-markdown-it --save <span class="comment"># 安装 markdown-it</span></div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>下载 markdown-it 的 markdown-it-checkbox 插件：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> node_modules/hexo-renderer-markdown-it/</div><div class="line">$ npm install markdown-it-checkbox --save</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在 hexo 的全局配置文件 <code>_config.yml</code> 添加以下：</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Markdown-it config</span></div><div class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></div><div class="line"><span class="attr">markdown:</span></div><div class="line"><span class="attr">  render:</span></div><div class="line"><span class="attr">    html:</span> <span class="literal">true</span> <span class="comment"># Doesn't escape HTML content so the tags will appear as html.</span></div><div class="line"><span class="attr">    xhtmlOut:</span> <span class="literal">false</span> <span class="comment"># Parser will not produce XHTML compliant code.</span></div><div class="line"><span class="attr">    breaks:</span> <span class="literal">true</span> <span class="comment"># Parser produces `&lt;br&gt;` tags every time there is a line break in the source document.</span></div><div class="line"><span class="attr">    linkify:</span> <span class="literal">false</span> <span class="comment"># Returns text links as text.</span></div><div class="line"><span class="attr">    typographer:</span> <span class="literal">true</span> <span class="comment"># Substitution of common typographical elements will take place.</span></div><div class="line"><span class="attr">    quotes:</span> <span class="string">'“”‘’'</span> <span class="comment"># "double" will be turned into “single”</span></div><div class="line">                   <span class="comment"># 'single' will be turned into ‘single’</span></div><div class="line"><span class="attr">  plugins:</span></div><div class="line">    + markdown-it-abbr</div><div class="line">    + markdown-it-checkbox <span class="comment"># 本行启用了 checkbox 插件</span></div><div class="line">    + markdown-it-emoji <span class="comment"># 如果你想在 md 中使用 emoji 表情的话，需要另外下载相关插件</span></div><div class="line">    + markdown-it-footnote</div><div class="line">    + markdown-it-ins</div><div class="line">    + markdown-it-sub</div><div class="line">    + markdown-it-sup</div><div class="line"><span class="attr">  anchors:</span></div><div class="line"><span class="attr">    level:</span> <span class="number">2</span> <span class="comment"># Minimum level for ID creation. (Ex. h2 to h6)</span></div><div class="line"><span class="attr">    collisionSuffix:</span> <span class="string">'v'</span> <span class="comment"># A suffix that is prepended to the number given if the ID is repeated.</span></div><div class="line"><span class="attr">    permalink:</span> <span class="literal">true</span> <span class="comment"># If true, creates an anchor tag with a permalink besides the heading.</span></div><div class="line"><span class="attr">    permalinkClass:</span> header-anchor <span class="comment"># Class used for the permalink anchor tag.</span></div><div class="line"><span class="attr">    permalinkSymbol:</span> ¶ <span class="comment"># The symbol used to make the permalink.</span></div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>重启 hexo 服务器，刷新 localhost 页面：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
+</li>
 </ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> hexo-blog.github.io/ <span class="comment"># 首先进入你的 hexo 的根目录</span></div><div class="line">$ npm un hexo-renderer-marked --save <span class="comment"># 卸载 hexo 默认的 markdown 渲染引擎</span></div><div class="line">$ npm i hexo-renderer-markdown-it --save <span class="comment"># 安装 markdown-it</span></div></pre></td></tr></table></figure>
-<ol start="2">
-<li>下载 markdown-it 的 markdown-it-checkbox 插件：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> node_modules/hexo-renderer-markdown-it/</div><div class="line">$ npm install markdown-it-checkbox --save</div></pre></td></tr></table></figure>
-<ol start="3">
-<li>在 hexo 的全局配置文件 <code>_config.yml</code> 添加以下：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Markdown-it config</span></div><div class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></div><div class="line">markdown:</div><div class="line">  render:</div><div class="line">    html: <span class="literal">true</span> <span class="comment"># Doesn't escape HTML content so the tags will appear as html.</span></div><div class="line">    xhtmlOut: <span class="literal">false</span> <span class="comment"># Parser will not produce XHTML compliant code.</span></div><div class="line">    breaks: <span class="literal">true</span> <span class="comment"># Parser produces `&lt;br&gt;` tags every time there is a line break in the source document.</span></div><div class="line">    linkify: <span class="literal">false</span> <span class="comment"># Returns text links as text.</span></div><div class="line">    typographer: <span class="literal">true</span> <span class="comment"># Substitution of common typographical elements will take place.</span></div><div class="line">    quotes: <span class="string">'“”‘’'</span> <span class="comment"># "double" will be turned into “single”</span></div><div class="line">                   <span class="comment"># 'single' will be turned into ‘single’</span></div><div class="line">  plugins:</div><div class="line">    - markdown-it-abbr</div><div class="line">    - markdown-it-checkbox <span class="comment"># 本行启用了 checkbox 插件</span></div><div class="line">    - markdown-it-emoji <span class="comment"># 如果你想在 md 中使用 emoji 表情的话，需要另外下载相关插件</span></div><div class="line">    - markdown-it-footnote</div><div class="line">    - markdown-it-ins</div><div class="line">    - markdown-it-sub</div><div class="line">    - markdown-it-sup</div><div class="line">  anchors:</div><div class="line">    level: 2 <span class="comment"># Minimum level for ID creation. (Ex. h2 to h6)</span></div><div class="line">    collisionSuffix: <span class="string">'v'</span> <span class="comment"># A suffix that is prepended to the number given if the ID is repeated.</span></div><div class="line">    permalink: <span class="literal">true</span> <span class="comment"># If true, creates an anchor tag with a permalink besides the heading.</span></div><div class="line">    permalinkClass: header-anchor <span class="comment"># Class used for the permalink anchor tag.</span></div><div class="line">    permalinkSymbol: ¶ <span class="comment"># The symbol used to make the permalink.</span></div></pre></td></tr></table></figure>
-<ol start="4">
-<li>重启 hexo 服务器，刷新 localhost 页面：</li>
-</ol>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
 <h2 id="效果"><a class="header-anchor" href="#效果">¶</a>效果</h2>
 <p>最终，在文章中的显示效果：</p>
 <ul>
-<li><input type="checkbox" id="checkbox0"><label for="checkbox0"> 本行前面的复选框是使用 </label><code>[ ]</code> 语法实现的</li>
-<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1"> 本行前面的复选框是使用 </label><code>[x]</code> 语法实现的</li>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">本行前面的复选框是使用 </label><code>[ ]</code> 语法实现的</li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">本行前面的复选框是使用 </label><code>[x]</code> 语法实现的</li>
 </ul>
 <h2 id="to-do-待改进的遗留问题"><a class="header-anchor" href="#to-do-待改进的遗留问题">¶</a>To Do - 待改进的遗留问题</h2>
-<ul>
-<li><input type="checkbox" id="checkbox2"><label for="checkbox2"> 样式不太美观</label>
+<h3 id="样式不太美观"><a class="header-anchor" href="#样式不太美观">¶</a><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2">样式不太美观</label></h3>
 <ul>
 <li>用的是浏览器默认样式（体验不好），且不符合本文目前使用 NexT 主题风格。</li>
 <li>书写时需要在 <code>[ ]</code> 后加两个空格，否则复选框和文字之间会没有空隙。</li>
 </ul>
+<ol>
+<li>找到自定义样式的文件：<code>themes/next/source/css/_custom/</code> 路径下的 <code>custom.styl</code> 。</li>
+<li>添加以下样式： <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">input[type="checkbox"] &#123;</div><div class="line">  display: none !important; // by imo: to overwrite styles in DuoShuo-Comments-Plugin</div><div class="line">&#125;</div><div class="line">input[type="checkbox"] + label::before &#123;</div><div class="line">  content: '\a0';</div><div class="line">  display: inline-block;</div><div class="line">  margin-right: .2em;</div><div class="line">  border: 1px solid;</div><div class="line">  border-radius: .2em;</div><div class="line">  width: .8em;</div><div class="line">  height: .8em;</div><div class="line">  vertical-align: .1em;</div><div class="line">  text-indent: .1em;</div><div class="line">  line-height: .7;</div><div class="line">&#125;</div><div class="line">input[type="checkbox"]:checked + label::before &#123;</div><div class="line">  content: '\2713';</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><input type="checkbox" id="checkbox3"><label for="checkbox3"> 非只读模式（可勾选和取消勾选）</label></li>
+</ol>
+<h3 id="非只读模式-可勾选和取消勾选"><a class="header-anchor" href="#非只读模式-可勾选和取消勾选">¶</a><input type="checkbox" id="checkbox3"><label for="checkbox3">非只读模式（可勾选和取消勾选）</label></h3>
+<h3 id="其它：使用-markdown-it-的-anchors-功能带来的副作用"><a class="header-anchor" href="#其它：使用-markdown-it-的-anchors-功能带来的副作用">¶</a><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">其它：使用 markdown-it 的 anchors 功能带来的副作用</label></h3>
+<ul>
+<li>使用 markdown-it 的 anchors 功能后，文章目录（Table of Content, TOC）中每个章节标题前均出现永久链接符号（默认为 <code>¶</code> ）。</li>
 </ul>
+<ol>
+<li>找到 hexo 定义 toc 函数的文件：<code>/node_modules/hexo/lib/plugins/helper</code> 目录下的 <code>toc.js</code> 。</li>
+<li>修改生成标题文本的代码行 <code>var text = $(this).text();</code> 为如下即可： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> text = $(<span class="keyword">this</span>).text().slice(<span class="number">1</span>);<span class="comment">// by imo: remove markdown-it's anchor character in TOC</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
 <ul>
 <li><a href="http://yangfch3.com/2016/05/08/hexo-experiences/hexo-renderer-marked-it.txt" target="_blank" rel="external">配置 hexo-renderer-markdown-it</a></li>
+<li><a href="http://www.cnblogs.com/fsong/p/5929773.html" target="_blank" rel="external">Hexo 中添加 emoji 表情</a></li>
+<li><a href="http://moxfive.xyz/2016/06/13/hexo-collapsible-toc/" target="_blank" rel="external">为 Hexo 添加可折叠的文章目录</a></li>
 <li><a href="https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Advanced-Configuration" target="_blank" rel="external">hexo-renderer-markdown-it 在 github 上的文档</a></li>
 <li><a href="https://www.npmjs.com/package/hexo-renderer-markdown-it" target="_blank" rel="external">hexo-renderer-markdown-it 在 npm 上的文档</a></li>
 </ul>
@@ -496,10 +511,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -516,7 +531,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -525,8 +540,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -560,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">¶起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">¶配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">¶效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-do-待改进的遗留问题"><span class="nav-number">4.</span> <span class="nav-text">¶To Do - 待改进的遗留问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">¶参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">3.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-do-待改进的遗留问题"><span class="nav-number">4.</span> <span class="nav-text">To Do - 待改进的遗留问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#样式不太美观"><span class="nav-number">4.1.</span> <span class="nav-text">样式不太美观</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非只读模式-可勾选和取消勾选"><span class="nav-number">4.2.</span> <span class="nav-text">非只读模式（可勾选和取消勾选）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它：使用-markdown-it-的-anchors-功能带来的副作用"><span class="nav-number">4.3.</span> <span class="nav-text">其它：使用 markdown-it 的 anchors 功能带来的副作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -595,7 +610,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
