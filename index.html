@@ -189,7 +189,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -232,6 +232,313 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2016/12/24/hexo-render-markdown-it-and-its-plugins/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/24/hexo-render-markdown-it-and-its-plugins/" itemprop="url">
+                  Hexo 的 markdown-it 渲染引擎和其相关插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T21:17:01+08:00">
+                2016-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/24/hexo-render-markdown-it-and-its-plugins/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/24/hexo-render-markdown-it-and-its-plugins/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h2>
+<p>我想在上一篇文章末尾的 to do 事项前面添加复选框，即想在 hexo 下使用 markdown 语法写文章时，使用 <code>[ ]</code> 、 <code>[x]</code> 这样 Github 上特有的 markdown 方言（Github Flavored Markdown, GFM）来输出 checkbox 。</p>
+<p>在谷歌的过程中，当我看到 <a href="https://github.com/hexojs/hexo/issues/2161" target="_blank" rel="external">github 上某位仁兄的抱怨</a>说多种 hexo 的 markdown renderer 都对此问题无解的时候，一度陷入了绝望，甚至已经抱有了最终将使用非 markdown 语法（比如说，采用<a href="http://zhoupq.com/%E7%94%A8-HTML-%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0-MarkDown-Task-List/" target="_blank" rel="external">使用 html 来实现 checkbox 的不太优雅的解决方案</a>）的视死如归的觉悟。好在，暮然回首，markdown-it 却在灯火阑珊处。</p>
+<h2 id="配置"><a class="header-anchor" href="#配置">¶</a>配置</h2>
+<ol>
+<li>修改 hexo 的 markdown 渲染引擎：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> hexo-blog.github.io/ <span class="comment"># 首先进入你的 hexo 的根目录</span></div><div class="line">$ npm un hexo-renderer-marked --save <span class="comment"># 卸载 hexo 默认的 markdown 渲染引擎</span></div><div class="line">$ npm i hexo-renderer-markdown-it --save <span class="comment"># 安装 markdown-it</span></div></pre></td></tr></table></figure>
+<ol start="2">
+<li>下载 markdown-it 的 markdown-it-checkbox 插件：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> node_modules/hexo-renderer-markdown-it/</div><div class="line">$ npm install markdown-it-checkbox --save</div></pre></td></tr></table></figure>
+<ol start="3">
+<li>在 hexo 的全局配置文件 <code>_config.yml</code> 添加以下：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Markdown-it config</span></div><div class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></div><div class="line">markdown:</div><div class="line">  render:</div><div class="line">    html: <span class="literal">true</span> <span class="comment"># Doesn't escape HTML content so the tags will appear as html.</span></div><div class="line">    xhtmlOut: <span class="literal">false</span> <span class="comment"># Parser will not produce XHTML compliant code.</span></div><div class="line">    breaks: <span class="literal">true</span> <span class="comment"># Parser produces `&lt;br&gt;` tags every time there is a line break in the source document.</span></div><div class="line">    linkify: <span class="literal">false</span> <span class="comment"># Returns text links as text.</span></div><div class="line">    typographer: <span class="literal">true</span> <span class="comment"># Substitution of common typographical elements will take place.</span></div><div class="line">    quotes: <span class="string">'“”‘’'</span> <span class="comment"># "double" will be turned into “single”</span></div><div class="line">                   <span class="comment"># 'single' will be turned into ‘single’</span></div><div class="line">  plugins:</div><div class="line">    - markdown-it-abbr</div><div class="line">    - markdown-it-checkbox <span class="comment"># 本行启用了 checkbox 插件</span></div><div class="line">    - markdown-it-emoji <span class="comment"># 如果你想在 md 中使用 emoji 表情的话，需要另外下载相关插件</span></div><div class="line">    - markdown-it-footnote</div><div class="line">    - markdown-it-ins</div><div class="line">    - markdown-it-sub</div><div class="line">    - markdown-it-sup</div><div class="line">  anchors:</div><div class="line">    level: 2 <span class="comment"># Minimum level for ID creation. (Ex. h2 to h6)</span></div><div class="line">    collisionSuffix: <span class="string">'v'</span> <span class="comment"># A suffix that is prepended to the number given if the ID is repeated.</span></div><div class="line">    permalink: <span class="literal">true</span> <span class="comment"># If true, creates an anchor tag with a permalink besides the heading.</span></div><div class="line">    permalinkClass: header-anchor <span class="comment"># Class used for the permalink anchor tag.</span></div><div class="line">    permalinkSymbol: ¶ <span class="comment"># The symbol used to make the permalink.</span></div></pre></td></tr></table></figure>
+<ol start="4">
+<li>重启 hexo 服务器，刷新 localhost 页面：</li>
+</ol>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
+<h2 id="效果"><a class="header-anchor" href="#效果">¶</a>效果</h2>
+<p>最终，在文章中的显示效果：</p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0"> 本行前面的复选框是使用 </label><code>[ ]</code> 语法实现的</li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1"> 本行前面的复选框是使用 </label><code>[x]</code> 语法实现的</li>
+</ul>
+<h2 id="to-do-待改进的遗留问题"><a class="header-anchor" href="#to-do-待改进的遗留问题">¶</a>To Do - 待改进的遗留问题</h2>
+<ul>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2"> 样式不太美观</label>
+<ul>
+<li>用的是浏览器默认样式（体验不好），且不符合本文目前使用 NexT 主题风格。</li>
+<li>书写时需要在 <code>[ ]</code> 后加两个空格，否则复选框和文字之间会没有空隙。</li>
+</ul>
+</li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3"> 非只读模式（可勾选和取消勾选）</label></li>
+</ul>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
+<li><a href="http://yangfch3.com/2016/05/08/hexo-experiences/hexo-renderer-marked-it.txt" target="_blank" rel="external">配置 hexo-renderer-markdown-it</a></li>
+<li><a href="https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Advanced-Configuration" target="_blank" rel="external">hexo-renderer-markdown-it 在 github 上的文档</a></li>
+<li><a href="https://www.npmjs.com/package/hexo-renderer-markdown-it" target="_blank" rel="external">hexo-renderer-markdown-it 在 npm 上的文档</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/24/IFE-2016-SP-task17/" itemprop="url">
+                  IFE-2016-SP-task17
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T17:19:46+08:00">
+                2016-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/24/IFE-2016-SP-task17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/24/IFE-2016-SP-task17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
+<p>My solution to task17 is available on jsfiddle:</p>
+<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/7txop9gL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
+<p>In <a href="http://ife.baidu.com/task/detail?taskId=17" target="_blank" rel="external">top-three team solutions</a> to this task, <a href="http://ife.baidu.com/review/detail?workId=8045" target="_blank" rel="external">the third one</a> is very similar to my solution except for <a href="https://github.com/Phoebe-Perry/ife_baidu_2016/blob/gh-pages/second_phase/ife-baidu_task_17/task_17.js" target="_blank" rel="external">the code snippet</a> below:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//跨浏览器事件绑定</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEventHandler</span>(<span class="params">ele, event, hanlder</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (ele.addEventListener) &#123;</div><div class="line">        ele.addEventListener(event, hanlder, <span class="literal">false</span>);</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ele.attachEvent) &#123;</div><div class="line">        ele.attachEvent(<span class="string">"on"</span>+event, hanlder);</div><div class="line">    &#125; <span class="keyword">else</span>  &#123;</div><div class="line">        ele[<span class="string">"on"</span> + event] = hanlder;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>which also takes <strong>browser compatibilities</strong> into consideration. Note that: <strong><code>attachEvent</code> is for IE and <code>addEventListener</code> is for the others</strong>.</p>
+<h2 id="to-do"><a class="header-anchor" href="#to-do">¶</a>To Do</h2>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0"> Plus, the top-two solution’s UI and animation (or interaction) are very nice and worthwhile </label><strong>to do</strong> study in the near future.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -281,7 +588,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">Veröffentlicht am</span>
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-21T01:04:44+08:00">
                 2016-11-21
               </time>
@@ -327,13 +634,18 @@
       
         
           
-            <h2 id="Dear-Guest，"><a href="#Dear-Guest，" class="headerlink" title="Dear Guest，"></a>Dear Guest，</h2><p>这里是 imo++ 站点的第 0 篇文章。</p>
-<h2 id="从零开始的博客生涯"><a href="#从零开始的博客生涯" class="headerlink" title="从零开始的博客生涯"></a>从零开始的博客生涯</h2><p>从零开始计数和对零与一的特别情感，可能算是程序猿的陋习（笑）。但是鉴于本篇只是本站的欢迎文章，不能算作是一篇真正意义上的文章——一篇亦或干货满满亦或文笔清新亦或发自肺腑的文章，所以本篇仅以第零篇的身份面世。</p>
+            <h2 id="dear-guest"><a class="header-anchor" href="#dear-guest">¶</a>Dear Guest，</h2>
+<p>这里是 imo++ 站点的第 0 篇文章。</p>
+<h2 id="从零开始的博客生涯"><a class="header-anchor" href="#从零开始的博客生涯">¶</a>从零开始的博客生涯</h2>
+<p>从零开始计数可以算作是程序猿的陋习（笑）。但是鉴于本篇只是本站的欢迎文章，不能算作是一篇真正意义上的文章——一篇亦或干货满满亦或文笔清新亦或发自肺腑的文章，所以本篇仅以第零篇的身份面世。</p>
 <blockquote>
-<p>这里得先向你们道个歉，由于笔者是从零开始写博客，可能第一篇正文也是那么名不副实 :P</p>
+<p>这里得先向你们道个歉，由于笔者是从零开始写博客，可能第一篇正文也是那么名不副实 😛</p>
 </blockquote>
-<h2 id="不忘初心，方得始终"><a href="#不忘初心，方得始终" class="headerlink" title="不忘初心，方得始终"></a>不忘初心，方得始终</h2><h3 id="学习、思考、记录总结"><a href="#学习、思考、记录总结" class="headerlink" title="学习、思考、记录总结"></a>学习、思考、记录总结</h3><p>喜欢酷酷的极客范，向往神秘而无所不能的黑客们，然而我还只是一枚小小的才刚刚学会蠕动的苦逼程序猿。正如罗马不是一天建成的，真正的大牛也不是一天练成的。在这里，我将会记录工作学习过程中，遇到的一些问题及其解决方案，一些折腾的经历，一些我所爱的事物。</p>
-<h3 id="开源、分享、共同成长"><a href="#开源、分享、共同成长" class="headerlink" title="开源、分享、共同成长"></a>开源、分享、共同成长</h3><p>如果我的文章能对你有所帮助，那将是对我写文的最大鼓励，也将会是我继续写文的最大动力。</p>
+<h2 id="不忘初心-方得始终"><a class="header-anchor" href="#不忘初心-方得始终">¶</a>不忘初心，方得始终</h2>
+<h3 id="学习-思考-记录总结"><a class="header-anchor" href="#学习-思考-记录总结">¶</a>学习、思考、记录总结</h3>
+<p>喜欢酷酷的极客范，向往神秘而无所不能的黑客们，然而我还只是一枚小小的才刚刚学会蠕动的苦逼程序猿。正如罗马不是一天建成的，真正的大牛也不是一天练成的。在这里，我将会记录工作学习过程中，遇到的一些问题及其解决方案，一些折腾的经历，一些我所爱的事物。</p>
+<h3 id="开源-分享-共同成长"><a class="header-anchor" href="#开源-分享-共同成长">¶</a>开源、分享、共同成长</h3>
+<p>如果我的文章能对你有所帮助，那将是对我写文的最大鼓励，也将会是我继续写文的最大动力。</p>
 <p>可能往往，写文的时间并不是那么充裕，笔者我见解狭隘甚至知识存在误区，在行文过程中难免多有疏漏。眼睛雪亮的读者们如若发现定不吝赐教。</p>
 <p>May the force be with you.</p>
 
@@ -410,13 +722,20 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -467,7 +786,7 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
