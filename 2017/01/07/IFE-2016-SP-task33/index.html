@@ -92,7 +92,7 @@ My solution to task33 is available on jsfiddle:">
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶My Solution
 My solution to task33 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-08T08:02:09.000Z">
+<meta property="og:updated_time" content="2017-01-08T13:12:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task33">
 <meta name="twitter:description" content="¶My Solution
@@ -382,7 +382,7 @@ My solution to task33 is available on jsfiddle:">
   <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.row-ol</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">letter-spacing</span>: -<span class="number">0.5em</span>;<span class="comment">/* inline-block 元素的父元素设置 letter-spacing 为负 */</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.row-ol</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">display</span>: inline-block;<span class="comment">/* inline-block 元素 */</span></div><div class="line">  <span class="attribute">width</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">text-align</span>: center;</div><div class="line">  <span class="attribute">letter-spacing</span>: <span class="number">0</span>;<span class="comment">/* inline-block 元素设置 letter-spacing 为零 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li>
-<p>🔖 <code>counter-increment</code> - 用来自动生成 <code>::before</code> 的 <code>content</code></p>
+<p>🔖 <code>counter-increment</code> - 用来自动生成 <code>::before</code> 或 <code>::after</code> 的 <code>content</code></p>
   <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 写法一：该团队原本的写法 */</span></div><div class="line"><span class="selector-class">.column-ol</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">counter-increment</span>: lineIndex;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.column-ol</span> <span class="selector-tag">li</span><span class="selector-pseudo">::before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="built_in">counter</span>(lineIndex);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 写法二：MDN 例子里的写法 */</span></div><div class="line"><span class="selector-class">.column-ol</span> &#123;</div><div class="line">  <span class="attribute">counter-reset</span>: lineIndex;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.column-ol</span> <span class="selector-tag">li</span><span class="selector-pseudo">::before</span> &#123;</div><div class="line">  <span class="attribute">counter-increment</span>: lineIndex;</div><div class="line">  <span class="attribute">content</span>: <span class="built_in">counter</span>(lineIndex);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Lists_and_Counters/Using_CSS_counters" target="_blank" rel="external">Using CSS counters @MDN</a></p>
@@ -446,6 +446,10 @@ My solution to task33 is available on jsfiddle:">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/08/IFE-2016-SP-task34/" rel="prev" title="IFE-2016-SP-task34">
+                IFE-2016-SP-task34 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -536,7 +540,7 @@ My solution to task33 is available on jsfiddle:">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
