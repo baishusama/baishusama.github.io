@@ -92,7 +92,7 @@ My solution to task34 is available on jsfiddle:">
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶My Solution
 My solution to task34 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-08T13:14:02.000Z">
+<meta property="og:updated_time" content="2017-01-08T16:05:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task34">
 <meta name="twitter:description" content="¶My Solution
@@ -332,6 +332,87 @@ My solution to task34 is available on jsfiddle:">
 <iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/yo8udddy/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
 <a id="more"></a>
 <h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
+<h3 id="任务得分第一的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2118" target="_blank" rel="external">任务得分第一的团队的 solution</a></h3>
+<ul>
+<li>
+<p>🎀 判断对象是否含有某属性</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我也不记得自己当初为何脑抽写得这么繁琐了。。:/</span></div><div class="line"><span class="keyword">var</span> getValidDirective = <span class="function"><span class="keyword">function</span>(<span class="params">rawValue</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> possibleValue = [];</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> square) &#123;</div><div class="line">    possibleValue.push(key);</div><div class="line">  &#125;</div><div class="line">  <span class="comment">// 为“判断对象是否含有某属性”，我啰哩啰嗦地写了上面一大堆外加下面的 if 判断条件 :/</span></div><div class="line">  <span class="keyword">var</span> value = rawValue.trim().replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>).toLowerCase();</div><div class="line">  <span class="keyword">if</span> (possibleValue.indexOf(value) &gt; <span class="number">-1</span>) &#123;</div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"非法指令，请重新尝试 :("</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/* 化简如下：*/</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> getValidDirective = <span class="function"><span class="keyword">function</span>(<span class="params">rawValue</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> value = rawValue.trim().replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>).toLowerCase();</div><div class="line">  <span class="keyword">if</span> (square[value]) &#123;<span class="comment">// 现在“判断对象是否含有某属性”化简为仅仅一行代码</span></div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"非法指令，请重新尝试 :("</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>😶 <a href="http://baishusama.github.io/2017/01/07/IFE-2016-SP-task33/#%E4%BB%BB%E5%8A%A1%E5%BE%97%E5%88%86%E7%AC%AC%E4%B8%89%E7%9A%84%E5%9B%A2%E9%98%9F%E7%9A%84-solution">其他见 task33 时和该团队的比较</a></p>
+</li>
+</ul>
+<h3 id="任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=8025" target="_blank" rel="external">任务得分第二的团队的 solution</a></h3>
+<ul>
+<li>😷 评论说：“按照 task34 题意，（在四个死角，） MOV 指令执行失败的时候，应该既不旋转也不前进。”
+<ul>
+<li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">ToDo: 改进 MOV 相关逻辑</label></li>
+</ul>
+</li>
+</ul>
+<h2 id="做-task34-时遇到的个别难点"><a class="header-anchor" href="#做-task34-时遇到的个别难点">¶</a>做 task34 时遇到的个别难点</h2>
+<p>大家 task34 的完成度都不是很高的样子。。我这里对我做 task34 的时候遇到的最难点，进行一下说明。</p>
+<p>我的小方块的方向 <code>sqDir</code> (squareDirection 的缩写）的定义借鉴了 css 中 top, right, bottom, left 的书写顺序。这里我规定：默认朝上的时候，<code>sqDir</code> 的值为 0 ，每顺时针旋转 90 度， <code>sqDir</code> 值加一，逆时针则减一。理论上，<code>sqDir</code> 的值可以为所有整数（当然是在 JS 数字范围内）。遵循这种规定的 <code>sqDir</code> 值能很好地对应到（只需乘以 90 便能得到） <code>transform</code> 属性的 <code>rotate</code> 的角度值。<code>sqDir</code> 的部分值的含义及和 <code>rotate</code> 角度的对应如下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">…</th>
+<th style="text-align:center">-4</th>
+<th style="text-align:center">-3</th>
+<th style="text-align:center">-2</th>
+<th style="text-align:center">-1</th>
+<th style="text-align:center"><strong>0</strong></th>
+<th style="text-align:center"><strong>1</strong></th>
+<th style="text-align:center"><strong>2</strong></th>
+<th style="text-align:center"><strong>3</strong></th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">……</td>
+<td style="text-align:center">朝上</td>
+<td style="text-align:center">朝右</td>
+<td style="text-align:center">朝下</td>
+<td style="text-align:center">朝左</td>
+<td style="text-align:center"><strong>朝上</strong></td>
+<td style="text-align:center"><strong>朝右</strong></td>
+<td style="text-align:center"><strong>朝下</strong></td>
+<td style="text-align:center"><strong>朝左</strong></td>
+<td style="text-align:center">朝上</td>
+<td style="text-align:center">……</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">-360deg</td>
+<td style="text-align:center">-270deg</td>
+<td style="text-align:center">-180deg</td>
+<td style="text-align:center">-90deg</td>
+<td style="text-align:center">0deg</td>
+<td style="text-align:center">90deg</td>
+<td style="text-align:center">180deg</td>
+<td style="text-align:center">270deg</td>
+<td style="text-align:center">360deg</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<p>那么如何判定一个小方块是朝向什么方向的呢？</p>
+<p>这里，我们需要数学含义上的取模运算，而不是 JavaScript 中的 <code>%</code> 运算。取模和取余的差别，在<a href="http://baishusama.github.io/2017/01/07/IFE-2016-SP-task33/">上一篇</a>中提到过，这里也就不再多说了。于是，我定义了如下取模函数，用来将 <code>sqDir</code> 的值映射到 <code>0,1,2,3</code> 以便判断方向：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 真正的取模，而不是取余</span></div><div class="line"><span class="keyword">var</span> directionMod4 = <span class="function"><span class="keyword">function</span>(<span class="params">direction</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (direction % <span class="number">4</span> + <span class="number">4</span>) % <span class="number">4</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>以上对于 <code>GO</code>、<code>TUN</code> 和 <code>TRA</code> 三种指令已经足够用了，但是 <code>MOV</code> 指令能任性地转向！然而，我不想让自己的小方块显得很蠢，多做一些无用功——转多余的角度才转到指定方向。为了使小方块显得更加聪明，我们需要就 <code>0,1,2,3</code> （即往上转，往右转，往下转，往左转）这四种输入找到小方块在当前朝向（<code>directionMod4(sqDir)</code>）下，往哪边（顺时针还是逆时针）转向能最快地转到位。</p>
+<p>这里最好的办法是能找到一个类似循环链表的数据结构，然后同时向左和向右查找，类似深度优先地返回最<br>
+短路径——所转角度最小的转向。</p>
+<p>可惜我没有找到理想的数据结构，就用了两个 <code>while</code> 循环来实现上述逻辑，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回转到某方向的最小角度</span></div><div class="line"><span class="keyword">var</span> turnTo = <span class="function"><span class="keyword">function</span>(<span class="params">direction</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> curDir = directionMod4(sqDir);</div><div class="line">  <span class="comment">// if(curDir === direction) return 0;</span></div><div class="line"></div><div class="line">  <span class="comment">/* 就近转向 */</span></div><div class="line">  <span class="comment">// Any better way ???</span></div><div class="line">  <span class="keyword">var</span> cwStep = <span class="number">0</span>,</div><div class="line">    anticwStep = <span class="number">0</span>;</div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">if</span> ((curDir + cwStep) % <span class="number">4</span> === direction) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    cwStep++;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">if</span> ((curDir - anticwStep + <span class="number">4</span>) % <span class="number">4</span> === direction) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    anticwStep++;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> deg = <span class="number">0</span>;</div><div class="line">  <span class="keyword">if</span> (cwStep &gt; anticwStep) &#123;</div><div class="line">    deg = -anticwStep * <span class="number">90</span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    deg = cwStep * <span class="number">90</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> deg;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>以上代码的注意点：</p>
+<ol>
+<li><code>cwStep</code> 和 <code>anticwStep</code> 分别代表<code>顺指针所需转向次数</code>和<code>逆时针所需转向次数</code>。两者都可以为零，为零的时候函数将返回 0 。</li>
+<li>为了将方向变化控制在 <code>0,1,2,3</code> 四个数值内，<code>while</code> 循环里的 <code>if</code> 判断条件中用了 <code>% 4</code> 运算，以避免超过 <code>3</code> ；计算逆时针旋转所需次数的时候，<code>curDir - anticwStep + 4</code> 中的 <code>+ 4</code> 避免小于 <code>0</code> 。</li>
+<li>当 <code>顺指针所需转向次数 === 逆时针所需转向次数</code> 时，统一采用顺时针转向。</li>
+</ol>
+<p><input type="checkbox" id="checkbox1"><label for="checkbox1">ToDo: Any better way ???</label></p>
 
       
     </div>
@@ -518,7 +599,7 @@ My solution to task34 is available on jsfiddle:">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做-task34-时遇到的个别难点"><span class="nav-number">3.</span> <span class="nav-text">做 task34 时遇到的个别难点</span></a></li></ol></div>
             
 
           </div>
