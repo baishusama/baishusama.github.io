@@ -92,7 +92,7 @@ My solution to task34 is available on jsfiddle:">
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶My Solution
 My solution to task34 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-09T11:27:57.000Z">
+<meta property="og:updated_time" content="2017-01-09T12:06:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task34">
 <meta name="twitter:description" content="¶My Solution
@@ -352,6 +352,7 @@ My solution to task34 is available on jsfiddle:">
 </ul>
 <h2 id="做-task34-时遇到的个别难点"><a class="header-anchor" href="#做-task34-时遇到的个别难点">¶</a>做 task34 时遇到的个别难点</h2>
 <p>大家 task34 的完成度都不是很高的样子。。我这里对我做 task34 的时候遇到的最难点，进行一下说明。</p>
+<h3 id="方向变量"><a class="header-anchor" href="#方向变量">¶</a>方向变量</h3>
 <p>我的小方块的方向 <code>sqDir</code> (squareDirection 的缩写）的定义借鉴了 css 中 top, right, bottom, left 的书写顺序。这里我规定：默认朝上的时候，<code>sqDir</code> 的值为 0 ，每顺时针旋转 90 度， <code>sqDir</code> 值加一，逆时针则减一。理论上，<code>sqDir</code> 的值可以为所有整数（当然是在 JS 数字范围内）。遵循这种规定的 <code>sqDir</code> 值能很好地对应到（只需乘以 90 便能得到） <code>transform</code> 属性的 <code>rotate</code> 的角度值。<code>sqDir</code> 的部分值的含义及和 <code>rotate</code> 角度的对应如下表：</p>
 <table>
 <thead>
@@ -398,9 +399,11 @@ My solution to task34 is available on jsfiddle:">
 </tr>
 </tbody>
 </table>
+<h3 id="朝向何方"><a class="header-anchor" href="#朝向何方">¶</a>朝向何方</h3>
 <p>那么如何判定一个小方块是朝向什么方向的呢？</p>
 <p>这里，我们需要数学含义上的取模运算，而不是 JavaScript 中的 <code>%</code> 运算。取模和取余的差别，在<a href="http://baishusama.github.io/2017/01/07/IFE-2016-SP-task33/">上一篇</a>中提到过，这里也就不再多说了。于是，我定义了如下取模函数，用来将 <code>sqDir</code> 的值映射到 <code>0,1,2,3</code> 以便判断方向：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 真正的取模，而不是取余</span></div><div class="line"><span class="keyword">var</span> directionMod4 = <span class="function"><span class="keyword">function</span>(<span class="params">direction</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (direction % <span class="number">4</span> + <span class="number">4</span>) % <span class="number">4</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="就近转向-往哪边转"><a class="header-anchor" href="#就近转向-往哪边转">¶</a>就近转向（往哪边转）</h3>
 <p>以上对于 <code>GO</code>、<code>TUN</code> 和 <code>TRA</code> 三种指令已经足够用了，但是 <code>MOV</code> 指令能任性地转向！然而，我不想让自己的小方块显得很蠢，多做一些无用功——转多余的角度才转到指定方向。</p>
 <p>为了使小方块显得更加聪明，我们需要就 <code>0,1,2,3</code> （即往上转，往右转，往下转，往左转）这四种输入找到小方块在当前朝向（<code>directionMod4(sqDir)</code>）下，往哪边（顺时针还是逆时针）转向能最快地转到位。</p>
 <p>这里最好的办法应当是能找到一个类似循环链表的数据结构，然后同时向左和向右查找，类似深度优先地返回最<br>
@@ -420,7 +423,15 @@ My solution to task34 is available on jsfiddle:">
 </ol>
 <p>综上，上面的代码可以简化如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回转到某方向的最小角度</span></div><div class="line"><span class="keyword">var</span> turnTo = <span class="function"><span class="keyword">function</span>(<span class="params">direction</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> curDir = directionMod4(sqDir);<span class="comment">// 小方块的当前朝向</span></div><div class="line">  <span class="comment">// if(curDir === direction) return 0;</span></div><div class="line"></div><div class="line">  <span class="comment">/* 就近转向 */</span></div><div class="line">  <span class="keyword">var</span> cwStep = <span class="number">0</span>;<span class="comment">// 顺时针（clockwise）所需转向次数</span></div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">if</span> ((curDir + cwStep) % <span class="number">4</span> === direction) &#123;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">    cwStep++;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> deg = <span class="number">0</span>;</div><div class="line">  <span class="keyword">if</span> (cwStep &gt; <span class="number">2</span>) &#123;</div><div class="line">    deg = (cwStep - <span class="number">4</span>) * <span class="number">90</span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    deg = cwStep * <span class="number">90</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> deg;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p><input type="checkbox" id="checkbox1"><label for="checkbox1">ToDo: Any better way ???</label></p>
+<h2 id="to-do"><a class="header-anchor" href="#to-do">¶</a>To Do:</h2>
+<ul>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">就近转向的更好方式？</label></li>
+</ul>
+<h2 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h2>
+<p>最后献上，今天看的 S 校某公开课上讲师引用的一句话：</p>
+<blockquote>
+<p>“Really the world is just one big spectrum and if you go around far enough to one side, you end up on the other.”</p>
+</blockquote>
 
       
     </div>
@@ -472,6 +483,10 @@ My solution to task34 is available on jsfiddle:">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/11/IFE-2016-SP-task29/" rel="prev" title="IFE-2016-SP-task29">
+                IFE-2016-SP-task29 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -562,7 +577,7 @@ My solution to task34 is available on jsfiddle:">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -607,7 +622,7 @@ My solution to task34 is available on jsfiddle:">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做-task34-时遇到的个别难点"><span class="nav-number">3.</span> <span class="nav-text">做 task34 时遇到的个别难点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做-task34-时遇到的个别难点"><span class="nav-number">3.</span> <span class="nav-text">做 task34 时遇到的个别难点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方向变量"><span class="nav-number">3.1.</span> <span class="nav-text">方向变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朝向何方"><span class="nav-number">3.2.</span> <span class="nav-text">朝向何方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#就近转向-往哪边转"><span class="nav-number">3.3.</span> <span class="nav-text">就近转向（往哪边转）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-do"><span class="nav-number">4.</span> <span class="nav-text">To Do:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
