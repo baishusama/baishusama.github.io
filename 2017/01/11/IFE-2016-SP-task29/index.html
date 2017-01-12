@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
+My solution to task29 is available on jsfiddle:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IFE-2016-SP-task29">
 <meta property="og:url" content="http://baishusama.github.io/2017/01/11/IFE-2016-SP-task29/index.html">
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-11T13:32:57.000Z">
+My solution to task29 is available on jsfiddle:">
+<meta property="og:updated_time" content="2017-01-12T15:58:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task29">
 <meta name="twitter:description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
+My solution to task29 is available on jsfiddle:">
 
 
 
@@ -328,14 +328,120 @@ My solution to task17 is available on jsfiddle:">
 
       
         <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task17 is available on jsfiddle:</p>
+<p>My solution to task29 is available on jsfiddle:</p>
 <iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/16nbyx5z/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
 <a id="more"></a>
-<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
-<h3 id="任务得分第三的团队的-solution"><a class="header-anchor" href="#任务得分第三的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2097" target="_blank" rel="external">任务得分第三的团队的 solution</a></h3>
 <ul>
-<li></li>
+<li>
+<p>多层嵌套的 <code>if</code> 语句可以通过 <code>else if</code> 语句来简化</p>
+<ul>
+<li>
+<p>😕 我原来的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (val) &#123;</div><div class="line">  <span class="keyword">if</span> (notContainWhitespace(val)) &#123;</div><div class="line">    <span class="keyword">if</span> (isValidLength(val)) &#123;&#125; <span class="keyword">else</span> &#123;</div><div class="line">      information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>😊 修改后的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!val) &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</div><div class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</div><div class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ul>
+</li>
+<li>
+<p>其他：姓名 vs 用户名</p>
+<p>这里我想当然地把原任务中要求的“姓名”改成了“用户名”，现在觉得有不妥 😕 。</p>
+<ol>
+<li>首先，当然，两者的含义不一样。</li>
+<li>更重要的是，姓名中间可以包含空格——比如，英文名至少是两部分，甚至更多。所以我的 solution 比别的团队的（按照要求来的）多了一个空格的判断，因为一般而言用户名中是不允许有空格的。</li>
+</ol>
+</li>
+</ul>
+<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
+<h3 id="任务得分第一的团队的-solution-和-任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution-和-任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=8390" target="_blank" rel="external">任务得分第一的团队的 solution</a> 和 <a href="http://ife.baidu.com/2016/review/detail?workId=4872" target="_blank" rel="external">任务得分第二的团队的 solution</a></h3>
+<ul>
+<li>🔖 利用字符串的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt" target="_blank" rel="external"><code>charCodeAt()</code></a> 方法来计算字符串长度：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">countLength</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> inputLength = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> countCode = str.charCodeAt(i);</div><div class="line">    <span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</div><div class="line">      inputLength += <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      inputLength += <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> inputLength;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>❓ 用两行三列的 <code>table</code> 来布局</p>
+<p>和该团队一样，这种写法我也见过。客观地说，是可以保持提示信息的宽度总是不超过正上方的输入框的。但是，由于过去 <code>table</code> 一度被滥用于全站布局，导致我对使用 <code>table</code> 来布局有些抵触 😶 。关于这里用好还是不用好，这个我先保留意见 😔 。</p>
+</li>
+</ul>
+<h3 id="任务得分第三的团队的-solution"><a class="header-anchor" href="#任务得分第三的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=3421" target="_blank" rel="external">任务得分第三的团队的 solution</a></h3>
+<ul>
+<li>
+<p>将提示信息和相应的类封装成了一个对象，并作为 UI 更新接口的参数</p>
+<p>比起我的相关逻辑而言，分工更加明确 <s>，而且入口单一（弱耦合）【后半句我不太确定，特别是“耦合性”，这里暂时先去掉】</s>。</p>
+<ul>
+<li>
+<p>第一部分的判断还算相似：</p>
+<ul>
+<li>
+<p>我的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!val) &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</div><div class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</div><div class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>该团队的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(testStr.length === <span class="number">0</span> )&#123;</div><div class="line">  paramObj = msgs.error_required;<span class="comment">// 不能为空 “姓名不能为空”</span></div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( !lenReg.test(testStr))&#123;</div><div class="line">  paramObj = msgs.error_length;<span class="comment">// 字符长度不对 “长度为4~16个字符”</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  paramObj = msgs.right;<span class="comment">// 格式正确</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>第二部分，我用了一个 <code>if</code> 判断，而该团队得益于将提示信息视作一个对象（其实，真正避免了 <code>if</code> 语句的是其 <code>UIInterface</code> 方法里对 <code>className</code> 的粗暴操作，这点个人认为我的做法更稳妥 😳 ），而直接将其做为一个接口的参数：</p>
+<ul>
+<li>
+<p>我的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (information) &#123;</div><div class="line">  invalidStylish(information);</div><div class="line">&#125; <span class="keyword">else</span> &#123; validStylish(); &#125;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>该团队的代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UIInterface(veBoxEle, paramObj);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>🔖 <code>console.debug()</code></p>
+</li>
+<li>
+<p>一句话评价：能用正则的都用正则了 😂</p>
+</li>
+</ul>
+<h2 id="正则匹配中文"><a class="header-anchor" href="#正则匹配中文">¶</a>正则匹配中文</h2>
+<ul>
+<li>
+<p>❗️ 判断中文和 <strong>编码</strong> 有关</p>
+<blockquote>
+<p>做的时候因为犯懒没研究各种说法不一的本质原因，现在得知问题出在 <strong>编码</strong> 上。我做 task 的时候用的基本是 Sublime Text 3，而 Sublime 的默认编码是 <code>UTF-8</code> （详见 <code>Preferences-&gt;Settings Default-&gt;&quot;default_encoding&quot;: &quot;UTF-8&quot;</code>）。</p>
+<p>关于字符编码的历史，<a href="https://www.zhihu.com/question/23374078/answer/69732605" target="_blank" rel="external">知乎上这个回答</a>描述得很生动易懂。</p>
+</blockquote>
+<p>所以，下面，我使用的正则对应的编码是 <code>GB2312</code> ；而考虑到 Sublime 的编码，我应该改为使用 <code>/[\u4E00-\u9FA5]/</code> 这样的 UTF-8 对应的正则。</p>
+</li>
+<li>
+<p>我一开始直接匹配的双字节字符：<code>/[^x00-xff]/</code>：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> enReg = <span class="regexp">/[x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> length = <span class="number">0</span>;</div><div class="line">length += value.match(enReg) &amp;&amp; value.match(enReg).length;</div><div class="line">length += value.match(zhReg) &amp;&amp; value.match(zhReg).length * <span class="number">2</span>;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>上面这种写法可以改进为：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> length = zhReg.replace(zhReg, <span class="string">"aa"</span>).length;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我在控制台测试的时候，<code>~</code> <code>-</code> <code>!</code> 等也被视为双字节字符了 OAO ！<br>
+究其原因估计是遵循 <code>GB2312</code> 编码的时候，<code>~</code> <code>-</code> <code>!</code> 等在双字节字符中也存在对应编码。</p>
+</blockquote>
+</li>
+<li>
+<p>前二团队将 <code>ASCII</code> 码以外的都：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在 for 循环内部</span></div><div class="line"><span class="keyword">var</span> countCode = str.charCodeAt(i);</div><div class="line"><span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</div><div class="line">  inputLength += <span class="number">1</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  inputLength += <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第三团队匹配的是中文字符（应该不是全部，但基本涵盖常用?）：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> chineseReg = <span class="regexp">/[\u4E00-\uFA29]|[\uE7C7-\uE7F3]/g</span>;</div><div class="line"><span class="keyword">var</span> validLength = <span class="regexp">/^.&#123;4,16&#125;$/</span>.test(trimmedStr.replace(chineseReg, <span class="string">'--'</span>));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><strong>To be read</strong><br>
+<input type="checkbox" id="checkbox0"><label for="checkbox0"></label><a href="http://stackoverflow.com/questions/1366068/whats-the-complete-range-for-chinese-characters-in-unicode" target="_blank" rel="external">What’s the complete range for Chinese characters in Unicode? @SO</a></p>
+</blockquote>
 
       
     </div>
@@ -522,7 +628,7 @@ My solution to task17 is available on jsfiddle:">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第三的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第三的团队的 solution</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution-和-任务得分第二的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution 和 任务得分第二的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第三的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第三的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则匹配中文"><span class="nav-number">3.</span> <span class="nav-text">正则匹配中文</span></a></li></ol></div>
             
 
           </div>
