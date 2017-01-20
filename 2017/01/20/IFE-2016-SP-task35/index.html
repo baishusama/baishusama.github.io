@@ -1,0 +1,784 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IFE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="¶My Solution
+My solution to task35 is available on jsfiddle:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IFE-2016-SP-task35">
+<meta property="og:url" content="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶My Solution
+My solution to task35 is available on jsfiddle:">
+<meta property="og:updated_time" content="2017-01-20T06:18:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IFE-2016-SP-task35">
+<meta name="twitter:description" content="¶My Solution
+My solution to task35 is available on jsfiddle:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/"/>
+
+
+
+
+
+  <title> IFE-2016-SP-task35 | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">while(imoLife){ imo = imo + 1; }</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IFE-2016-SP-task35
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-20T12:15:42+08:00">
+                2017-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/01/20/IFE-2016-SP-task35/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/20/IFE-2016-SP-task35/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
+<p>My solution to task35 is available on jsfiddle:</p>
+<iframe scrolling="no" width="100%" height="500px" src="http://jsfiddle.net/0oesrpwL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<a id="more"></a>
+<h3 id="🔖-和-的使用方法"><a class="header-anchor" href="#🔖-和-的使用方法">¶</a>🔖 <code>&amp;&amp;</code> 和 <code>||</code> 的使用方法</h3>
+<h4 id="logical-operators-mdn"><a class="header-anchor" href="#logical-operators-mdn">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="_blank" rel="external">Logical Operators @MDN</a></h4>
+<p><code>&amp;&amp;</code> 会返回第一个假值（falsy value），<code>||</code> 会返回第一个真值（truthy value）。假值包括：</p>
+<ol>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>0</code></li>
+<li><code>NaN</code></li>
+<li><code>&quot;&quot;</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 下面两个函数等价 */</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">shortCircuitEvaluation</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  doSomething() || doSomethingElse()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">equivalentEvaluation</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> flag = doSomething();</div><div class="line">  <span class="keyword">if</span> (!flag) &#123;</div><div class="line">    doSomethingElse();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/* 一些例子 */</span></div><div class="line"><span class="string">""</span> &amp;&amp; <span class="literal">false</span>      <span class="comment">// returns ""</span></div><div class="line"><span class="string">""</span> || <span class="literal">false</span>      <span class="comment">// returns false</span></div><div class="line"><span class="literal">false</span> || <span class="string">""</span>      <span class="comment">// returns ""</span></div></pre></td></tr></table></figure>
+<h4 id="对-js-运算符-和-的总结"><a class="header-anchor" href="#对-js-运算符-和-的总结">¶</a><a href="http://jianguang-qq.iteye.com/blog/462449?page=2" target="_blank" rel="external">对 js 运算符 || 和 &amp;&amp; 的总结</a></h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* e.g.1 成长速度 */</span></div><div class="line"><span class="comment">// 需求一（==） - basic:</span></div><div class="line"><span class="keyword">var</span> addLevel = (addStep==<span class="number">5</span> &amp;&amp; <span class="number">1</span>) || (addStep==<span class="number">10</span> &amp;&amp; <span class="number">2</span>) || (addStep==<span class="number">12</span> &amp;&amp; <span class="number">3</span>) || (addStep==<span class="number">15</span> &amp;&amp; <span class="number">4</span>) || <span class="number">0</span>;</div><div class="line"><span class="comment">// 需求一（==） - with Object:</span></div><div class="line"><span class="keyword">var</span> addLevel=&#123;<span class="string">'5'</span>:<span class="number">1</span>,<span class="string">'10'</span>:<span class="number">2</span>,<span class="string">'12'</span>:<span class="number">3</span>,<span class="string">'15'</span>:<span class="number">4</span>&#125;[addStep] || <span class="number">0</span>;      </div><div class="line"><span class="comment">// 需求二（&gt;）:</span></div><div class="line"><span class="keyword">var</span> addLevel = (addStep&gt;<span class="number">12</span> &amp;&amp; <span class="number">4</span>) || (addStep&gt;<span class="number">10</span> &amp;&amp; <span class="number">3</span>) || (addStep&gt;<span class="number">5</span> &amp;&amp; <span class="number">2</span>) || (addStep&gt;<span class="number">0</span> &amp;&amp; <span class="number">1</span>) || <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">/* e.g.2 jQuery 源码 */</span></div><div class="line"><span class="keyword">var</span> wrap = !tags.indexOf(<span class="string">"&lt;opt"</span>) &amp;&amp; ...;<span class="comment">// means 'startWith'</span></div></pre></td></tr></table></figure>
+<p>使用注意点：</p>
+<ul>
+<li>优点：精简了代码，能减少网络流量</li>
+<li>缺点：降低了代码的可读性</li>
+<li>推荐做法：适当写些注释</li>
+</ul>
+<h4 id="我在自己的实现中的使用"><a class="header-anchor" href="#我在自己的实现中的使用">¶</a>我在自己的实现中的使用</h4>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 前情提要：directive will be "go","tunlef2",...</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> temp = directive.match(<span class="regexp">/\d+/</span>) &amp;&amp; directive.match(<span class="regexp">/\d+/</span>)[<span class="number">0</span>]; </div><div class="line"><span class="comment">// e.g. null &amp;&amp; ~ -&gt; null | ["1"] &amp;&amp; "1" -&gt; "1"</span></div><div class="line"></div><div class="line">step = <span class="built_in">parseInt</span>(temp) || <span class="number">0</span>; </div><div class="line"><span class="comment">// 当值为 null 时，得到 NaN 。NaN || 0 -&gt; 0</span></div><div class="line"></div><div class="line"><span class="comment">// 以及其他很多的 '... || 默认值'</span></div></pre></td></tr></table></figure>
+<h3 id="🎀-textarea-避开监听滚动事件来实现同步滚动行号"><a class="header-anchor" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号">¶</a>🎀 textarea 避开监听滚动事件来实现同步滚动行号</h3>
+<h4 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h4>
+<blockquote>
+<p>因为，做之前稍微看了眼各个团队得到的评价（评论），了解了<a href="http://ife.baidu.com/2016/review/detail?workId=8467" target="_blank" rel="external">导师对这个任务实现的一些看法</a>，其中第四条指出：“指令输入编辑器显示代码行逻辑实现上有点不优雅。**一定要监听滚动才能实现左边指令行数一起滚动吗？**包括每次输入变化都重新渲染所有的代码行数，代价有点大。”</p>
+<p>于是，我花了很久来思考怎么才能避开我一开始预想的通过监听滚动来实现行号和内容的同步滚动。最终得到了这个实现。</p>
+</blockquote>
+<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
+<p>在一个父级 <code>div</code> 中两个同级的 div 正常情况下能同步地上下滚动。</p>
+<p>所以我们需使 <code>textarea</code> 表现得和普通的 <code>div</code> 一样——具有和 <code>div</code> 一样的特性——能够根据所包含的文字内容的高度，自动地变化自己的高度。</p>
+<h4 id="实现"><a class="header-anchor" href="#实现">¶</a>实现</h4>
+<h5 id="textarea-高度自适应的问题-法一"><a class="header-anchor" href="#textarea-高度自适应的问题-法一">¶</a>textarea 高度自适应的问题 - 法一</h5>
+<blockquote>
+<p><strong>参考</strong><br>
+<a href="http://stackoverflow.com/questions/7477/autosizing-textarea-using-prototype" target="_blank" rel="external">Autosizing textarea using Prototype @SO</a> 提问中 Jan Miksovsky 的回答，以及回答下面的评论提出的一些修改意见。</p>
+</blockquote>
+<p>可以查看 <a href=""><code>jsfiddle</code> 上的在线 demo</a>。</p>
+<p>这个解决方法 <strong>棒</strong> 在更多地依赖 HTML 和 CSS，而不是 JS 。</p>
+<p>但是也存在 <strong>缺点</strong> ：在最后一行进行回车的时候，高度会有波动，而不是直接一步到位。</p>
+<p><strong>根本原因</strong> 在于，回车的一瞬间 <code>textarea</code> 的高度还未发生变化。因为在本例中，<code>textarea</code> 的高度为 <code>height: 100%;</code> 是依赖于父元素的高度，而父元素的高度依赖于 <code>div#textCopy</code> 的高度。</p>
+<p>其具体过程是这样的：在最后一行进行回车的时候，<code>textarea</code> 的文字内容的最下方会增高一行，此时父元素高度不变，即 <code>textarea</code> 的高度不变，默认地 <code>textarea</code> 内容高度大于元素本身高度、第一行的内容将上移并被遮挡。而回车触发了 <code>keydown/keyup</code> 事件，回车被 JS 中定义的 <code>autoSize()</code> 转换成了 <code>&lt;br/&gt;</code> 并传给了 <code>div#textCopy</code> ，<code>div#textCopy</code> 的高度由此变高，父元素和 <code>textarea</code> 的高度也相应变高。第一行的内容也就由此能够最终避免被遮挡的命运了。</p>
+<h5 id="textarea-高度自适应的问题-其它方法"><a class="header-anchor" href="#textarea-高度自适应的问题-其它方法">¶</a>textarea 高度自适应的问题 - 其它方法</h5>
+<blockquote>
+<p>其它待读的相关资料：<br>
+<a href="https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize" target="_blank" rel="external">Creating a textarea with auto-resize</a></p>
+<p>可以适当参考其它成熟实现：<br>
+<a href="https://babeljs.io/repl/" target="_blank" rel="external">babeljs.io</a></p>
+</blockquote>
+<h4 id="小结"><a class="header-anchor" href="#小结">¶</a>小结</h4>
+<p>由于目前需要实现的并不是多么完备而成熟的文本编辑器（需求详见 <a href="http://ife.baidu.com/2016/task/detail?taskId=35" target="_blank" rel="external">task35 任务说明</a>），本次实现的文本编辑器还存在若干有待改进之处。</p>
+<p><input type="checkbox" id="checkbox0"><label for="checkbox0"></label><strong>To Do</strong></p>
+<ol>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">默认命令代码在一行内——未考虑到，当输入一行很长的代码，且不换行的情况下，行号间应该存在空隔。</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">默认命令代码的数量是很有限的——未考虑到，当输入行数很多的情况下，数字很大的行号的样式问题。</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">默认用户通过键盘来键入命令行——未考虑除了键盘输入外的其他输入方式（鼠标右键复制等）。</label></li>
+<li>（有待补充。也强烈欢迎各位看官提出 bug ~）</li>
+</ol>
+<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
+<h3 id="任务得分第一的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2417" target="_blank" rel="external">任务得分第一的团队的 solution</a></h3>
+<h4 id="一些实现上的差异比较"><a class="header-anchor" href="#一些实现上的差异比较">¶</a>一些实现上的差异比较</h4>
+<ul>
+<li><code>setTimeout</code> 还是 <code>setInterval</code>
+<ul>
+<li>我的指令逐行执行的实现：<code>for</code> 循环 + <code>setTimeout</code> + 闭包。</li>
+<li>该团队的实现：<code>setInterval</code> + 其外部的计数器。
+<ul>
+<li>优点：
+<ol>
+<li>省去了 <code>setTimeout</code> 第二个时间参数的计算。</li>
+<li>由于自带重复，省去了外层的 <code>for</code> 循环。</li>
+<li>因而也不需要闭包。</li>
+<li>在终止后续指令的时候，只需要 <code>clearInterval</code> 当前即可。而 <code>setTimeout</code> 需要 <code>clearTimeout</code> 后续所有。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>判断指令是否合法
+<ul>
+<li>我是通过对象的方法是否存在判断的。e.g. <code>!square[name]</code> 表示方法不存在时。</li>
+<li>该团队 <code>for in</code> 所有方法名得到正确指令的正则 <code>consoleExp</code> 再用正则判断的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=3569" target="_blank" rel="external">任务得分第二的团队的 solution</a></h3>
+<p><s>P.S. 这位的代码我没细看，但是这位的头像和（aiti？）一样，和我企鹅群里认识的那人是同一个人么OAO？。。</s></p>
+<h2 id="对-task36-的展望-恐慌"><a class="header-anchor" href="#对-task36-的展望-恐慌">¶</a>对 task36 的展望 <s>（恐慌）</s></h2>
+<p>看了眼 task36 前三的团队实现的 demo 和得到的评价，我觉得我可能要犯拖延了。。第一名的团队支持图片上传。。前三的某支团队甚至搞了一个 AST 。。大神们，请收下在下的膝盖 Orz 。。。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: 'Brush Script MT';">
+        ———————— THE END ————————
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IFE/" rel="tag"># IFE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/11/IFE-2016-SP-task29/" rel="next" title="IFE-2016-SP-task29">
+                <i class="fa fa-chevron-left"></i> IFE-2016-SP-task29
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/01/20/IFE-2016-SP-task35/"
+     data-title="IFE-2016-SP-task35"
+     data-content=""
+     data-url="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/20/IFE-2016-SP-task35/"
+           data-title="IFE-2016-SP-task35" data-url="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🔖-和-的使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">🔖 && 和 || 的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#logical-operators-mdn"><span class="nav-number">1.1.1.</span> <span class="nav-text">Logical Operators @MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-js-运算符-和-的总结"><span class="nav-number">1.1.2.</span> <span class="nav-text">对 js 运算符 || 和 && 的总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我在自己的实现中的使用"><span class="nav-number">1.1.3.</span> <span class="nav-text">我在自己的实现中的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号"><span class="nav-number">1.2.</span> <span class="nav-text">🎀 textarea 避开监听滚动事件来实现同步滚动行号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">1.2.1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.2.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.2.3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-法一"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">textarea 高度自适应的问题 - 法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-其它方法"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">textarea 高度自适应的问题 - 其它方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.2.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些实现上的差异比较"><span class="nav-number">2.1.1.</span> <span class="nav-text">一些实现上的差异比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对-task36-的展望-恐慌"><span class="nav-number">3.</span> <span class="nav-text">对 task36 的展望 （恐慌）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
