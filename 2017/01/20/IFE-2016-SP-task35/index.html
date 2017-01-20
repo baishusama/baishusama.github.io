@@ -92,7 +92,7 @@ My solution to task35 is available on jsfiddle:">
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶My Solution
 My solution to task35 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-20T06:18:33.000Z">
+<meta property="og:updated_time" content="2017-01-20T09:05:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task35">
 <meta name="twitter:description" content="¶My Solution
@@ -355,7 +355,7 @@ My solution to task35 is available on jsfiddle:">
 <h3 id="🎀-textarea-避开监听滚动事件来实现同步滚动行号"><a class="header-anchor" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号">¶</a>🎀 textarea 避开监听滚动事件来实现同步滚动行号</h3>
 <h4 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h4>
 <blockquote>
-<p>因为，做之前稍微看了眼各个团队得到的评价（评论），了解了<a href="http://ife.baidu.com/2016/review/detail?workId=8467" target="_blank" rel="external">导师对这个任务实现的一些看法</a>，其中第四条指出：“指令输入编辑器显示代码行逻辑实现上有点不优雅。**一定要监听滚动才能实现左边指令行数一起滚动吗？**包括每次输入变化都重新渲染所有的代码行数，代价有点大。”</p>
+<p>因为，做之前稍微看了眼各个团队得到的评价（评论），了解了<a href="http://ife.baidu.com/2016/review/detail?workId=8467" target="_blank" rel="external">导师对这个任务实现的一些看法</a>，其中第四条指出：“指令输入编辑器显示代码行逻辑实现上有点不优雅。 <strong>一定要监听滚动才能实现左边指令行数一起滚动吗？</strong> 包括每次输入变化都重新渲染所有的代码行数，代价有点大。”</p>
 <p>于是，我花了很久来思考怎么才能避开我一开始预想的通过监听滚动来实现行号和内容的同步滚动。最终得到了这个实现。</p>
 </blockquote>
 <h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
@@ -364,7 +364,7 @@ My solution to task35 is available on jsfiddle:">
 <h4 id="实现"><a class="header-anchor" href="#实现">¶</a>实现</h4>
 <h5 id="textarea-高度自适应的问题-法一"><a class="header-anchor" href="#textarea-高度自适应的问题-法一">¶</a>textarea 高度自适应的问题 - 法一</h5>
 <blockquote>
-<p><strong>参考</strong><br>
+<p><strong>参考：</strong><br>
 <a href="http://stackoverflow.com/questions/7477/autosizing-textarea-using-prototype" target="_blank" rel="external">Autosizing textarea using Prototype @SO</a> 提问中 Jan Miksovsky 的回答，以及回答下面的评论提出的一些修改意见。</p>
 </blockquote>
 <p>可以查看 <a href=""><code>jsfiddle</code> 上的在线 demo</a>。</p>
