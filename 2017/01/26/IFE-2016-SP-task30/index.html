@@ -1,0 +1,744 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IFE," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="¶My Solution
+My solution to task30 is available on jsfiddle:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IFE-2016-SP-task30">
+<meta property="og:url" content="http://baishusama.github.io/2017/01/26/IFE-2016-SP-task30/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶My Solution
+My solution to task30 is available on jsfiddle:">
+<meta property="og:updated_time" content="2017-01-27T04:27:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IFE-2016-SP-task30">
+<meta name="twitter:description" content="¶My Solution
+My solution to task30 is available on jsfiddle:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2017/01/26/IFE-2016-SP-task30/"/>
+
+
+
+
+
+  <title> IFE-2016-SP-task30 | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">while(imoLife){ imo = imo + 1; }</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/26/IFE-2016-SP-task30/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IFE-2016-SP-task30
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-26T22:08:56+08:00">
+                2017-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/01/26/IFE-2016-SP-task30/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/26/IFE-2016-SP-task30/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
+<p>My solution to task30 is available on jsfiddle:</p>
+<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/q989o3nm/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<a id="more"></a>
+<ul>
+<li>😕 这个实现中不太优雅的地方：
+<ul>
+<li>分别为每个 <code>input</code> 都定义了一个 <code>check 函数</code>，虽然有利用 <code>checkValue</code> 复用一部分代码。。</li>
+<li>为了改变 <code>this</code> 使用了很多很多的 <code>.call()</code> 方法。。</li>
+<li><code>blur</code> 的事件委托（历史遗留问题）。。</li>
+</ul>
+</li>
+<li>😕 这个实现中不太可靠的地方：
+<ul>
+<li>各项的验证规则（正则）</li>
+</ul>
+</li>
+</ul>
+<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
+<h3 id="任务得分第一的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=8817" target="_blank" rel="external">任务得分第一的团队的 solution</a></h3>
+<ul>
+<li>🎀 巧妙地各种运用数组及其方法
+<ul>
+<li>
+<p><code>hintText</code> 数组</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hintText = [&#123; <span class="attr">hint</span>: <span class="string">"必填，长度为4~16位字符"</span>, <span class="attr">right</span>: <span class="string">"名称格式正确"</span>, <span class="attr">wrong</span>: <span class="string">"名称格式有误"</span>, <span class="attr">isPassed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  &#123; <span class="attr">hint</span>: <span class="string">"必填，长度为4~16位字符,包含字母和数字"</span>, <span class="attr">right</span>: <span class="string">"密码可用"</span>, <span class="attr">wrong</span>: <span class="string">"密码不可用"</span>, <span class="attr">isPassed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  &#123; <span class="attr">hint</span>: <span class="string">"必填，必须与密码相同"</span>, <span class="attr">right</span>: <span class="string">"密码输入一致"</span>, <span class="attr">wrong</span>: <span class="string">"密码输入不一致"</span>, <span class="attr">isPassed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  &#123; <span class="attr">hint</span>: <span class="string">"填写正确的邮箱格式"</span>, <span class="attr">right</span>: <span class="string">"邮箱格式正确"</span>, <span class="attr">wrong</span>: <span class="string">"邮箱格式错误"</span>, <span class="attr">isPassed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  &#123; <span class="attr">hint</span>: <span class="string">"必填，长度为4~16位字符"</span>, <span class="attr">right</span>: <span class="string">"手机格式正确"</span>, <span class="attr">wrong</span>: <span class="string">"手机格式错误"</span>, <span class="attr">isPassed</span>: <span class="literal">false</span> &#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>利用数组的 <code>.forEach()</code> 和 <code>.every()</code> 方法来验证所有输入</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我的写法不优雅之处：</span></div><div class="line"><span class="comment">// 1. 为每个 input 分别定义了检查函数，需要传入相关 dom 元素。</span></div><div class="line"><span class="comment">// 2. 提交验证时，if 判断条件由一堆很长的 &amp;&amp; 组成。</span></div><div class="line">addEventHandler(verifyBtn, <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> rawVal = nameDOM.value;</div><div class="line">  <span class="keyword">if</span> (checkName.call(nameDOM) &amp;&amp; checkPwd.call(pwdDOM) &amp;&amp; checkRepeatPwd.call(repeatPwdDOM) &amp;&amp; checkEmail.call(emailDOM) &amp;&amp; checkMobile.call(mobileDOM)) &#123;</div><div class="line">    alert(<span class="string">"提交（验证)成功！"</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"请按提示输入正确的信息后，再提交。"</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 该团队的写法：</span></div><div class="line"><span class="comment">// 1. 由于在 html 中定义了包含数字的 id 作为钩子，</span></div><div class="line"><span class="comment">//    其检查函数只需传入对应的序号做参数即可找到相关 dom ，而不需要像我那样传入 dom 作为参数。</span></div><div class="line"><span class="comment">// 2. hintText 在存储提示信息的同时存储了检查状态。</span></div><div class="line"><span class="comment">//    在提交时，先是 .forEach() 地 checkValue 一遍，再利用 .every() 得到验证结果的 flag 值。</span></div><div class="line">addEventHandler(<span class="built_in">document</span>.getElementById(<span class="string">"submit"</span>), <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  e.preventDefault();</div><div class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    checkValue(el);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">var</span> flag = hintText.every(<span class="function"><span class="keyword">function</span>(<span class="params">singleHint</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> singleHint.isPassed;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">if</span> (flag)</div><div class="line">    alert(<span class="string">"提交成功"</span>);</div><div class="line">  <span class="keyword">else</span></div><div class="line">    alert(<span class="string">"提交失败"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>事件循环绑定</strong> 可以利用数组的 <code>.forEach()</code> 方法 <strong>避开闭包</strong>（虽然这里真正避开闭包的原因是使用了节点的 id 中包含的数字，而没有使用 for 循环中的计数器 i ，但是使用<code>数组的循环方法</code>取代<code>通常的 for 循环</code>，确实是避开闭包的一种可行方案。）：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inputs = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"input"</span>);</div><div class="line">[].forEach.call(inputs, <span class="function"><span class="keyword">function</span>(<span class="params">elem</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> id = elem.getAttribute(<span class="string">"id"</span>).slice(<span class="number">1</span>);</div><div class="line">  <span class="keyword">var</span> hintID = <span class="string">"h"</span> + elem.getAttribute(<span class="string">"id"</span>).slice(<span class="number">1</span>);</div><div class="line">  addEventHandler(elem, <span class="string">"focus"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">document</span>.getElementById(hintID).style.display = <span class="string">"table-row"</span>;</div><div class="line">  &#125;);</div><div class="line">  addEventHandler(elem, <span class="string">"blur"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; checkValue(id) &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=8842" target="_blank" rel="external">任务得分第二的团队的 solution</a></h3>
+<ul>
+<li><strong>事件循环绑定</strong> 利用事件回调函数的 <code>e.target</code> 避开使用 for 循环的计数器 i （从而 <strong>避开闭包</strong>）</li>
+</ul>
+<h3 id="任务得分第三的团队的-solution"><a class="header-anchor" href="#任务得分第三的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2691" target="_blank" rel="external">任务得分第三的团队的 solution</a></h3>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0"></label><code>ES6</code> 待读。。</li>
+</ul>
+<h2 id="各项验证"><a class="header-anchor" href="#各项验证">¶</a>各项验证</h2>
+<h3 id="手机号"><a class="header-anchor" href="#手机号">¶</a>手机号</h3>
+<ul>
+<li>我的 <code>/^\d{11}$/</code> ：11 位纯数字</li>
+<li><code>/^1\d{10}$/</code> ：第一位为 1 的 11 位纯数字</li>
+<li><code>/^1(3|4|5|7|8)\d{9}$/</code> ：考虑到前两位的 11 位纯数字</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: 'Brush Script MT';">
+        ———————— THE END ————————
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IFE/" rel="tag"># IFE</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/20/IFE-2016-SP-task35/" rel="next" title="IFE-2016-SP-task35">
+                <i class="fa fa-chevron-left"></i> IFE-2016-SP-task35
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/01/26/IFE-2016-SP-task30/"
+     data-title="IFE-2016-SP-task30"
+     data-content=""
+     data-url="http://baishusama.github.io/2017/01/26/IFE-2016-SP-task30/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/26/IFE-2016-SP-task30/"
+           data-title="IFE-2016-SP-task30" data-url="http://baishusama.github.io/2017/01/26/IFE-2016-SP-task30/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第二的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第三的团队的-solution"><span class="nav-number">2.3.</span> <span class="nav-text">任务得分第三的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各项验证"><span class="nav-number">3.</span> <span class="nav-text">各项验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手机号"><span class="nav-number">3.1.</span> <span class="nav-text">手机号</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
