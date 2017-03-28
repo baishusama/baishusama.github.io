@@ -242,6 +242,401 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/移动端-click-事件的-300ms-延迟/" itemprop="url">
+                  移动端 click 事件 300ms 延迟的前世今生
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T17:21:17+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/03/27/移动端-click-事件的-300ms-延迟/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/移动端-click-事件的-300ms-延迟/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="存疑"><a class="header-anchor" href="#存疑">¶</a>存疑</h2>
+<p>最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。</p>
+<p>在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。</p>
+<p>时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。</p>
+<h2 id="移动端-click-的-300ms-延迟"><a class="header-anchor" href="#移动端-click-的-300ms-延迟">¶</a>移动端 <code>click</code> 的 300ms 延迟</h2>
+<p>那么，<a href="http://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay" target="_blank" rel="external">这 300ms 延迟到底是从哪里来的呢？</a></p>
+<p>时间要追溯到 2007 年初代 iPhone 发布前夕，苹果为了解决“如何用手机这种小尺寸屏幕来显示 PC 端网页”这个问题，提出了很多聪明的约定（convention）。而后因为 iPhone 的大获成功，这些约定被各大手机浏览器争相效仿。</p>
+<p>这些约定之中，<strong>双击缩放（Double Tap to Zoom）</strong> 就是 300ms 的“元凶”——当用户在页面上 click 的时候，浏览器为了判断这个用户操作是单击还是双击，会等待 300-350ms 。如果 300ms 内，发生了第二次 click 事件，那么视为双击；否则为单击，等 300ms 时间过去之后，才触发 click 事件。</p>
+<p>在那个还不存在响应式设计和双指缩放（Pinch to Zoom）的时代，这个延迟是一个合理的预防措施。但不幸的是，<strong>这 300ms 的延迟已经成为用户觉得 web 应用比 native 应用更慢、性能不及后者的主要原因之一</strong>。诸如，链接、按钮、多选框等基于 click 交互的元素，以及 JS 对 click 事件的监听，都因此受到影响。</p>
+<p>幸运的是，浏览器开发商（vendor）和开发者都注意到了这个问题，提出了一些解决方案。</p>
+<h2 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h2>
+<h3 id="方案一-👎-禁用缩放"><a class="header-anchor" href="#方案一-👎-禁用缩放">¶</a>方案一、👎 禁用缩放</h3>
+<ul>
+<li>
+<p>代码：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=no"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 或者 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1, minimum-scale=1, maximum-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原理：双击是为了缩放，如果禁用缩放，那么就没双击什么事儿了，也不需要额外等待 300ms 了。</p>
+</li>
+<li>
+<p>支持情况：在 Android 平台上，由 Chrome 最先提出，FireFox、Opera 等浏览器也相继支持；IOS 9.3 开始一度支持，IOS10 开始不再支持。</p>
+</li>
+<li>
+<p>缺点：Safari 不支持。而且，禁用缩放会<strong>损害移动端网页的可用性和可访问性</strong>。例如，可能无法放大网页中的一张图片或一段字体较小的文字。</p>
+</li>
+</ul>
+<blockquote>
+<p>这里要注意区分：“双击缩放”（Double Tap to Zoom）和“双指缩放”（Pinch to Zoom）。为了兼顾消除 300ms 延迟和不损害可用性和可访问性，<strong>我们应该抛弃双击缩放、拥抱双指缩放。</strong></p>
+</blockquote>
+<h3 id="方案二-👍-视窗宽度设置为设备宽度"><a class="header-anchor" href="#方案二-👍-视窗宽度设置为设备宽度">¶</a>方案二、👍 视窗宽度设置为设备宽度</h3>
+<ul>
+<li>
+<p>代码：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原由：正如 <a href="https://codereview.chromium.org/18850005/" target="_blank" rel="external">Chromium Code Reviews</a> 上说的，<code>viewport</code> 的 <code>width</code> 设置得小于等于 <code>device-width</code> 的页面，是针对移动端优化过的或者是响应式的站点，其内容足够清晰，双击缩放失去了意义。因此，为包含上面这行代码的页面<strong>禁用双击缩放</strong>。同时，双指缩放得以保留，从而也就<strong>没有可用性和可访问性问题</strong>了。</p>
+</li>
+<li>
+<p>支持情况：自 Chrome 32 开始，FF、IE/Edge 也随后支持了；2016 年 3 月，IOS 9.3 开始支持。</p>
+</li>
+<li>
+<p>推荐使用！</p>
+</li>
+</ul>
+<blockquote>
+<p>该解决方案的“禁止双击缩放”是遵守如下<a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="external">规则</a>的：</p>
+<ul>
+<li>当页面设置了视窗宽度为设备宽度且是初始尺寸（页面尚未缩放），此时，双击缩放才是被禁止的。</li>
+<li>如果视窗尺寸不是初始尺寸（页面已经缩放），双击缩放是被允许的。</li>
+<li>为了在用户结束缩放后仍能 fast-click ，缩小时，只能缩小到初始尺寸，而不是最小尺寸。</li>
+</ul>
+</blockquote>
+<h3 id="方案三-👍-指针事件-pointer-events"><a class="header-anchor" href="#方案三-👍-指针事件-pointer-events">¶</a>方案三、👍 指针事件（Pointer Events）</h3>
+<ul>
+<li>
+<p>代码：</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span>, <span class="selector-tag">button</span>, <span class="selector-class">.myelements</span> &#123;</div><div class="line">    <span class="attribute">-ms-touch-action</span>: manipulation; <span class="comment">/* IE10  */</span></div><div class="line">    <span class="attribute">touch-action</span>: manipulation;     <span class="comment">/* IE11+ */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>根据<a href="https://w3c.github.io/pointerevents/#the-touch-action-css-property" target="_blank" rel="external">规范</a>：CSS 属性 <code>touch-action</code> 决定了触摸输入（touch input）能否触发 UA （User Agent）支持的默认行为。这包括但不限于诸如平移或缩放等行为。</p>
+</li>
+<li>
+<p>根据 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action" target="_blank" rel="external">MDN</a>：<code>touch-action</code> 的 <code>manipulation</code> 值激活了平移和双指缩放手势，而禁用了双击缩放等非标准的手势。</p>
+</li>
+<li>
+<p>支持情况：在 <a href="http://caniuse.com/#search=touch-action" target="_blank" rel="external">Can I Use</a> 上可以看出，除了 Opera Mini 不支持、FF 需要手动启用和 Android 4.x 的自带浏览器有些迷之外，其他浏览器支持良好。</p>
+</li>
+<li>
+<p>推荐使用！</p>
+</li>
+</ul>
+<blockquote>
+<p>在只有 IE 支持指针事件的初期，诞生了不少<a href="https://thx.github.io/mobile/300ms-click-delay#%E6%8C%87%E9%92%88%E4%BA%8B%E4%BB%B6%E7%9A%84-polyfill" target="_blank" rel="external">指针事件的 polyfill 解决方案</a>。在仍不支持指针事件的浏览器上，这是一种变通的方式。</p>
+<p><code>shim</code> VS <code>polyfill</code></p>
+<ol>
+<li>一个 shim 是一个库，它将一个新的 API 引入到一个旧的环境中，而且仅靠旧环境中已有的手段实现。</li>
+<li><a href="https://www.wikiwand.com/en/Polyfill" target="_blank" rel="external"><strong>polyfill 就是浏览器 API 的 shim 。</strong></a> 它用于实现浏览器并不支持的原生 API 的代码，是<strong>抹平</strong>新旧浏览器对原生 API 支持<strong>差异</strong>的封装。通常，polyfill 会先检查当前浏览器是否支持某个 API，如果不支持的话就加载它自己的实现，然后新旧浏览器就都可以使用这个 API 了。相当于“打补丁”，“刮腻子”。</li>
+</ol>
+</blockquote>
+<h3 id="方案四-👍-轻量级库-fastclick"><a class="header-anchor" href="#方案四-👍-轻量级库-fastclick">¶</a>方案四、👍 <a href="https://github.com/ftlabs/fastclick" target="_blank" rel="external">轻量级库 FastClick</a></h3>
+<ul>
+<li>
+<p>代码：</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    FastClick.attach( <span class="built_in">document</span>.body ); <span class="comment">// 直接绑定到 &lt;body&gt; 上可以确保整个应用都能受益</span></div><div class="line">&#125;, <span class="literal">false</span> );</div></pre></td></tr></table></figure>
+</li>
+<li>
+<p>原理：FastClick 在检测到 <code>touchend</code> 事件的时候，会通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="external">DOM 自定义事件</a>立即触发一个模拟的 <code>click</code> 事件，并把浏览器 300ms 之后真正触发的 click 事件阻止掉。</p>
+</li>
+<li>
+<p>无冲突：当 FastClick 检测到当前页面使用了基于 <code>&lt;meta&gt;</code> 标签或者 <code>touch-action</code> 属性的解决方案时，<a href="https://github.com/ftlabs/fastclick#when-it-isnt-needed" target="_blank" rel="external">会静静地看别的解决方案装逼</a>。</p>
+</li>
+<li>
+<p>唯一的缺点：文件大小占 10 KB……</p>
+</li>
+<li>
+<p>推荐使用！</p>
+</li>
+</ul>
+<h2 id="关于-始作俑者-safari"><a class="header-anchor" href="#关于-始作俑者-safari">¶</a>关于“始作俑者” Safari</h2>
+<h3 id="起承转折"><a class="header-anchor" href="#起承转折">¶</a>起承转折</h3>
+<p><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="external">(2013) 300 毫秒点击延迟的来龙去脉</a>一文中提到的 IOS 特有的<strong>双击滚动（Double Tap to Scroll）：仍存在</strong>、并没有像原文猜测的那样消失。（亲测 IOS 10.2.1 Safari 已设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code> 的页面在屏幕上或下 1/4 处双击仍能滚动。）</p>
+<p>起初看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_1.html#//apple_ref/doc/uid/TP40014305-CH10-SW8" target="_blank" rel="external">2016 年 3 月发布的 IOS 9.3 移除了 300ms 延迟、从而实现了“fast-tap” </a>」时，我还欣慰地想道：最先提出“双击缩放”约定的苹果，在最后也顺应了历史潮流嘛。但是接着看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="external">IOS10 无视了禁用缩放（user-scalable）</a>」我的内心瞬间黑人问号：“？？？”。</p>
+<p>后来，静静地看了两篇文章（<a href="http://cloudless.studio/articles/39-safari-zoom-gesture-s-comeback-in-ios-10" target="_blank" rel="external">Safari zoom gesture’s comeback in iOS 10</a> 和 <a href="https://wouterdeschuyter.be/blog/how-to-disable-viewport-scaling-in-ios-10-you-dont-941140811" target="_blank" rel="external">How to disable viewport scaling in iOS 10? You don’t.</a>），做了点 <code>&lt;meta&gt;</code> 标签的测试。</p>
+<h3 id="测试结果"><a class="header-anchor" href="#测试结果">¶</a>测试结果</h3>
+<p>测试环境：IOS 10.2.1</p>
+<ol>
+<li>只设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no&quot;&gt;</code> 和不设置没有任何区别——<code>user-scalable=no</code> 被完全无视。</li>
+<li>只设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code> ，和方案二里的描述一致，仍可以在初始尺寸下禁用双击缩放。</li>
+<li>只设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0&quot;&gt;</code> ，初始状态和“测试2”很像，但是仍存在双击缩放，即仍有 300ms 延迟。</li>
+<li>设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code> 或者 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;</code> ，和只设置 <code>width=device-width</code> 并无显著差异。</li>
+<li>为某个 <code>&lt;a&gt;</code> 链接设置 <code>touch-action: manipulation;</code> ，可以禁用该元素上的双击缩放。</li>
+</ol>
+<p>要点如下：</p>
+<ol>
+<li><code>user-scalable=no</code> 完全起不到禁止缩放的作用，<code>width=device-width</code> 仍能且仅能禁止双击缩放。</li>
+<li>只设置 <code>meta</code> 无法完全禁用缩放，双指缩放总是可行的。</li>
+</ol>
+<h3 id="暮然回首"><a class="header-anchor" href="#暮然回首">¶</a>暮然回首</h3>
+<p>冷静下来后，重新审视上述变故，发现其实是两回事。前面提到过“我们应该抛弃双击缩放、拥抱双指缩放”，苹果没有打破这个原则。只是，<strong>苹果出于可访问性考虑，直接任性地完全无视了 <code>user-scalable=no</code></strong>。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="external"><strong>Accessibility</strong><br>
+Pinch-to-zoom is always enabled for all users. The viewport setting for user-scalable is ignored.</a></p>
+</blockquote>
+<p>当然，这导致了觉得应该一切尽在掌控、想要完全禁用缩放以避免破坏布局的开发者的怨言。如果，你<strong>还是想完全禁用缩放，可以参考</strong> <a href="http://stackoverflow.com/questions/37808180/disable-viewport-zooming-ios-10-safari/38573198#38573198" target="_blank" rel="external">SO 上的这个回答</a>。</p>
+<h2 id="解惑"><a class="header-anchor" href="#解惑">¶</a>解惑</h2>
+<p>最开始提到过，我至今没有遇到过这个问题。对这个现象我推理如下：</p>
+<p>我的肾机在开发移动端的半年间只在近期做过一次系统升级（目前已升到 10.2.1）。之前使用的具体的版本号已经无从得知了（P.S. 如果有谁知道怎么查看肾机本机上的版本更新历史，请务必告诉我233），但是更新到 IOS10 之前，我一直有使用 9.3+ 才支持的 Night Shift 功能，也就是说升级之前的系统版本号肯定在 9.3 或者以上。</p>
+<p>而我写移动端页面的时候，惯例会 <code>meta:vp</code> 然后 <code>Tab</code> 生成 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;&gt;</code>。在 IOS10 之前，这行代码还是能够禁用页面的缩放的，也就不存在 300ms 的延迟问题了。</p>
+<p>这就是为什么之前我本机测试的时候一直没有遇到传说中的 300ms 延迟现象的原因了。</p>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ol>
+<li><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="external">(2013) 300 毫秒点击延迟的来龙去脉</a></li>
+<li><a href="https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/" target="_blank" rel="external">(2014) 5-ways-prevent-300ms-click-delay-mobile-devices</a></li>
+<li><a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="external">(2015) Implement viewport-width-based fast-click heuristic</a></li>
+<li><a href="http://qiudeqing.com/mobile_web/2016/05/21/mobile-browser-click-300ms-delay.html" target="_blank" rel="external">(2016) 无线端浏览器 click 事件 300ms 延迟</a></li>
+<li><a href="https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away" target="_blank" rel="external">(2016) 300ms-tap-delay-gone-away</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/03/27/移动端点击穿透问题小结/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/27/移动端点击穿透问题小结/" itemprop="url">
+                  移动端点击穿透问题小结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T11:26:41+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/03/27/移动端点击穿透问题小结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/27/移动端点击穿透问题小结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- 找机会统一一下 文件名.md 和 title。 -->
+<!-- 曾经，移动端的 click 事件存在 300ms 左右的延迟，其目的是为了判断一个 click 是单击还是双击。 -->
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/02/27/使用-JavaScript-操作-HTML-批量制作-Anki-卡片/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1309,285 +1704,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/07/IFE-2016-SP-task33/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="baishusama">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="imo++">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="imo++" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/07/IFE-2016-SP-task33/" itemprop="url">
-                  IFE-2016-SP-task33 Square Following Directives I
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-07T21:04:03+08:00">
-                2017-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2017/01/07/IFE-2016-SP-task33/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/IFE-2016-SP-task33/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task33 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/0953w48r/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/07/IFE-2016-SP-task33/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2016/12/26/emoji-cheat-sheet/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="baishusama">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="imo++">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="imo++" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/emoji-cheat-sheet/" itemprop="url">
-                  emoji-cheat-sheet
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-26T23:05:51+08:00">
-                2016-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2016/12/26/emoji-cheat-sheet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/26/emoji-cheat-sheet/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a href="http://www.webpagefx.com/tools/emoji-cheat-sheet/">emoji-cheat-sheet</a><br>
-<a href="http://emoji.codes/#">emoji.codes</a></p>
-</blockquote>
-<h3 id="people"><a class="header-anchor" href="#people">¶</a>People</h3>
-<p>:bowtie: - <code>:bowtie:</code><br>
-😄 - <code>:smile:</code><br>
-😆 - <code>:laughing:</code><br>
-😊 - <code>:blush:</code><br>
-😃 - <code>:smiley:</code><br>
-☺️ - <code>:relaxed:</code><br>
-😏 - <code>:smirk:</code><br>
-😍 - <code>:heart_eyes:</code><br>
-😘 - <code>:kissing_heart:</code></p>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/26/emoji-cheat-sheet/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1633,7 +1749,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
