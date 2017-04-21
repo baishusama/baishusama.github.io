@@ -242,6 +242,505 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/21/Three-Column-Layouts/" itemprop="url">
+                  Three Column Layouts Cheat Sheet
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-21T22:24:46+08:00">
+                2017-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/21/Three-Column-Layouts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/21/Three-Column-Layouts/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>整理了下常见三栏布局的做法。</p>
+<h2 id="布局索引"><a class="header-anchor" href="#布局索引">¶</a>布局索引</h2>
+<ol>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#1-%E6%B5%81%E4%BD%93%E5%B8%83%E5%B1%80">流式布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#2-BFC%E5%B8%83%E5%B1%80">BFC 布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#3-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80">绝对定位布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#4-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80">圣杯布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#5-%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80">双飞翼布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#6-flex%E5%B8%83%E5%B1%80">Flex 布局</a></li>
+</ol>
+<blockquote>
+<p>P.S. 各个布局的原理在本篇没有解释，对于圣杯布局和双飞翼布局感兴趣的童鞋可以看看参考中的后两篇文章。</p>
+</blockquote>
+<h2 id="优缺点"><a class="header-anchor" href="#优缺点">¶</a>优缺点</h2>
+<p>前两种布局的缺点是主要内容无法优先加载。当页面加载慢时会影响用户体验。</p>
+<p>后四种布局调整了 HTML 代码顺序，克服了上述缺点。</p>
+<p>与圣杯布局相比，双飞翼布局以更复杂的 HTML （主要内容外再包裹一层）为代价简化了 CSS 样式（左侧边栏少用一个相对定位）。</p>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/25070186?refer=learncoding" target="_blank" rel="external">详解 CSS 七种三栏布局技巧 @知乎</a></li>
+<li><a href="http://chen106106.iteye.com/blog/1631865" target="_blank" rel="external">圣杯布局</a></li>
+<li><a href="http://www.imooc.com/wenda/detail/254035" target="_blank" rel="external">双飞翼布局介绍-始于淘宝UED</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/" itemprop="url">
+                  [翻译] JavaScript 事件循环：说明
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T00:17:13+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>本文译自 Erin Swenson-Healey 的<a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/">The JavaScript Event Loop: Explained</a>一文。</p>
+</blockquote>
+<blockquote>
+<p>关键词：</p>
+<ul>
+<li>事件循环 - The Event Loop</li>
+<li>运行环境 - runtime</li>
+<li>调用栈 - call stack</li>
+</ul>
+<p>（译者注：“下面正文开始～”）</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/04/12/setTimeout-setInterval/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/12/setTimeout-setInterval/" itemprop="url">
+                  setTimeout & setInterval
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-12T11:16:23+08:00">
+                2017-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/12/setTimeout-setInterval/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/12/setTimeout-setInterval/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="语法-参数"><a class="header-anchor" href="#语法-参数">¶</a>语法 &amp; 参数</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setTimeout(func/code[, delay, param1, param2, ...]);</div><div class="line">setInterval(func/code, delay[, param1, param2, ...]);</div></pre></td></tr></table></figure>
+<p>第一个参数可以是 <code>code</code> ，即以字符串形式表示的代码。由于其内部使用的是名声狼藉的 <code>eval</code> ——<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch2.md#cheating-lexical" target="_blank" rel="external">欺骗词法作用域导致性能下降</a>，因此不推荐使用。</p>
+<p>第一个参数推荐使用回调函数形式。注意，由于回调函数将在全局作用域中执行的，故<strong>回调函数的 <code>this</code> 将指向全局对象</strong>，即使这个回调函数是某个对象的方法。如果想让回调函数的 <code>this</code> 指向回调函数所从属的那个对象，可以使用以下两种方法：</p>
+<ol>
+<li>匿名函数包裹函数调用；</li>
+<li>bind/call/apply 。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">username</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = username;</div><div class="line">    <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> User(<span class="string">"baishu"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 回调函数的 `this` 指向的是全局对象</span></div><div class="line">setTimeout(user.sayName, <span class="number">1000</span>); <span class="comment">// "global"</span></div><div class="line"></div><div class="line"><span class="comment">// Way 1. 匿名函数包裹函数调用</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    user.sayName();</div><div class="line">&#125;, <span class="number">1000</span>); <span class="comment">// "baishu"</span></div><div class="line"></div><div class="line"><span class="comment">// Way 2. bind/call/apply</span></div><div class="line">setTimeout(user.sayName.bind(user), <span class="number">1000</span>); <span class="comment">// "baishu"</span></div></pre></td></tr></table></figure>
+<p>第二个参数，是一个数字，表示毫秒。<code>setTimeout</code> 中该参数的最小值取到 0 ； <code>setInterval</code> 中该参数的最小值取到 10 。然而实际使用中，该参数的最小值可能更大。</p>
+<p>情况一：嵌套多层的 <code>setTimeout</code> 。<a href="https://html.spec.whatwg.org/multipage/webappapis.html#timers" target="_blank" rel="external">HTML5 规范</a>中有提到：</p>
+<blockquote>
+<ol start="8">
+<li>
+<p>If timeout is less than 0, then set timeout to 0.<br>
+如果 timeout 小于 0 ，那么设置 timeout 为 0 。</p>
+</li>
+<li>
+<p>If nesting level is greater than 5, and timeout is less than 4, then set timeout to 4.<br>
+如果嵌套层级大于 5 ，且 timeout 小于 4 ，那么设置 timeout 为 4 。</p>
+</li>
+</ol>
+</blockquote>
+<p>第三个参数开始的参数，是回调函数的参数。IE9 及以下只支持前两个参数，可以通过：</p>
+<ol>
+<li>匿名函数包裹带参数的函数调用；</li>
+<li>bind/call/apply 。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Way 1. 匿名函数包裹带参数的函数调用</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    myFunc(param1, param2, ...);</div><div class="line">&#125;, <span class="number">1000</span>);</div><div class="line"></div><div class="line"><span class="comment">// Way 2. 匿名函数包裹带参数的函数调用</span></div><div class="line">setTimeout( <span class="function"><span class="keyword">function</span>(<span class="params">param1, param2, ...</span>)</span>&#123;&#125;.bind(<span class="literal">undefined</span>, param1, param2, ...), <span class="number">1000</span> );</div></pre></td></tr></table></figure>
+<p>两种方式解决上述兼容性问题。</p>
+<h2 id="机制"><a class="header-anchor" href="#机制">¶</a>机制</h2>
+<h3 id="知识储备"><a class="header-anchor" href="#知识储备">¶</a>知识储备</h3>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="external">JavaScript has a concurrency model based on an “event loop”.</a></p>
+<p>JavaScript 是单线程的（HTML5 提出的 Web Worker）。</p>
+<p>JS 有三个主线程，队列（event loop）、GUI 渲染线程、。。。？？？</p>
+<p>一个 JavaScript 运行时（runtime）包含三部分：</p>
+<ul>
+<li>一个函数调用组成的堆栈帧（a stack of frames）。即<a href="http://baishusama.github.io/2017/04/13/%E7%BF%BB%E8%AF%91-The-JavaScript-Event-Loop-Explained/">《[翻译] JavaScript 事件循环：说明》</a>中提到的调用栈（call stack）。</li>
+<li>所有对象被分配到的一个堆（heap）。</li>
+<li>一个待处理的消息队列（message queue）。</li>
+</ul>
+<p>而事件循环（event loop）的工作就是时刻注意（？？？还是空闲时注意？？？）上面说到的“栈”和“队列”的情况（是否为空）。如果“栈”为空，且“队列”中有消息，（由于队列总是先进先出的，）取第一条消息，其回调函数的调用将作为“栈”的初始帧，<a href="http://baishusama.github.io/2017/04/13/%E7%BF%BB%E8%AF%91-The-JavaScript-Event-Loop-Explained/">并且由于 JavaScript 是单线程的，因此在堆栈上返回所有调用之前暂停进一步的消息的轮询和处理。</a></p>
+<p>事件循环之所以称为“事件循环”，是因为其实现方式多半是类似如下的形式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(queue.waitForMessage())&#123;</div><div class="line">  queue.processNextMessage();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="机制-v2"><a class="header-anchor" href="#机制-v2">¶</a>机制</h3>
+<p>了解了以上相关知识后，我们就可以一探定时器的机制了。</p>
+<p>当执行中的代码，遇到 setTimeout/setInterval 时，会将相关代码入栈，然后立即出栈，并将计时任务转交给浏览器的 Web APIs 计时。调用定时器的代码继续同步（sync）执行。当计时完毕， Web APIs 会将定时器的回调函数作为消息，进入消息队列，等待处理。当同步代码执行完毕，调用栈（stack）为空时，事件循环（event loop）会依次从消息队列中取出消息逐个先后执行。</p>
+<p>特殊的，有 <code>setTimeout(callback, 0);</code> 。其机制。。。</p>
+<h2 id="setinterval-的缺点"><a class="header-anchor" href="#setinterval-的缺点">¶</a><code>setInterval</code> 的缺点</h2>
+<h2 id="important"><a class="header-anchor" href="#important">¶</a>IMPORTANT</h2>
+<p>我其实比较想说的是，我的一些发现：</p>
+<ol>
+<li>alert 阻塞 setInterval ，阻塞终止后，setInterval 仍按照原来的时间间隔执行——点击 alert 的“确定”按钮后，如果原来的 delay 是 5s，那么 5s 后才会有下一个 alert 。
+<ul>
+<li>猜测：alert 造成阻塞，而 js 是单线程的，无法继续进行计时等操作，故阻塞消失之后，计时重新从头开始。</li>
+<li>猜测：出于性能考虑，消息队列中，同一个（不同的可以？？？）定时器的消息最多只能出现一次，即 web API 会判断，队列中是否已经有某个定时器的回调函数的消息了，如果已经有了，就不进入队列。且等到，上一个消息结束，web API 会重新从头开始计时？？？</li>
+</ul>
+</li>
+<li>事件执行顺序。js 模仿用户点击事件的 click() 的回调函数被视为同步的了。而用户点击触发的一般总是异步的？？？</li>
+</ol>
+<h2 id="应用"><a class="header-anchor" href="#应用">¶</a>应用</h2>
+<ol>
+<li>调整事件的发生顺序
+<ul>
+<li>子元素的事件回调函数会早于父元素的事件回调函数。</li>
+<li>用户自定义的回调函数通常在浏览器的默认动作之前触发。e.g. 用户在输入框输入文本，keypress事件会在浏览器接收文本之前触发。</li>
+</ul>
+</li>
+<li>分片</li>
+<li>防抖（debounce）</li>
+</ol>
+<h2 id="如何适合使用？？？"><a class="header-anchor" href="#如何适合使用？？？">¶</a>如何适合使用？？？</h2>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
+<li><a href="http://jeffjade.com/2016/01/10/2016-01-10-javacript-setTimeout/" target="_blank" rel="external">你所不知道的 setTimeout</a>：一些说法存在疏漏。</li>
+<li><a href="http://jeffjade.com/2016/01/10/2016-01-10-javaScript-setInterval/" target="_blank" rel="external">你所不知道的 setInterval</a>：一些说法存在疏漏。</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout" target="_blank" rel="external">setTimeout @MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval" target="_blank" rel="external">setInterval @MDN</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1176,408 +1675,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/11/IFE-2016-SP-task29/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="baishusama">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="imo++">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="imo++" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/11/IFE-2016-SP-task29/" itemprop="url">
-                  IFE-2016-SP-task29 Verify Input
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-11T19:44:24+08:00">
-                2017-01-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2017/01/11/IFE-2016-SP-task29/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/11/IFE-2016-SP-task29/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task29 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/16nbyx5z/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/11/IFE-2016-SP-task29/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/08/IFE-2016-SP-task34/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="baishusama">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="imo++">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="imo++" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/08/IFE-2016-SP-task34/" itemprop="url">
-                  IFE-2016-SP-task34 Square Following Directives II
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-08T20:57:49+08:00">
-                2017-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2017/01/08/IFE-2016-SP-task34/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/IFE-2016-SP-task34/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task34 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/yo8udddy/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/08/IFE-2016-SP-task34/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/07/IFE-2016-SP-task33/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="baishusama">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="imo++">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="imo++" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/07/IFE-2016-SP-task33/" itemprop="url">
-                  IFE-2016-SP-task33 Square Following Directives I
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-07T21:04:03+08:00">
-                2017-01-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <a href="/2017/01/07/IFE-2016-SP-task33/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/07/IFE-2016-SP-task33/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task33 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/0953w48r/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-          <!--noindex-->
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/07/IFE-2016-SP-task33/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1623,7 +1720,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>

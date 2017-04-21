@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IFE," />
+  <meta name="keywords" content="css," />
 
 
 
@@ -84,19 +84,64 @@
 
 
 
-<meta name="description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
+<meta name="description" content="整理了下常见三栏布局的做法。
+¶布局索引
+
+流式布局
+BFC 布局
+绝对定位布局
+圣杯布局
+双飞翼布局
+Flex 布局
+
+
+P.S. 各个布局的原理在本篇没有解释，对于圣杯布局和双飞翼布局感兴趣的童鞋可以看看参考中的后两篇文章。
+
+¶优缺点
+前两种布局的缺点是主要内容无法优先加载。当页面加载慢时会影响用户体验。
+后四种布局调整了 HTML 代码顺序，克服了上述缺点。
+与圣杯布局相比，双飞翼布局以更">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IFE-2016-SP-task17 AQI Histogram">
-<meta property="og:url" content="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/index.html">
+<meta property="og:title" content="Three Column Layouts Cheat Sheet">
+<meta property="og:url" content="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/index.html">
 <meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
-<meta property="og:updated_time" content="2017-01-27T04:34:39.000Z">
+<meta property="og:description" content="整理了下常见三栏布局的做法。
+¶布局索引
+
+流式布局
+BFC 布局
+绝对定位布局
+圣杯布局
+双飞翼布局
+Flex 布局
+
+
+P.S. 各个布局的原理在本篇没有解释，对于圣杯布局和双飞翼布局感兴趣的童鞋可以看看参考中的后两篇文章。
+
+¶优缺点
+前两种布局的缺点是主要内容无法优先加载。当页面加载慢时会影响用户体验。
+后四种布局调整了 HTML 代码顺序，克服了上述缺点。
+与圣杯布局相比，双飞翼布局以更">
+<meta property="og:updated_time" content="2017-04-21T14:45:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IFE-2016-SP-task17 AQI Histogram">
-<meta name="twitter:description" content="¶My Solution
-My solution to task17 is available on jsfiddle:">
+<meta name="twitter:title" content="Three Column Layouts Cheat Sheet">
+<meta name="twitter:description" content="整理了下常见三栏布局的做法。
+¶布局索引
+
+流式布局
+BFC 布局
+绝对定位布局
+圣杯布局
+双飞翼布局
+Flex 布局
+
+
+P.S. 各个布局的原理在本篇没有解释，对于圣杯布局和双飞翼布局感兴趣的童鞋可以看看参考中的后两篇文章。
+
+¶优缺点
+前两种布局的缺点是主要内容无法优先加载。当页面加载慢时会影响用户体验。
+后四种布局调整了 HTML 代码顺序，克服了上述缺点。
+与圣杯布局相比，双飞翼布局以更">
 
 
 
@@ -124,13 +169,13 @@ My solution to task17 is available on jsfiddle:">
 
 
 
-  <link rel="canonical" href="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/"/>
+  <link rel="canonical" href="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/"/>
 
 
 
 
 
-  <title> IFE-2016-SP-task17 AQI Histogram | imo++ </title>
+  <title> Three Column Layouts Cheat Sheet | imo++ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -247,7 +292,7 @@ My solution to task17 is available on jsfiddle:">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="baishusama">
@@ -271,7 +316,7 @@ My solution to task17 is available on jsfiddle:">
             
             
               
-                IFE-2016-SP-task17 AQI Histogram
+                Three Column Layouts Cheat Sheet
               
             
           </h1>
@@ -284,8 +329,8 @@ My solution to task17 is available on jsfiddle:">
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-24T17:19:46+08:00">
-                2016-12-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-21T22:24:46+08:00">
+                2017-04-21
               </time>
             
 
@@ -300,8 +345,8 @@ My solution to task17 is available on jsfiddle:">
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/24/IFE-2016-SP-task17/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/24/IFE-2016-SP-task17/" itemprop="commentCount"></span>
+                <a href="/2017/04/21/Three-Column-Layouts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/21/Three-Column-Layouts/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -327,18 +372,28 @@ My solution to task17 is available on jsfiddle:">
       
 
       
-        <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task17 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/7txop9gL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-<a id="more"></a>
-<h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
-<p>In <a href="http://ife.baidu.com/task/detail?taskId=17" target="_blank" rel="external">top-three team solutions</a> to this task, <a href="http://ife.baidu.com/review/detail?workId=8045" target="_blank" rel="external">the third one</a> is very similar to my solution except for <a href="https://github.com/Phoebe-Perry/ife_baidu_2016/blob/gh-pages/second_phase/ife-baidu_task_17/task_17.js" target="_blank" rel="external">the code snippet</a> below:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//跨浏览器事件绑定</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEventHandler</span>(<span class="params">ele, event, hanlder</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (ele.addEventListener) &#123;</div><div class="line">    ele.addEventListener(event, hanlder, <span class="literal">false</span>);</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ele.attachEvent) &#123;</div><div class="line">    ele.attachEvent(<span class="string">"on"</span>+event, hanlder);</div><div class="line">  &#125; <span class="keyword">else</span>  &#123;</div><div class="line">    ele[<span class="string">"on"</span> + event] = hanlder;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>which also takes <strong>browser compatibilities</strong> into consideration. Note that: <strong><code>attachEvent</code> is for IE and <code>addEventListener</code> is for the others</strong>.</p>
-<h2 id="to-do"><a class="header-anchor" href="#to-do">¶</a>To Do</h2>
+        <p>整理了下常见三栏布局的做法。</p>
+<h2 id="布局索引"><a class="header-anchor" href="#布局索引">¶</a>布局索引</h2>
+<ol>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#1-%E6%B5%81%E4%BD%93%E5%B8%83%E5%B1%80">流式布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#2-BFC%E5%B8%83%E5%B1%80">BFC 布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#3-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80">绝对定位布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#4-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80">圣杯布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#5-%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80">双飞翼布局</a></li>
+<li><a href="https://baishusama.github.io/stockyard/three-column-layout.html#6-flex%E5%B8%83%E5%B1%80">Flex 布局</a></li>
+</ol>
+<blockquote>
+<p>P.S. 各个布局的原理在本篇没有解释，对于圣杯布局和双飞翼布局感兴趣的童鞋可以看看参考中的后两篇文章。</p>
+</blockquote>
+<h2 id="优缺点"><a class="header-anchor" href="#优缺点">¶</a>优缺点</h2>
+<p>前两种布局的缺点是主要内容无法优先加载。当页面加载慢时会影响用户体验。</p>
+<p>后四种布局调整了 HTML 代码顺序，克服了上述缺点。</p>
+<p>与圣杯布局相比，双飞翼布局以更复杂的 HTML （主要内容外再包裹一层）为代价简化了 CSS 样式（左侧边栏少用一个相对定位）。</p>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
 <ul>
-<li><input type="checkbox" id="checkbox0"><label for="checkbox0"> Plus, the top-two solution’s UI and animation (or interaction) are very nice and worthwhile </label><strong>to do</strong> study in the near future.</li>
-<li><input type="checkbox" id="checkbox1"><label for="checkbox1"> Further, the part judging if some days are in a week/month is not a general way due to dates in data are continuous specially.</label></li>
+<li><a href="https://zhuanlan.zhihu.com/p/25070186?refer=learncoding" target="_blank" rel="external">详解 CSS 七种三栏布局技巧 @知乎</a></li>
+<li><a href="http://chen106106.iteye.com/blog/1631865" target="_blank" rel="external">圣杯布局</a></li>
+<li><a href="http://www.imooc.com/wenda/detail/254035" target="_blank" rel="external">双飞翼布局介绍-始于淘宝UED</a></li>
 </ul>
 
       
@@ -373,7 +428,7 @@ My solution to task17 is available on jsfiddle:">
       
         <div class="post-tags">
           
-            <a href="/tags/IFE/" rel="tag"># IFE</a>
+            <a href="/tags/css/" rel="tag"># css</a>
           
         </div>
       
@@ -382,8 +437,8 @@ My solution to task17 is available on jsfiddle:">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/21/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/" rel="next" title="[翻译] JavaScript 事件循环：说明">
+                <i class="fa fa-chevron-left"></i> [翻译] JavaScript 事件循环：说明
               </a>
             
           </div>
@@ -391,10 +446,6 @@ My solution to task17 is available on jsfiddle:">
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/24/hexo-render-markdown-it-and-its-plugins/" rel="prev" title="Hexo 的 markdown-it 渲染引擎和其相关插件">
-                Hexo 的 markdown-it 渲染引擎和其相关插件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -409,10 +460,10 @@ My solution to task17 is available on jsfiddle:">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/12/24/IFE-2016-SP-task17/"
-     data-title="IFE-2016-SP-task17 AQI Histogram"
+        <div class="ds-share flat" data-thread-key="2017/04/21/Three-Column-Layouts/"
+     data-title="Three Column Layouts Cheat Sheet"
      data-content=""
-     data-url="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/">
+     data-url="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -439,8 +490,8 @@ My solution to task17 is available on jsfiddle:">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/24/IFE-2016-SP-task17/"
-           data-title="IFE-2016-SP-task17 AQI Histogram" data-url="http://baishusama.github.io/2016/12/24/IFE-2016-SP-task17/">
+      <div class="ds-thread" data-thread-key="2017/04/21/Three-Column-Layouts/"
+           data-title="Three Column Layouts Cheat Sheet" data-url="http://baishusama.github.io/2017/04/21/Three-Column-Layouts/">
       </div>
     
   </div>
@@ -530,7 +581,7 @@ My solution to task17 is available on jsfiddle:">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-do"><span class="nav-number">3.</span> <span class="nav-text">To Do</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#布局索引"><span class="nav-number">1.</span> <span class="nav-text">布局索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">2.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

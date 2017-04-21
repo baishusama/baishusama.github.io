@@ -1,0 +1,767 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文译自 Erin Swenson-Healey 的The JavaScript Event Loop: Explained一文。
+
+
+关键词：
+
+事件循环 - The Event Loop
+运行环境 - runtime
+调用栈 - call stack
+
+（译者注：“下面正文开始～”）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[翻译] JavaScript 事件循环：说明">
+<meta property="og:url" content="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="本文译自 Erin Swenson-Healey 的The JavaScript Event Loop: Explained一文。
+
+
+关键词：
+
+事件循环 - The Event Loop
+运行环境 - runtime
+调用栈 - call stack
+
+（译者注：“下面正文开始～”）">
+<meta property="og:image" content="http://blog.carbonfive.com/wp-content/uploads/2013/10/event-loop.png">
+<meta property="og:image" content="http://blog.carbonfive.com/wp-content/uploads/2013/10/web-workers.png">
+<meta property="og:updated_time" content="2017-04-12T16:22:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[翻译] JavaScript 事件循环：说明">
+<meta name="twitter:description" content="本文译自 Erin Swenson-Healey 的The JavaScript Event Loop: Explained一文。
+
+
+关键词：
+
+事件循环 - The Event Loop
+运行环境 - runtime
+调用栈 - call stack
+
+（译者注：“下面正文开始～”）">
+<meta name="twitter:image" content="http://blog.carbonfive.com/wp-content/uploads/2013/10/event-loop.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/"/>
+
+
+
+
+
+  <title> [翻译] JavaScript 事件循环：说明 | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Practice makes perfect :)</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [翻译] JavaScript 事件循环：说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-13T00:17:13+08:00">
+                2017-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文译自 Erin Swenson-Healey 的<a href="http://blog.carbonfive.com/2013/10/27/the-javascript-event-loop-explained/" target="_blank" rel="external">The JavaScript Event Loop: Explained</a>一文。</p>
+</blockquote>
+<blockquote>
+<p>关键词：</p>
+<ul>
+<li>事件循环 - The Event Loop</li>
+<li>运行环境 - runtime</li>
+<li>调用栈 - call stack</li>
+</ul>
+<p>（译者注：“下面正文开始～”）</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="这篇文章是关于什么的？"><a class="header-anchor" href="#这篇文章是关于什么的？">¶</a>这篇文章是关于什么的？</h2>
+<h2 id="这篇文章是写给谁的？"><a class="header-anchor" href="#这篇文章是写给谁的？">¶</a>这篇文章是写给谁的？</h2>
+<h2 id="无阻塞的-i-o"><a class="header-anchor" href="#无阻塞的-i-o">¶</a>无阻塞的 I/O</h2>
+<p>（前三小节译者战略性省略）</p>
+<h2 id="事件循环-the-event-loop"><a class="header-anchor" href="#事件循环-the-event-loop">¶</a>事件循环（The Event Loop）</h2>
+<p>调用者（caller）从响应中的解耦是 JavaScript 运行环境能够在等待异步操作完成然后它们的回调执行的同时做一些别的事情的基础。但是，这些回调是保存在内存的哪里呢？它们是以怎样的顺序执行的呢？是什么导致它们被调用的呢？</p>
+<p>JavaScript 运行环境包含一个消息队列（message queue），它存储了一长串待处理的消息以及这些消息相关的回调函数。当一个提供了回调函数的外部事件（例如，发生一个 click 事件或者接收到一个 HTTP 请求的响应）发生时，这些消息就会进入队列。假设一个用户点击了一个按钮，但这个按钮没有绑定任何的回调函数，那么将不会有消息进入队列。</p>
+<p>在一次循环中，队列被轮询下一个消息（每一个轮询（poll）称为一个“列出（tick）”），若此时存在一个消息，那个消息对应的回调就会被执行。</p>
+<p><img src="http://blog.carbonfive.com/wp-content/uploads/2013/10/event-loop.png" alt=""></p>
+<p>这个回调函数（译者注：指 init 函数）的调用在调用栈中是初始帧，并且由于 JavaScript 是单线程的，因此在堆栈上返回所有调用之前暂停进一步的消息的轮询和处理。后续（同步的）函数调用（译者注：指 link.addEventListener 函数）将新的调用帧添加到堆栈（<s>例如，函数 init 调用了函数 changeColor</s>（译者注：括号内的话感觉有误，故删去））。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> link = <span class="built_in">document</span>.getElementById(<span class="string">"foo"</span>);</div><div class="line"></div><div class="line">  link.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.style.color = <span class="string">"burlywood"</span>;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">init();</div></pre></td></tr></table></figure>
+<p>在这个例子中，一个消息（和一个回调，即 changeColor）将在用户点击 foo 元素、触发一个 <code>onclick</code> 事件的时候进入队列。当这个消息出队列的时候，它的回调函数 changeColor 将被调用。当 changeColor 返回（或者抛出一个错误）的时候，事件循环继续。只要函数 changeColor 还存在，仍是 foo 元素的 onclick 的回调，后续在该元素上的点击会产生更多的消息（并和回调 changeColor 一起）进入队列。</p>
+<h2 id="队列中的附加消息"><a class="header-anchor" href="#队列中的附加消息">¶</a>队列中的附加消息</h2>
+<p>如果你的代码中的一个函数调用是异步的（像是 setTimeout），被提供的回调会在不久的将来的事件循环的某次列出（tick）时，作为一个不同的队列中的消息的一部分最终被执行。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"foo"</span>);</div><div class="line">  setTimeout(g, <span class="number">0</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"baz"</span>);</div><div class="line">  h();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"bar"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">h</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"blix"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">f();</div></pre></td></tr></table></figure>
+<p>由于 setTimeout 的非阻塞特性，它的回调将在至少 0 毫秒的未来执行，而且不会作为本次消息的一部分被处理。在这个例子中，setTimeout 被调用了，传入了一个回调函数 g 和一个 0 毫秒的延迟。当这个指定的时间流逝后（在这个例子中，几乎是立即的），一个单独的消息包含 g 作为回调函数将会进入队列。控制台的结果将会是：“foo”，“baz”，“blix”，然后在事件循环的下一个列出（tick）会是：“bar”。如果在同一个调用帧，setTimeout 被调用了两次——且两次传递相同的参数值——它们的回调将在队列中保持调用时的顺序。</p>
+<h2 id="web-workers"><a class="header-anchor" href="#web-workers">¶</a>Web Workers</h2>
+<p>使用 Web Workers 使你能够分流一个消耗高昂的操作到一个单独的线程去执行，从而解放主线程去做其他事情。workers 区别于初始化它的最初的线程，拥有它自己单独的消息队列、事件循环和独立的内存空间。worker 和主线程之间的沟通是通过消息传递实现的，这看起来很像传统的、事件的（evented）代码——我们已经见过示例。</p>
+<p><img src="http://blog.carbonfive.com/wp-content/uploads/2013/10/web-workers.png" alt=""></p>
+<p>首先，我们的 worker：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我们的 worker 做了一些 CPU 密集型操作</span></div><div class="line"><span class="keyword">var</span> reportResult = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  pi = SomeLib.computePiToSpecifiedDecimals(e.data);</div><div class="line">  postMessage(pi);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">onmessage = reportResult;</div></pre></td></tr></table></figure>
+<p>然后，在我们的 HTML 中的 script 标签中存在的主代码块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 我们的核心代码</span></div><div class="line"><span class="keyword">var</span> piWorker = <span class="keyword">new</span> Worker(<span class="string">"pi_calculator.js"</span>);</div><div class="line"><span class="keyword">var</span> logResult = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"PI: "</span> + e.data);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">piWorker.addEventListener(<span class="string">"message"</span>, logResult, <span class="literal">false</span>);</div><div class="line">piWorker.postMessage(<span class="number">100000</span>);</div></pre></td></tr></table></figure>
+<p>在这个例子中，主线程产生了一个 worker 并且为它的 message 事件注册了一个 logResult 回调函数。在这个 worker 中，它自己的 message 事件注册的事 reportResult 函数。当 worker 线程接收到一个来自主线程的 message 的时候，worker 将一个消息和对应的 reportResult 回调一起放入队列。当出列的时候，一个消息被回传给主线程，在主线程一个新消息连同 logResult 回调一起进入队列。在这种方式下，开发者能将 CPU 密集型操作委托给一个单独的线程，解放主线程去继续处理消息和事件。</p>
+<h2 id="关于闭包的一个提醒"><a class="header-anchor" href="#关于闭包的一个提醒">¶</a>关于闭包的一个提醒</h2>
+<p>JavaScript 对闭包的支持允许你注册这样的回调：当回调执行时，仍可以访问它们被创建时的环境，即使回调的执行创建了一个全新的调用栈。这很有趣：我们的回调是作为一个不同的消息（而不是它们被创建时的那个消息）的一部分被调用的。考虑如下例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeHeaderDeferred</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> header = <span class="built_in">document</span>.getElementById(<span class="string">"header"</span>);</div><div class="line">  </div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">changeHeader</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    header.style.color = <span class="string">"red"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">changeHeaderDeferred();</div></pre></td></tr></table></figure>
+<p>在这个例子中，changeHeaderDeferred 函数的执行中包含 header 变量。setTimeout 函数被调用，这导致了一个消息（附加 changeHeader 回调）在大约 100 毫秒的未来被添加到消息队列。changeHeaderDeferred 接着返回了 false ，结束了第一个消息的处理——但是 header 变量仍被一个闭包引用，因而没有被垃圾回收机制回收。当第二个消息被处理的时候，changeHeader 函数它仍能访问在该函数作用域外部被声明的 header 变量。一旦第二个消息（changeHeader 函数）处理完了，header 变量就能被垃圾回收机制回收了。</p>
+<h2 id="小贴士-takeaways"><a class="header-anchor" href="#小贴士-takeaways">¶</a>小贴士（Takeaways）</h2>
+<p>JavaScript 的 事件驱动的交互模型 和许多程序员习惯了的 请求-响应模型 不同——但就像你看到的，这并不是在造火箭。使用简单的消息队列和事件循环，JavaScript 使开发者可以围绕许多异步唤醒回调来构建系统，释放运行环境以处理并发操作，同时等待外部事件发生。但是，这只是并发的一种方式。在这篇文章的第二部分，我将比较 JavaScript 的并发模型和那些在 MRI Ruby（with threads and the GIL）、EventMachine（Ruby）、Java（threads）中的不同点。</p>
+<h2 id="拓展阅读"><a class="header-anchor" href="#拓展阅读">¶</a>拓展阅读</h2>
+<p>（略）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: 'Brush Script MT';">
+        ———————— THE END ————————
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/12/setTimeout-setInterval/" rel="next" title="setTimeout & setInterval">
+                <i class="fa fa-chevron-left"></i> setTimeout & setInterval
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/21/Three-Column-Layouts/" rel="prev" title="Three Column Layouts Cheat Sheet">
+                Three Column Layouts Cheat Sheet <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/"
+     data-title="[翻译] JavaScript 事件循环：说明"
+     data-content=""
+     data-url="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/"
+           data-title="[翻译] JavaScript 事件循环：说明" data-url="http://baishusama.github.io/2017/04/13/翻译-The-JavaScript-Event-Loop-Explained/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章是关于什么的？"><span class="nav-number">1.</span> <span class="nav-text">这篇文章是关于什么的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章是写给谁的？"><span class="nav-number">2.</span> <span class="nav-text">这篇文章是写给谁的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无阻塞的-i-o"><span class="nav-number">3.</span> <span class="nav-text">无阻塞的 I/O</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环-the-event-loop"><span class="nav-number">4.</span> <span class="nav-text">事件循环（The Event Loop）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列中的附加消息"><span class="nav-number">5.</span> <span class="nav-text">队列中的附加消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-workers"><span class="nav-number">6.</span> <span class="nav-text">Web Workers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于闭包的一个提醒"><span class="nav-number">7.</span> <span class="nav-text">关于闭包的一个提醒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小贴士-takeaways"><span class="nav-number">8.</span> <span class="nav-text">小贴士（Takeaways）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展阅读"><span class="nav-number">9.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
