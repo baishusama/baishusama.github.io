@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065222094.png">
 <meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065249571.png">
 <meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511078247555.png">
-<meta property="og:updated_time" content="2017-11-19T09:43:17.000Z">
+<meta property="og:updated_time" content="2017-11-19T09:48:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LC-461-Hamming-Distance">
 <meta name="twitter:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
@@ -413,6 +413,9 @@
 <p>二进制数减一是一个奇妙的操作——当一个二进制数减一的时候，低位的 0 会变成 1，直到遇到一个最低位的 1 被减成 0。假设这个数 n 中最低位的 1 位于第 m 位（m &gt;= 0），最高位的 1 位于第 M 位，最高位为第 N 位。那么此时，0~m 位各位上的数字都做了取反操作（包含一个 m 位的 1 和 0 ~ m-1 位的所有 0），而 m+1 ~ N 位各位上的数字都保持不变，即数 n 与上 (n - 1) 会导致 0~m 位均变成 0 ，这个过程中影响到了最低位（m 位上的一个 1）。即，<strong>做一次 <code>n = n &amp; (n - 1)</code> 的操作会使得二进制数少一个最低位上的 1</strong>。</p>
 <p>特别的，二进制数中只有一个 1 的时候，<code>n &amp; (n - 1) // == 0</code>。由此 <code>n &gt; 0 &amp;&amp; (n &amp; (n - 1))</code> 也常用于判断整数 n 是不是 2 的指数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function isPowerOfTwo(n)&#123;</span><br><span class="line">    // better judge if n is an int at first..</span><br><span class="line">    if(n &lt;= 0) return false;</span><br><span class="line">    return !(n&amp;(n-1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于 JS 中整数的判断，ES5 及以前请看 <a href="https://stackoverflow.com/questions/14636536/how-to-check-if-a-variable-is-an-integer-in-javascript#answer-14636725" target="_blank" rel="external">How to check if a variable is an integer in JavaScript? @SO</a>，ES6 及以后可以用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger" target="_blank" rel="external">Number.isInteger()</a>。</p>
+</blockquote>
 <h2 id="相关补充"><a class="header-anchor" href="#相关补充">¶</a>相关补充</h2>
 <blockquote>
 <p>刚好最近在看《Effective JavaScript》这本书，书中第二条——“理解 JavaScript 的浮点数”，有一些相关知识。</p>
