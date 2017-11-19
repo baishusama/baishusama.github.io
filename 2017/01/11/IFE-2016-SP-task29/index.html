@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="¶My Solution
-My solution to task29 is available on jsfiddle:">
+<meta name="description" content="¶My Solution My solution to task29 is available on jsfiddle:">
+<meta name="keywords" content="IFE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IFE-2016-SP-task29 Verify Input">
 <meta property="og:url" content="http://baishusama.github.io/2017/01/11/IFE-2016-SP-task29/index.html">
 <meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶My Solution
-My solution to task29 is available on jsfiddle:">
+<meta property="og:description" content="¶My Solution My solution to task29 is available on jsfiddle:">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-01-27T04:35:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IFE-2016-SP-task29 Verify Input">
-<meta name="twitter:description" content="¶My Solution
-My solution to task29 is available on jsfiddle:">
+<meta name="twitter:description" content="¶My Solution My solution to task29 is available on jsfiddle:">
 
 
 
@@ -171,7 +170,7 @@ My solution to task29 is available on jsfiddle:">
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Practice makes perfect :)</p>
+  <p class="site-subtitle">最可贵的是勇气和坚持。</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -329,7 +328,7 @@ My solution to task29 is available on jsfiddle:">
       
         <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
 <p>My solution to task29 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="http://jsfiddle.net/16nbyx5z/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<iframe scrolling="no" width="100%" height="400px" src="//jsfiddle.net/16nbyx5z/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
 <a id="more"></a>
 <ul>
 <li>
@@ -337,11 +336,11 @@ My solution to task29 is available on jsfiddle:">
 <ul>
 <li>
 <p>😕 我原来的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (val) &#123;</div><div class="line">  <span class="keyword">if</span> (notContainWhitespace(val)) &#123;</div><div class="line">    <span class="keyword">if</span> (isValidLength(val)) &#123;&#125; <span class="keyword">else</span> &#123;</div><div class="line">      information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">  &#125;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (val) &#123;</span><br><span class="line">  <span class="keyword">if</span> (notContainWhitespace(val)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (isValidLength(val)) &#123;&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    information = <span class="string">"用户名不能包含空格！"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  information = <span class="string">"用户名不能为空！"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>😊 修改后的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!val) &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</div><div class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</div><div class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!val) &#123;</span><br><span class="line">  information = <span class="string">"用户名不能为空！"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</span><br><span class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</span><br><span class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -359,7 +358,7 @@ My solution to task29 is available on jsfiddle:">
 <ul>
 <li>🔖 利用字符串的 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt" target="_blank" rel="external"><code>charCodeAt()</code></a> 方法来计算字符串长度：</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">countLength</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> inputLength = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">    <span class="keyword">var</span> countCode = str.charCodeAt(i);</div><div class="line">    <span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</div><div class="line">      inputLength += <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      inputLength += <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> inputLength;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countLength</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> inputLength = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> countCode = str.charCodeAt(i);</span><br><span class="line">    <span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</span><br><span class="line">      inputLength += <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      inputLength += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inputLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>
 <p>❓ 用两行三列的 <code>table</code> 来布局</p>
@@ -377,11 +376,11 @@ My solution to task29 is available on jsfiddle:">
 <ul>
 <li>
 <p>我的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!val) &#123;</div><div class="line">  information = <span class="string">"用户名不能为空！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</div><div class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</div><div class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!val) &#123;</span><br><span class="line">  information = <span class="string">"用户名不能为空！"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!notContainWhitespace(val)) &#123;</span><br><span class="line">  information = <span class="string">"用户名不能包含空格！"</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!isValidLength(val)) &#123;</span><br><span class="line">  information = <span class="string">"用户名长度要在 4 ~ 16 个字符内！"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>该团队的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(testStr.length === <span class="number">0</span> )&#123;</div><div class="line">  paramObj = msgs.error_required;<span class="comment">// 不能为空 “姓名不能为空”</span></div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( !lenReg.test(testStr))&#123;</div><div class="line">  paramObj = msgs.error_length;<span class="comment">// 字符长度不对 “长度为4~16个字符”</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">  paramObj = msgs.right;<span class="comment">// 格式正确</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(testStr.length === <span class="number">0</span> )&#123;</span><br><span class="line">  paramObj = msgs.error_required;<span class="comment">// 不能为空 “姓名不能为空”</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>( !lenReg.test(testStr))&#123;</span><br><span class="line">  paramObj = msgs.error_length;<span class="comment">// 字符长度不对 “长度为4~16个字符”</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">  paramObj = msgs.right;<span class="comment">// 格式正确</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -390,11 +389,11 @@ My solution to task29 is available on jsfiddle:">
 <ul>
 <li>
 <p>我的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (information) &#123;</div><div class="line">  invalidStylish(information);</div><div class="line">&#125; <span class="keyword">else</span> &#123; validStylish(); &#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (information) &#123;</span><br><span class="line">  invalidStylish(information);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123; validStylish(); &#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>该团队的代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UIInterface(veBoxEle, paramObj);</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIInterface(veBoxEle, paramObj);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -419,11 +418,11 @@ My solution to task29 is available on jsfiddle:">
 </li>
 <li>
 <p>我一开始直接匹配的双字节字符：<code>/[^x00-xff]/</code>：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> enReg = <span class="regexp">/[x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> length = <span class="number">0</span>;</div><div class="line">length += value.match(enReg) &amp;&amp; value.match(enReg).length;</div><div class="line">length += value.match(zhReg) &amp;&amp; value.match(zhReg).length * <span class="number">2</span>;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> enReg = <span class="regexp">/[x00-xff]/g</span>;</span><br><span class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</span><br><span class="line"><span class="keyword">var</span> length = <span class="number">0</span>;</span><br><span class="line">length += value.match(enReg) &amp;&amp; value.match(enReg).length;</span><br><span class="line">length += value.match(zhReg) &amp;&amp; value.match(zhReg).length * <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>上面这种写法可以改进为：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</div><div class="line"><span class="keyword">var</span> length = zhReg.replace(zhReg, <span class="string">"aa"</span>).length;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zhReg = <span class="regexp">/[^x00-xff]/g</span>;</span><br><span class="line"><span class="keyword">var</span> length = zhReg.replace(zhReg, <span class="string">"aa"</span>).length;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我在控制台测试的时候，<code>~</code> <code>-</code> <code>!</code> 等也被视为双字节字符了 OAO ！<br>
 究其原因估计是遵循 <code>GB2312</code> 编码的时候，<code>~</code> <code>-</code> <code>!</code> 等在双字节字符中也存在对应编码。</p>
@@ -431,11 +430,11 @@ My solution to task29 is available on jsfiddle:">
 </li>
 <li>
 <p>前二团队将 <code>ASCII</code> 码以外的都：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在 for 循环内部</span></div><div class="line"><span class="keyword">var</span> countCode = str.charCodeAt(i);</div><div class="line"><span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</div><div class="line">  inputLength += <span class="number">1</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  inputLength += <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在 for 循环内部</span></span><br><span class="line"><span class="keyword">var</span> countCode = str.charCodeAt(i);</span><br><span class="line"><span class="keyword">if</span> (countCode &gt;= <span class="number">0</span> &amp;&amp; countCode &lt;=<span class="number">128</span>) &#123;</span><br><span class="line">  inputLength += <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  inputLength += <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>第三团队匹配的是中文字符（应该不是全部，但基本涵盖常用？）：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> chineseReg = <span class="regexp">/[\u4E00-\uFA29]|[\uE7C7-\uE7F3]/g</span>;</div><div class="line"><span class="keyword">var</span> validLength = <span class="regexp">/^.&#123;4,16&#125;$/</span>.test(trimmedStr.replace(chineseReg, <span class="string">'--'</span>));</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chineseReg = <span class="regexp">/[\u4E00-\uFA29]|[\uE7C7-\uE7F3]/g</span>;</span><br><span class="line"><span class="keyword">var</span> validLength = <span class="regexp">/^.&#123;4,16&#125;$/</span>.test(trimmedStr.replace(chineseReg, <span class="string">'--'</span>));</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -589,7 +588,7 @@ My solution to task29 is available on jsfiddle:">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -599,7 +598,7 @@ My solution to task29 is available on jsfiddle:">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -634,7 +633,7 @@ My solution to task29 is available on jsfiddle:">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution-和-任务得分第二的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">任务得分第一的团队的 solution 和 任务得分第二的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第三的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">任务得分第三的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则匹配中文"><span class="nav-number">3.</span> <span class="nav-text">正则匹配中文</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">¶My Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">¶Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution-和-任务得分第二的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">¶任务得分第一的团队的 solution 和 任务得分第二的团队的 solution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第三的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">¶任务得分第三的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则匹配中文"><span class="nav-number">3.</span> <span class="nav-text">¶正则匹配中文</span></a></li></ol></div>
             
 
           </div>

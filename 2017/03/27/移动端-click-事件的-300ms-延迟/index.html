@@ -84,25 +84,18 @@
 
 
 
-<meta name="description" content="¶存疑
-最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。
-在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。
-时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta name="description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta name="keywords" content="javascript,html,mobile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端 click 事件 300ms 延迟的前世今生">
 <meta property="og:url" content="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/index.html">
 <meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶存疑
-最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。
-在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。
-时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta property="og:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-03-28T05:24:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端 click 事件 300ms 延迟的前世今生">
-<meta name="twitter:description" content="¶存疑
-最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。
-在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。
-时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta name="twitter:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
 
 
 
@@ -177,7 +170,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Practice makes perfect :)</p>
+  <p class="site-subtitle">最可贵的是勇气和坚持。</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -349,7 +342,7 @@
 <ul>
 <li>
 <p>代码：</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=no"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 或者 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1, minimum-scale=1, maximum-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=no"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 或者 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1, minimum-scale=1, maximum-scale=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>原理：双击是为了缩放，如果禁用缩放，那么就没双击什么事儿了，也不需要额外等待 300ms 了。</p>
@@ -368,7 +361,7 @@
 <ul>
 <li>
 <p>代码：</p>
-  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></div></pre></td></tr></table></figure>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>原由：正如 <a href="https://codereview.chromium.org/18850005/" target="_blank" rel="external">Chromium Code Reviews</a> 上说的，<code>viewport</code> 的 <code>width</code> 设置得小于等于 <code>device-width</code> 的页面，是针对移动端优化过的或者是响应式的站点，其内容足够清晰，双击缩放失去了意义。因此，为包含上面这行代码的页面<strong>禁用双击缩放</strong>。同时，双指缩放得以保留，从而也就<strong>没有可用性和可访问性问题</strong>了。</p>
@@ -392,7 +385,7 @@
 <ul>
 <li>
 <p>代码：</p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span>, <span class="selector-tag">button</span>, <span class="selector-class">.myelements</span> &#123;</div><div class="line">    <span class="attribute">-ms-touch-action</span>: manipulation; <span class="comment">/* IE10  */</span></div><div class="line">    <span class="attribute">touch-action</span>: manipulation;     <span class="comment">/* IE11+ */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>, <span class="selector-tag">button</span>, <span class="selector-class">.myelements</span> &#123;</span><br><span class="line">    <span class="attribute">-ms-touch-action</span>: manipulation; <span class="comment">/* IE10  */</span></span><br><span class="line">    <span class="attribute">touch-action</span>: manipulation;     <span class="comment">/* IE11+ */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>根据<a href="https://w3c.github.io/pointerevents/#the-touch-action-css-property" target="_blank" rel="external">规范</a>：CSS 属性 <code>touch-action</code> 决定了触摸输入（touch input）能否触发 UA （User Agent）支持的默认行为。这包括但不限于诸如平移或缩放等行为。</p>
@@ -419,7 +412,7 @@
 <ul>
 <li>
 <p>代码：</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    FastClick.attach( <span class="built_in">document</span>.body ); <span class="comment">// 直接绑定到 &lt;body&gt; 上可以确保整个应用都能受益</span></div><div class="line">&#125;, <span class="literal">false</span> );</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    FastClick.attach( <span class="built_in">document</span>.body ); <span class="comment">// 直接绑定到 &lt;body&gt; 上可以确保整个应用都能受益</span></span><br><span class="line">&#125;, <span class="literal">false</span> );</span><br></pre></td></tr></table></figure>
 </li>
 <li>
 <p>原理：FastClick 在检测到 <code>touchend</code> 事件的时候，会通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="external">DOM 自定义事件</a>立即触发一个模拟的 <code>click</code> 事件，并把浏览器 300ms 之后真正触发的 click 事件阻止掉。</p>
@@ -622,7 +615,7 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -632,7 +625,7 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -667,7 +660,7 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存疑"><span class="nav-number">1.</span> <span class="nav-text">存疑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端-click-的-300ms-延迟"><span class="nav-number">2.</span> <span class="nav-text">移动端 click 的 300ms 延迟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一-👎-禁用缩放"><span class="nav-number">3.1.</span> <span class="nav-text">方案一、👎 禁用缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二-👍-视窗宽度设置为设备宽度"><span class="nav-number">3.2.</span> <span class="nav-text">方案二、👍 视窗宽度设置为设备宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案三-👍-指针事件-pointer-events"><span class="nav-number">3.3.</span> <span class="nav-text">方案三、👍 指针事件（Pointer Events）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案四-👍-轻量级库-fastclick"><span class="nav-number">3.4.</span> <span class="nav-text">方案四、👍 轻量级库 FastClick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-始作俑者-safari"><span class="nav-number">4.</span> <span class="nav-text">关于“始作俑者” Safari</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起承转折"><span class="nav-number">4.1.</span> <span class="nav-text">起承转折</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结果"><span class="nav-number">4.2.</span> <span class="nav-text">测试结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暮然回首"><span class="nav-number">4.3.</span> <span class="nav-text">暮然回首</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解惑"><span class="nav-number">5.</span> <span class="nav-text">解惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存疑"><span class="nav-number">1.</span> <span class="nav-text">¶存疑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端-click-的-300ms-延迟"><span class="nav-number">2.</span> <span class="nav-text">¶移动端 click 的 300ms 延迟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">¶解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一-👎-禁用缩放"><span class="nav-number">3.1.</span> <span class="nav-text">¶方案一、👎 禁用缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二-👍-视窗宽度设置为设备宽度"><span class="nav-number">3.2.</span> <span class="nav-text">¶方案二、👍 视窗宽度设置为设备宽度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案三-👍-指针事件-pointer-events"><span class="nav-number">3.3.</span> <span class="nav-text">¶方案三、👍 指针事件（Pointer Events）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案四-👍-轻量级库-fastclick"><span class="nav-number">3.4.</span> <span class="nav-text">¶方案四、👍 轻量级库 FastClick</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-始作俑者-safari"><span class="nav-number">4.</span> <span class="nav-text">¶关于“始作俑者” Safari</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起承转折"><span class="nav-number">4.1.</span> <span class="nav-text">¶起承转折</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结果"><span class="nav-number">4.2.</span> <span class="nav-text">¶测试结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暮然回首"><span class="nav-number">4.3.</span> <span class="nav-text">¶暮然回首</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解惑"><span class="nav-number">5.</span> <span class="nav-text">¶解惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">¶参考</span></a></li></ol></div>
             
 
           </div>

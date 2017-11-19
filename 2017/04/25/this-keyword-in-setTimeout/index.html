@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="¶概述
-本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
+<meta name="description" content="¶概述 本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="setTimeout 中的 this 关键字">
 <meta property="og:url" content="http://baishusama.github.io/2017/04/25/this-keyword-in-setTimeout/index.html">
 <meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶概述
-本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
+<meta property="og:description" content="¶概述 本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
+<meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2017-04-25T16:46:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="setTimeout 中的 this 关键字">
-<meta name="twitter:description" content="¶概述
-本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
+<meta name="twitter:description" content="¶概述 本文主要讲述了几种场景下 setTimeout 的回调函数的 this 绑定出错的几种解决方法。">
 
 
 
@@ -171,7 +170,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Practice makes perfect :)</p>
+  <p class="site-subtitle">最可贵的是勇气和坚持。</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -331,7 +330,7 @@
 <p>本文主要讲述了几种场景下 <code>setTimeout</code> 的回调函数的 <code>this</code> 绑定出错的几种解决方法。</p>
 <a id="more"></a>
 <h2 id="举个栗子"><a class="header-anchor" href="#举个栗子">¶</a>举个栗子</h2>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">  sayName() &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Hello, I'm "</span> + <span class="keyword">this</span>.name + <span class="string">"."</span>)</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">constructor</span>(name = "No One") &#123;</div><div class="line">    <span class="keyword">this</span>.name = name</div><div class="line">    setTimeout(<span class="keyword">this</span>.sayName, <span class="number">1000</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> imo = <span class="keyword">new</span> Person(<span class="string">"Imo"</span>)</div><div class="line"></div><div class="line">setTimeout(imo.sayName, <span class="number">2000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hello, I'm "</span> + <span class="keyword">this</span>.name + <span class="string">"."</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">constructor</span>(name = "No One") &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">    setTimeout(<span class="keyword">this</span>.sayName, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> imo = <span class="keyword">new</span> Person(<span class="string">"Imo"</span>)</span><br><span class="line"></span><br><span class="line">setTimeout(imo.sayName, <span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>P.S. 上述代码使用了 ES6 语法，这里不做语法上的过多解释。不知所谓的童鞋可以看一下<a href="https://segmentfault.com/a/1190000004365693" target="_blank" rel="external">《30 分钟掌握 ES6 核心内容（上）》</a>、<a href="https://segmentfault.com/a/1190000004368132" target="_blank" rel="external">《30 分钟掌握 ES6 核心内容（下）》</a>这两篇。</p>
 </blockquote>
@@ -346,7 +345,7 @@
 <li>匿名函数包裹</li>
 </ol>
 <p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二个 setTimeout 用“.bind()”方法修改如下：</span></div><div class="line">setTimeout(imo.sayName.bind(imo), <span class="number">2000</span>)</div><div class="line"></div><div class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹”方法修改如下：</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    imo.sayName()</div><div class="line">&#125;, <span class="number">2000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个 setTimeout 用“.bind()”方法修改如下：</span></span><br><span class="line">setTimeout(imo.sayName.bind(imo), <span class="number">2000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹”方法修改如下：</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    imo.sayName()</span><br><span class="line">&#125;, <span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="bind-方法"><a class="header-anchor" href="#bind-方法">¶</a>“<code>.bind()</code>”方法</h3>
 <blockquote>
 <p>Apply 调用模式 - The Apply Invocation Pattern</p>
@@ -361,20 +360,20 @@
 <p>我们尝试上面提到的两种解决方法。</p>
 <h3 id="bind-方法-v2"><a class="header-anchor" href="#bind-方法-v2">¶</a>“<code>.bind()</code>”方法</h3>
 <p><code>.bind()</code> 方法依旧可行，代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第一个 setTimeout 用“.bind()”方法修改如下：</span></div><div class="line">setTimeout(<span class="keyword">this</span>.sayName.bind(<span class="keyword">this</span>), <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个 setTimeout 用“.bind()”方法修改如下：</span></span><br><span class="line">setTimeout(<span class="keyword">this</span>.sayName.bind(<span class="keyword">this</span>), <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="匿名函数包裹-方法-v2"><a class="header-anchor" href="#匿名函数包裹-方法-v2">¶</a>“匿名函数包裹”方法</h3>
 <p>“匿名函数包裹”方法好像让事情更复杂了——修改后但<strong>没能解决问题</strong>的代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹”方法修改如下：</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.sayName()</div><div class="line">&#125;, <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹”方法修改如下：</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sayName()</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <p>此时，<code>this.sayName</code> 的值为 <code>undefined</code>，<code>sayName</code> 方法甚至都没有机会得到调用。</p>
 <h4 id="匿名函数包裹-bind"><a class="header-anchor" href="#匿名函数包裹-bind">¶</a>“匿名函数包裹+<code>.bind</code>”</h4>
 <p>在包裹匿名函数后的代码的基础上，仍可以使用 <code>.bind</code> 方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹+.bind”方法修改如下：</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">this</span>.sayName()</div><div class="line">&#125;.bind(<span class="keyword">this</span>), <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹+.bind”方法修改如下：</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sayName()</span><br><span class="line">&#125;.bind(<span class="keyword">this</span>), <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <h4 id="匿名函数包裹-that"><a class="header-anchor" href="#匿名函数包裹-that">¶</a>“匿名函数包裹+<code>that</code>”</h4>
 <p>可以利用匿名函数形成闭包，引用正确的 <code>this</code>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹+that”方法修改如下：</span></div><div class="line"><span class="keyword">var</span> that = <span class="keyword">this</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    that.sayName()</div><div class="line">&#125;, <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个 setTimeout 用“匿名函数包裹+that”方法修改如下：</span></span><br><span class="line"><span class="keyword">var</span> that = <span class="keyword">this</span></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    that.sayName()</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="箭头函数-方法"><a class="header-anchor" href="#箭头函数-方法">¶</a>“箭头函数”方法</h3>
 <p>ES6 的箭头函数没有自己的 <code>this</code> 、直接继承外部作用域的 <code>this</code> ，所以还可以这么改：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 第二个 setTimeout 用“箭头函数”方法修改如下：</span></div><div class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.sayName()&#125;, <span class="number">1000</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个 setTimeout 用“箭头函数”方法修改如下：</span></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="keyword">this</span>.sayName()&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="小结"><a class="header-anchor" href="#小结">¶</a>小结</h2>
 <p>当 <code>setTimeout</code> 的回调函数中出现 <code>this</code> 的时候，要特别注意其绑定的对象是否和预想的一致。当绑定有误时可以通过下述方法解决。</p>
 <p>当 <code>setTimeout</code> 的回调函数是一个能够通过变量引用的对象的方法（类似于例子中的 <code>imo.sayName</code>）时，有两种解决方法：</p>
@@ -446,6 +445,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/14/LC-461-Hamming-Distance/" rel="prev" title="LC-461-Hamming-Distance">
+                LC-461-Hamming-Distance <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -536,7 +539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -546,7 +549,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -581,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">举个栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个-settimeout"><span class="nav-number">3.</span> <span class="nav-text">第二个 setTimeout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-方法"><span class="nav-number">3.1.</span> <span class="nav-text">“.bind()”方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数包裹-方法"><span class="nav-number">3.2.</span> <span class="nav-text">“匿名函数包裹”方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个-settimeout"><span class="nav-number">4.</span> <span class="nav-text">第一个 setTimeout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-方法-v2"><span class="nav-number">4.1.</span> <span class="nav-text">“.bind()”方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数包裹-方法-v2"><span class="nav-number">4.2.</span> <span class="nav-text">“匿名函数包裹”方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数包裹-bind"><span class="nav-number">4.2.1.</span> <span class="nav-text">“匿名函数包裹+.bind”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数包裹-that"><span class="nav-number">4.2.2.</span> <span class="nav-text">“匿名函数包裹+that”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数-方法"><span class="nav-number">4.3.</span> <span class="nav-text">“箭头函数”方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">¶概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个栗子"><span class="nav-number">2.</span> <span class="nav-text">¶举个栗子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个-settimeout"><span class="nav-number">3.</span> <span class="nav-text">¶第二个 setTimeout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-方法"><span class="nav-number">3.1.</span> <span class="nav-text">¶“.bind()”方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数包裹-方法"><span class="nav-number">3.2.</span> <span class="nav-text">¶“匿名函数包裹”方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个-settimeout"><span class="nav-number">4.</span> <span class="nav-text">¶第一个 setTimeout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bind-方法-v2"><span class="nav-number">4.1.</span> <span class="nav-text">¶“.bind()”方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数包裹-方法-v2"><span class="nav-number">4.2.</span> <span class="nav-text">¶“匿名函数包裹”方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数包裹-bind"><span class="nav-number">4.2.1.</span> <span class="nav-text">¶“匿名函数包裹+.bind”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数包裹-that"><span class="nav-number">4.2.2.</span> <span class="nav-text">¶“匿名函数包裹+that”</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数-方法"><span class="nav-number">4.3.</span> <span class="nav-text">¶“箭头函数”方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">¶小结</span></a></li></ol></div>
             
 
           </div>

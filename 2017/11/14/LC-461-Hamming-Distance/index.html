@@ -1,0 +1,795 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="algorithm," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LC-461-Hamming-Distance">
+<meta property="og:url" content="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065222094.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065249571.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511078247555.png">
+<meta property="og:updated_time" content="2017-11-19T09:16:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LC-461-Hamming-Distance">
+<meta name="twitter:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta name="twitter:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/"/>
+
+
+
+
+
+  <title> LC-461-Hamming-Distance | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">最可贵的是勇气和坚持。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                LC-461-Hamming-Distance
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-14T22:45:50+08:00">
+                2017-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/11/14/LC-461-Hamming-Distance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/14/LC-461-Hamming-Distance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>肝不动业务代码的时候，就时不时地做个题吧～</p>
+</blockquote>
+<h2 id="题目要求"><a class="header-anchor" href="#题目要求">¶</a>题目要求</h2>
+<p>原题目：<a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank" rel="external">461. Hamming Distance</a></p>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="external">维基百科</a>中的“汉明距离”：</p>
+<p>在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。</p>
+</blockquote>
+<p>题干：现在求两个整数 <code>x</code> 和 <code>y</code> 之间的汉明距离，其中，0 ≤ x, y &lt; 2^31。</p>
+<a id="more"></a>
+<h2 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h2>
+<p>根据汉明距离的定义、再结合原题目中的“Explanation”部分，可以得知我们需要对整数 <code>x</code>,<code>y</code> 对应的二进制数逐位累加差异——统计得到的不相同的位的个数，即为所求。</p>
+<ol>
+<li>思路一
+<ul>
+<li>我们要么先将整数转换成二进制——但是由于 JavaScript 只有一个 Number 类型用来表示数字，所以二进制数只能用别的方式代为表示——e.g. <code>4</code> 的二进制数可以表示为字符串 <code>(4).toString(2); // &quot;100&quot;</code>，或者数组 <code>[1,0,0]</code> <em>（数组好像没有直接的转换方法？）</em>。</li>
+<li>再对字符串或者数组中的“二进制值”做求解／求和。</li>
+</ul>
+</li>
+<li>思路二
+<ul>
+<li>虽然 JavaScript 不能很好地支持二进制数的表示，但是 JS 中天然有<strong>位操作符</strong>——其中，<strong>异或 <code>^</code></strong> 恰好能满足我们的需求！
+<ul>
+<li>如果 <code>x</code> 异或 <code>y</code> 得到 <code>z</code>（<code>z = x ^ y</code>），那么 <code>z</code> 对应的二进制表示中 1 的个数即为所求。</li>
+</ul>
+</li>
+<li>故再逐位求和即可：
+<ul>
+<li>首先我们来看看，一个变量和 1 做与操作（<code>&amp;</code>）会有什么现象：
+<ul>
+<li><code>val &amp; 1</code>，如果 <code>val</code> 的最右一位是 1 那么结果是 1 ；</li>
+<li><code>val &amp; 1</code>，如果 <code>val</code> 的最右一位是 0 那么结果是 0 。</li>
+</ul>
+</li>
+<li>此时我们至少能判断最右一位的 01 情况了。</li>
+<li>那么再结合右移位操作 <code>&gt;&gt;</code> 来不断使高位逐个变成最右位，我们就能计算一个二进制数的所有位的 01 情况！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>其实按照上述思路来看，整体是分成两个步骤的：</p>
+<ol>
+<li>得到差异</li>
+<li>累加差异</li>
+</ol>
+<p>两个步骤均可以用一下两种方式二选一解决：</p>
+<ul>
+<li>位操作</li>
+<li>其他数据结构，比如字符串</li>
+</ul>
+<p>所以可以 <code>2 * 2 = 4</code> 组合出四种大致思路。而第一步的“得到差异”个人比较推荐的做法是用异或一步到位。（后续实现中的第一步均采取了异或。）</p>
+<blockquote>
+<p>更多的 JS 相关的位操作符请参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators" target="_blank" rel="external">Bitwise operators @MDN</a>。</p>
+</blockquote>
+<h2 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h2>
+<h3 id="实现一"><a class="header-anchor" href="#实现一">¶</a>实现一</h3>
+<p>先异或再转字符串最后通过 <code>match</code> 方法（正则）计数的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;number&#125; x</span><br><span class="line"> * @param &#123;number&#125; y</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">var hammingDistance = function(x, y) &#123;</span><br><span class="line">    var xor = x ^ y;</span><br><span class="line">    var str = xor.toString(2);</span><br><span class="line">    var match = str.match(/1/g); // 用正则匹配计算个数；match 为 null 或者数组。</span><br><span class="line">    return match ? match.length : 0 ;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>提交详情：</p>
+<p><img src="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png" alt="实现一的提交详情"></p>
+<h3 id="实现二"><a class="header-anchor" href="#实现二">¶</a>实现二</h3>
+<p>先异或再转字符串最后通过 <code>split</code> 方法计数的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;number&#125; x</span><br><span class="line"> * @param &#123;number&#125; y</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">var hammingDistance = function(x, y) &#123;</span><br><span class="line">    var xor = x ^ y;</span><br><span class="line">    var str = xor.toString(2);</span><br><span class="line">    return str.split(&apos;1&apos;).length - 1; // 通过 split 计算某个字符（串）出现的个数</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>提交详情：</p>
+<p><img src="http://ohz4k75du.bkt.clouddn.com/markdown/1511065222094.png" alt="实现二的提交详情"></p>
+<h3 id="实现三"><a class="header-anchor" href="#实现三">¶</a>实现三</h3>
+<p>完全的位操作实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; x</span></span><br><span class="line"><span class="comment"> * @param &#123;number&#125; y</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> hammingDistance = <span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> xor = x ^ y;</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    sum += xor &amp; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(xor = xor &gt;&gt; <span class="number">1</span>)&#123;</span><br><span class="line">        sum += xor &amp; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>提交详情：</p>
+<p><img src="http://ohz4k75du.bkt.clouddn.com/markdown/1511065249571.png" alt="实现三的提交详情"></p>
+<h2 id="结果分析"><a class="header-anchor" href="#结果分析">¶</a>结果分析</h2>
+<p>其实第一个提交详情的图里的 runtime 和 distribution 不太可信，因为我第一次截实现一的详情图的时候，结果是“Your runtime beats 94.43 % of javascript submissions.”，后来我重新 submit 再打开之后，就变成“99.80 %”了……然后为了满足自己的虚荣心，贴了第二次的图（不要打我）。</p>
+<h2 id="其他解法"><a class="header-anchor" href="#其他解法">¶</a>其他解法</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @param &#123;number&#125; x</span><br><span class="line"> * @param &#123;number&#125; y</span><br><span class="line"> * @return &#123;number&#125;</span><br><span class="line"> */</span><br><span class="line">var hammingDistance = function(x, y) &#123;</span><br><span class="line">    let n = x ^ y;</span><br><span class="line">    let count = 0;</span><br><span class="line">    while (n) &#123;</span><br><span class="line">      n = n &amp; (n - 1)</span><br><span class="line">      count++;</span><br><span class="line">    &#125;</span><br><span class="line">    return count;    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>第一眼看到这个排名极靠前、完全位操作实现的解法的时候，虽然看不懂，但是可以看出这个 accepted 的解法中的 while 在最少的循环次内就得到了结果。</p>
+<p>因为在我的完全位操作的实现（实现三）中，当最高位是 1 的那一位在越高位的时候，while 就会循环越多次，如果最高位的 1 在第 M 位（M &gt;= 0），那么循环条件将执行 M+1 次，循环体将执行 M 次，即很多是 0 的位也被列入总和—— 0 虽然并不会对总和产生影响，但是多执行的代码会增加时间上的开销。</p>
+<p>而上面这个解法中能够只执行 <code>count</code> 次就结束循环，堪称完美！那么，现在我们来看看最为关键的代码 <code>n = n &amp; (n - 1)</code> 有什么奥秘。</p>
+<p>二进制数减一是一个奇妙的操作——当一个二进制数减一的时候，低位的 0 会变成 1，直到遇到一个最低位的 1 被减成 0。假设这个数 n 中最低位的 1 位于第 m 位（m &gt;= 0），最高位的 1 位于第 M 位，最高位为第 N 位。那么此时，0~m 位各位上的数字都做了取反操作（包含一个 m 位的 1 和 0 ~ m-1 位的所有 0），而 m+1 ~ N 位各位上的数字都保持不变，即数 n 与上 (n - 1) 会导致 0~m 位均变成 0 ，这个过程中影响到了最低位（m 位上的一个 1）。即，<strong>做一次 <code>n = n &amp; (n - 1)</code> 的操作会使得二进制数少一个最低位上的 1</strong>。</p>
+<h2 id="相关补充"><a class="header-anchor" href="#相关补充">¶</a>相关补充</h2>
+<blockquote>
+<p>刚好最近在看《Effective JavaScript》这本书，书中第二条——“理解 JavaScript 的浮点数”，有一些相关知识。</p>
+</blockquote>
+<h3 id="js-中的数字"><a class="header-anchor" href="#js-中的数字">¶</a>JS 中的数字</h3>
+<p>JavaScript 中的数字（number）都是 64 位双精度浮点数，即 double。JS 中的整数仅仅是其一个子集，整数的范围在 [-2^53, 2^53]。</p>
+<h4 id="safe-integer"><a class="header-anchor" href="#safe-integer">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger" target="_blank" rel="external">Safe Integer</a></h4>
+<p>Safe integer 是符合如下描述的整数：</p>
+<ul>
+<li>能被精确地表示为一个 IEEE-754 双精度浮点数</li>
+<li>这个表示不能是其他整数的舍入结果</li>
+</ul>
+<p>所以，2^53 虽然能被 IEEE-754 双精度浮点数精确表示，但是由于 2^53 + 1 在向零舍入和就近舍入中会被舍入为 2^53 ，所以不符合 safe integer 的要求，用 <code>Number.isSafeInteger</code> 判断会得到 false ：</p>
+<p><img src="http://ohz4k75du.bkt.clouddn.com/markdown/1511078247555.png" alt="Math.isSafeInteger"></p>
+<h3 id="js-中的位运算"><a class="header-anchor" href="#js-中的位运算">¶</a>JS 中的位运算</h3>
+<p>位运算符的工作原理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">标准的 JS 浮点数 =隐式转换=&gt; 32 位的有符号整数 =做位运算后返回=&gt; 标准的 JS 浮点数</span><br></pre></td></tr></table></figure>
+<p>说到 32 位有符号整数，比较容易想到 C 语言中的 <code>int</code> 类型。那么也就稍微可以理解下题目中给出的 <code>x</code> 和 <code>y</code> 的范围 <code>[0,2^31)</code> （ 32 位有符号整数的非负整数范围）了。</p>
+<h2 id="小结"><a class="header-anchor" href="#小结">¶</a>小结</h2>
+<p>这虽然是 leetcode 上最简单的一道题目，但是我还是有所收获，特别是对 <strong>二进制数中 1 的个数的求解方法</strong>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: 'Brush Script MT';">
+        ———————— THE END ————————
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/this-keyword-in-setTimeout/" rel="next" title="setTimeout 中的 this 关键字">
+                <i class="fa fa-chevron-left"></i> setTimeout 中的 this 关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/11/14/LC-461-Hamming-Distance/"
+     data-title="LC-461-Hamming-Distance"
+     data-content=""
+     data-url="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/14/LC-461-Hamming-Distance/"
+           data-title="LC-461-Hamming-Distance" data-url="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目要求"><span class="nav-number">1.</span> <span class="nav-text">¶题目要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">¶思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">¶代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现一"><span class="nav-number">3.1.</span> <span class="nav-text">¶实现一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现二"><span class="nav-number">3.2.</span> <span class="nav-text">¶实现二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现三"><span class="nav-number">3.3.</span> <span class="nav-text">¶实现三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果分析"><span class="nav-number">4.</span> <span class="nav-text">¶结果分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他解法"><span class="nav-number">5.</span> <span class="nav-text">¶其他解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关补充"><span class="nav-number">6.</span> <span class="nav-text">¶相关补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#js-中的数字"><span class="nav-number">6.1.</span> <span class="nav-text">¶JS 中的数字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#safe-integer"><span class="nav-number">6.1.1.</span> <span class="nav-text">¶Safe Integer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js-中的位运算"><span class="nav-number">6.2.</span> <span class="nav-text">¶JS 中的位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">¶小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
