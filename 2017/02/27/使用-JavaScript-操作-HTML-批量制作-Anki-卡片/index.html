@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,52 +58,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="javascript,markdown,anki,sublime,html," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
-<meta name="keywords" content="javascript,markdown,anki,sublime,html">
-<meta property="og:type" content="article">
-<meta property="og:title" content="使用 JavaScript 操作 HTML 批量制作 Anki 卡片">
-<meta property="og:url" content="http://baishusama.github.io/2017/02/27/使用-JavaScript-操作-HTML-批量制作-Anki-卡片/index.html">
-<meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/aText-anki.jpg">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step1.jpg">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step2.jpg">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step3.jpg">
-<meta property="og:updated_time" content="2017-03-01T02:15:13.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用 JavaScript 操作 HTML 批量制作 Anki 卡片">
-<meta name="twitter:description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
-<meta name="twitter:image" content="http://ohz4k75du.bkt.clouddn.com/anki/aText-anki.jpg">
 
 
 
@@ -104,15 +85,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -124,12 +103,43 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
+<meta name="keywords" content="markdown,anki,sublime,JavaScript,HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 JavaScript 操作 HTML 批量制作 Anki 卡片">
+<meta property="og:url" content="http://baishusama.github.io/2017/02/27/使用-JavaScript-操作-HTML-批量制作-Anki-卡片/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/aText-anki.jpg">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step1.jpg">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step2.jpg">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/anki/anki-import-step3.jpg">
+<meta property="og:updated_time" content="2018-08-25T02:55:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 JavaScript 操作 HTML 批量制作 Anki 卡片">
+<meta name="twitter:description" content="¶想要达到的效果  使用 markdown 总结笔记 利用笔记批量生成 anki 卡片  ¶前期准备 ¶批量制作 anki 卡片的两个思路  利用 TinyTask 之类的自动化操作软件进行重复性操作； 利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。  就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。">
+<meta name="twitter:image" content="http://ohz4k75du.bkt.clouddn.com/anki/aText-anki.jpg">
+
+
+
+
+
 
   <link rel="canonical" href="http://baishusama.github.io/2017/02/27/使用-JavaScript-操作-HTML-批量制作-Anki-卡片/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>使用 JavaScript 操作 HTML 批量制作 Anki 卡片 | imo++</title>
   
@@ -140,6 +150,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -159,19 +197,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">imo++</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">最可贵的是勇气和坚持。</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -179,35 +219,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -215,12 +265,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -231,6 +289,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -255,11 +315,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用 JavaScript 操作 HTML 批量制作 Anki 卡片</h1>
+          <h1 class="post-title" itemprop="name headline">使用 JavaScript 操作 HTML 批量制作 Anki 卡片
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -267,13 +335,30 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T11:44:54+08:00">
-                2017-02-27
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-02-27 11:44:54" itemprop="dateCreated datePublished" datetime="2017-02-27T11:44:54+08:00">2017-02-27</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-25 10:55:36" itemprop="dateModified" datetime="2018-08-25T10:55:36+08:00">2018-08-25</time>
+              
             
           </span>
 
@@ -313,7 +398,7 @@
 <h2 id="前期准备"><a class="header-anchor" href="#前期准备">¶</a>前期准备</h2>
 <h3 id="批量制作-anki-卡片的两个思路"><a class="header-anchor" href="#批量制作-anki-卡片的两个思路">¶</a>批量制作 anki 卡片的两个思路</h3>
 <ol>
-<li><a href="http://v.ku6.com/show/l1A1FiYXohYYsz-OM6RdyQ...html" target="_blank" rel="external">利用 TinyTask 之类的自动化操作软件进行重复性操作</a>；</li>
+<li><a href="http://v.ku6.com/show/l1A1FiYXohYYsz-OM6RdyQ...html" target="_blank" rel="noopener">利用 TinyTask 之类的自动化操作软件进行重复性操作</a>；</li>
 <li>利用脚本对遵循某种规则的笔记内容进行切分和生成卡片。</li>
 </ol>
 <p>就这两个思路来说，第二个思路一劳永逸。而且作为一个程序猿，闭着眼睛也会选第二个的嘛 /w\。</p>
@@ -335,7 +420,7 @@
 <p>思路中提到的 <strong>“遵循某种规则”</strong> 是指书写 .md 文件的时候，你需要想好用什么特殊的符号区分开卡片的正面和背面。</p>
 <p>这里，我在 markdown 中<strong>使用第二级标题 <code>##</code></strong> 来表示卡片的正面，在 HTML 对应为 <code>h2</code> 标签；而在两个第二级标题之间的所有内容表示卡片的反面。</p>
 <h2 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h2>
-<h3 id="generateankicards-js"><a class="header-anchor" href="#generateankicards-js">¶</a><a href="https://github.com/baishusama/stockyard/blob/master/anki/generateAnkiCards.js" target="_blank" rel="external">generateAnkiCards.js</a></h3>
+<h3 id="generateankicards-js"><a class="header-anchor" href="#generateankicards-js">¶</a><a href="https://github.com/baishusama/stockyard/blob/master/anki/generateAnkiCards.js" target="_blank" rel="noopener">generateAnkiCards.js</a></h3>
 <p>调用 generateAnkiCards.js 的代码：</p>
 <p><code>(function() { var source = &quot;https://baishusama.github.io/stockyard/anki/generateAnkiCards.js&quot;; var s = document.createElement(&quot;script&quot;); s.src = source; document.body.appendChild(s); })()</code></p>
 <ul>
@@ -375,12 +460,15 @@
 </ol>
 <h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
 <blockquote>
-<p><a href="http://pascalwhoop.github.io/technology/2016/01/27/How-to-generate-Flashcards-for-Ankidroid-out-of-Markdown-in-Jekyll.html" target="_blank" rel="external">How to generate Flashcards for Ankidroid out of Markdown in Jekyll using Javascript</a><br>
-<a href="http://stackoverflow.com/questions/20311271/hotlink-resources-like-javascript-files-directly-from-github/20311329#24720957" target="_blank" rel="external">Hotlink resources like JavaScript files directly from GitHub @StackOverFlow</a></p>
+<p><a href="http://pascalwhoop.github.io/technology/2016/01/27/How-to-generate-Flashcards-for-Ankidroid-out-of-Markdown-in-Jekyll.html" target="_blank" rel="noopener">How to generate Flashcards for Ankidroid out of Markdown in Jekyll using Javascript</a><br>
+<a href="http://stackoverflow.com/questions/20311271/hotlink-resources-like-javascript-files-directly-from-github/20311329#24720957" target="_blank" rel="noopener">Hotlink resources like JavaScript files directly from GitHub @StackOverFlow</a></p>
 </blockquote>
 
       
     </div>
+
+    
+
     
     
     
@@ -395,15 +483,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
             <a href="/tags/markdown/" rel="tag"># markdown</a>
           
             <a href="/tags/anki/" rel="tag"># anki</a>
           
             <a href="/tags/sublime/" rel="tag"># sublime</a>
           
-            <a href="/tags/html/" rel="tag"># html</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
           
         </div>
       
@@ -444,17 +532,10 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -498,44 +579,85 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">20</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
               
+
               
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -572,16 +694,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baishusama</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -589,12 +715,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
 
 
 
 
         
+
 
 
 
@@ -614,7 +741,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -633,7 +763,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -653,16 +787,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -671,18 +795,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
 
 
 
@@ -690,29 +809,15 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
 
 
 
@@ -720,11 +825,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -748,6 +849,12 @@
   
 
   
+
+  
+  
+
+  
+
   
 
   

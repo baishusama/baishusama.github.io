@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,52 +58,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="algorithm," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
-<meta name="keywords" content="algorithm">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LC-461-Hamming-Distance">
-<meta property="og:url" content="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/index.html">
-<meta property="og:site_name" content="imo++">
-<meta property="og:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065222094.png">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065249571.png">
-<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511078247555.png">
-<meta property="og:updated_time" content="2017-11-19T09:48:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LC-461-Hamming-Distance">
-<meta name="twitter:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
-<meta name="twitter:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
 
 
 
@@ -104,15 +85,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -124,12 +103,43 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta name="keywords" content="algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LC-461-Hamming-Distance">
+<meta property="og:url" content="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065222094.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511065249571.png">
+<meta property="og:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511078247555.png">
+<meta property="og:updated_time" content="2018-08-25T02:22:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LC-461-Hamming-Distance">
+<meta name="twitter:description" content="肝不动业务代码的时候，就时不时地做个题吧～  ¶题目要求 原题目：461. Hamming Distance  维基百科中的“汉明距离”： 在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。  题干：现在求两个整数 x 和 y 之间的汉明距离，其中，0 ≤">
+<meta name="twitter:image" content="http://ohz4k75du.bkt.clouddn.com/markdown/1511079951921.png">
+
+
+
+
+
 
   <link rel="canonical" href="http://baishusama.github.io/2017/11/14/LC-461-Hamming-Distance/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>LC-461-Hamming-Distance | imo++</title>
   
@@ -140,6 +150,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -159,19 +197,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">imo++</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">最可贵的是勇气和坚持。</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -179,35 +219,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -215,12 +265,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -231,6 +289,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -255,11 +315,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LC-461-Hamming-Distance</h1>
+          <h1 class="post-title" itemprop="name headline">LC-461-Hamming-Distance
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -267,13 +335,30 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-14T22:45:50+08:00">
-                2017-11-14
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-11-14 22:45:50" itemprop="dateCreated datePublished" datetime="2017-11-14T22:45:50+08:00">2017-11-14</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-25 10:22:23" itemprop="dateModified" datetime="2018-08-25T10:22:23+08:00">2018-08-25</time>
+              
             
           </span>
 
@@ -309,9 +394,9 @@
 <p>肝不动业务代码的时候，就时不时地做个题吧～</p>
 </blockquote>
 <h2 id="题目要求"><a class="header-anchor" href="#题目要求">¶</a>题目要求</h2>
-<p>原题目：<a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank" rel="external">461. Hamming Distance</a></p>
+<p>原题目：<a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank" rel="noopener">461. Hamming Distance</a></p>
 <blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="external">维基百科</a>中的“汉明距离”：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">维基百科</a>中的“汉明距离”：</p>
 <p>在信息论中，两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。</p>
 </blockquote>
 <p>题干：现在求两个整数 <code>x</code> 和 <code>y</code> 之间的汉明距离，其中，0 ≤ x, y &lt; 2^31。</p>
@@ -359,7 +444,7 @@
 </ul>
 <p>所以可以 <code>2 * 2 = 4</code> 组合出四种大致思路。而第一步的“得到差异”个人比较推荐的做法是用异或一步到位。（后续实现中的第一步均采取了异或。）</p>
 <blockquote>
-<p>更多的 JS 相关的位操作符请参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators" target="_blank" rel="external">Bitwise operators @MDN</a>。</p>
+<p>更多的 JS 相关的位操作符请参考 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators" target="_blank" rel="noopener">Bitwise operators @MDN</a>。</p>
 </blockquote>
 <h2 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h2>
 <h3 id="实现一"><a class="header-anchor" href="#实现一">¶</a>实现一</h3>
@@ -388,7 +473,7 @@
 <p>特别的，二进制数中只有一个 1 的时候，<code>n &amp; (n - 1) // == 0</code>。由此 <code>n &gt; 0 &amp;&amp; (n &amp; (n - 1))</code> 也常用于判断整数 n 是不是 2 的指数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function isPowerOfTwo(n)&#123;</span><br><span class="line">    // better judge if n is an int at first..</span><br><span class="line">    if(n &lt;= 0) return false;</span><br><span class="line">    return !(n&amp;(n-1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>关于 JS 中整数的判断，ES5 及以前请看 <a href="https://stackoverflow.com/questions/14636536/how-to-check-if-a-variable-is-an-integer-in-javascript#answer-14636725" target="_blank" rel="external">How to check if a variable is an integer in JavaScript? @SO</a>，ES6 及以后可以用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger" target="_blank" rel="external">Number.isInteger()</a>。</p>
+<p>关于 JS 中整数的判断，ES5 及以前请看 <a href="https://stackoverflow.com/questions/14636536/how-to-check-if-a-variable-is-an-integer-in-javascript#answer-14636725" target="_blank" rel="noopener">How to check if a variable is an integer in JavaScript? @SO</a>，ES6 及以后可以用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger" target="_blank" rel="noopener">Number.isInteger()</a>。</p>
 </blockquote>
 <h2 id="相关补充"><a class="header-anchor" href="#相关补充">¶</a>相关补充</h2>
 <blockquote>
@@ -396,7 +481,7 @@
 </blockquote>
 <h3 id="js-中的数字"><a class="header-anchor" href="#js-中的数字">¶</a>JS 中的数字</h3>
 <p>JavaScript 中的数字（number）都是 64 位双精度浮点数，即 double。JS 中的整数仅仅是其一个子集，整数的范围在 [-2^53, 2^53]。</p>
-<h4 id="safe-integer"><a class="header-anchor" href="#safe-integer">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger" target="_blank" rel="external">Safe Integer</a></h4>
+<h4 id="safe-integer"><a class="header-anchor" href="#safe-integer">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger" target="_blank" rel="noopener">Safe Integer</a></h4>
 <p>Safe integer 是符合如下描述的整数：</p>
 <ul>
 <li>能被精确地表示为一个 IEEE-754 双精度浮点数</li>
@@ -413,6 +498,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -450,8 +538,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/25/angular-cyclic-dependency-error-with-interceptor/" rel="prev" title="NG 考古 - HttpInterceptor 循环引用错误">
-                NG 考古 - HttpInterceptor 循环引用错误 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/25/angular-cyclic-dependency-error-with-interceptor/" rel="prev" title="[NG] 考古 - HttpInterceptor 循环引用错误">
+                [NG] 考古 - HttpInterceptor 循环引用错误 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -468,17 +556,10 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -522,44 +603,85 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">20</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
               
+
               
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -596,16 +718,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baishusama</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -613,12 +739,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
 
 
 
 
         
+
 
 
 
@@ -638,7 +765,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -657,7 +787,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -677,16 +811,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -695,18 +819,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
 
 
 
@@ -714,29 +833,15 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
 
 
 
@@ -744,11 +849,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -772,6 +873,12 @@
   
 
   
+
+  
+  
+
+  
+
   
 
   

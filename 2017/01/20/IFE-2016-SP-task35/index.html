@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,47 +58,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="IFE," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="¶My Solution My solution to task35 is available on jsfiddle:">
-<meta name="keywords" content="IFE">
-<meta property="og:type" content="article">
-<meta property="og:title" content="IFE-2016-SP-task35 Square Following Directives III">
-<meta property="og:url" content="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/index.html">
-<meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶My Solution My solution to task35 is available on jsfiddle:">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-01-27T04:36:53.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IFE-2016-SP-task35 Square Following Directives III">
-<meta name="twitter:description" content="¶My Solution My solution to task35 is available on jsfiddle:">
 
 
 
@@ -99,15 +85,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -119,12 +103,38 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="¶My Solution My solution to task35 is available on jsfiddle:">
+<meta name="keywords" content="IFE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IFE-2016-SP-task35 Square Following Directives III">
+<meta property="og:url" content="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶My Solution My solution to task35 is available on jsfiddle:">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-25T02:22:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IFE-2016-SP-task35 Square Following Directives III">
+<meta name="twitter:description" content="¶My Solution My solution to task35 is available on jsfiddle:">
+
+
+
+
+
 
   <link rel="canonical" href="http://baishusama.github.io/2017/01/20/IFE-2016-SP-task35/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>IFE-2016-SP-task35 Square Following Directives III | imo++</title>
   
@@ -135,6 +145,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -154,19 +192,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">imo++</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">最可贵的是勇气和坚持。</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -174,35 +214,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -210,12 +260,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -226,6 +284,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -250,11 +310,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IFE-2016-SP-task35 Square Following Directives III</h1>
+          <h1 class="post-title" itemprop="name headline">IFE-2016-SP-task35 Square Following Directives III
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -262,13 +330,30 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-20T12:15:42+08:00">
-                2017-01-20
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-01-20 12:15:42" itemprop="dateCreated datePublished" datetime="2017-01-20T12:15:42+08:00">2017-01-20</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-25 10:22:23" itemprop="dateModified" datetime="2018-08-25T10:22:23+08:00">2018-08-25</time>
+              
             
           </span>
 
@@ -305,7 +390,7 @@
 <iframe scrolling="no" width="100%" height="500px" src="//jsfiddle.net/0oesrpwL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
 <a id="more"></a>
 <h3 id="🔖-和-的使用方法"><a class="header-anchor" href="#🔖-和-的使用方法">¶</a>🔖 <code>&amp;&amp;</code> 和 <code>||</code> 的使用方法</h3>
-<h4 id="logical-operators-mdn"><a class="header-anchor" href="#logical-operators-mdn">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="_blank" rel="external">Logical Operators @MDN</a></h4>
+<h4 id="logical-operators-mdn"><a class="header-anchor" href="#logical-operators-mdn">¶</a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators" target="_blank" rel="noopener">Logical Operators @MDN</a></h4>
 <p><code>&amp;&amp;</code> 会返回第一个假值（falsy value），<code>||</code> 会返回第一个真值（truthy value）。假值包括：</p>
 <ol>
 <li><code>undefined</code></li>
@@ -315,7 +400,7 @@
 <li><code>&quot;&quot;</code></li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 下面两个函数等价 */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shortCircuitEvaluation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  doSomething() || doSomethingElse()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">equivalentEvaluation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> flag = doSomething();</span><br><span class="line">  <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">    doSomethingElse();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 一些例子 */</span></span><br><span class="line"><span class="string">""</span> &amp;&amp; <span class="literal">false</span>      <span class="comment">// returns ""</span></span><br><span class="line"><span class="string">""</span> || <span class="literal">false</span>      <span class="comment">// returns false</span></span><br><span class="line"><span class="literal">false</span> || <span class="string">""</span>      <span class="comment">// returns ""</span></span><br></pre></td></tr></table></figure>
-<h4 id="对-js-运算符-和-的总结"><a class="header-anchor" href="#对-js-运算符-和-的总结">¶</a><a href="http://jianguang-qq.iteye.com/blog/462449?page=2" target="_blank" rel="external">对 js 运算符 || 和 &amp;&amp; 的总结</a></h4>
+<h4 id="对-js-运算符-和-的总结"><a class="header-anchor" href="#对-js-运算符-和-的总结">¶</a><a href="http://jianguang-qq.iteye.com/blog/462449?page=2" target="_blank" rel="noopener">对 js 运算符 || 和 &amp;&amp; 的总结</a></h4>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* e.g.1 成长速度 */</span></span><br><span class="line"><span class="comment">// 需求一（==） - basic:</span></span><br><span class="line"><span class="keyword">var</span> addLevel = (addStep==<span class="number">5</span> &amp;&amp; <span class="number">1</span>) || (addStep==<span class="number">10</span> &amp;&amp; <span class="number">2</span>) || (addStep==<span class="number">12</span> &amp;&amp; <span class="number">3</span>) || (addStep==<span class="number">15</span> &amp;&amp; <span class="number">4</span>) || <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 需求一（==） - with Object:</span></span><br><span class="line"><span class="keyword">var</span> addLevel=&#123;<span class="string">'5'</span>:<span class="number">1</span>,<span class="string">'10'</span>:<span class="number">2</span>,<span class="string">'12'</span>:<span class="number">3</span>,<span class="string">'15'</span>:<span class="number">4</span>&#125;[addStep] || <span class="number">0</span>;      </span><br><span class="line"><span class="comment">// 需求二（&gt;）:</span></span><br><span class="line"><span class="keyword">var</span> addLevel = (addStep&gt;<span class="number">12</span> &amp;&amp; <span class="number">4</span>) || (addStep&gt;<span class="number">10</span> &amp;&amp; <span class="number">3</span>) || (addStep&gt;<span class="number">5</span> &amp;&amp; <span class="number">2</span>) || (addStep&gt;<span class="number">0</span> &amp;&amp; <span class="number">1</span>) || <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* e.g.2 jQuery 源码 */</span></span><br><span class="line"><span class="keyword">var</span> wrap = !tags.indexOf(<span class="string">"&lt;opt"</span>) &amp;&amp; ...;<span class="comment">// means 'startWith'</span></span><br></pre></td></tr></table></figure>
 <p>使用注意点：</p>
 <ul>
@@ -328,7 +413,7 @@
 <h3 id="🎀-textarea-避开监听滚动事件来实现同步滚动行号"><a class="header-anchor" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号">¶</a>🎀 textarea 避开监听滚动事件来实现同步滚动行号</h3>
 <h4 id="起因"><a class="header-anchor" href="#起因">¶</a>起因</h4>
 <blockquote>
-<p>因为，做之前稍微看了眼各个团队得到的评价（评论），了解了<a href="http://ife.baidu.com/2016/review/detail?workId=8467" target="_blank" rel="external">导师对这个任务实现的一些看法</a>，其中第四条指出：“指令输入编辑器显示代码行逻辑实现上有点不优雅。 <strong>一定要监听滚动才能实现左边指令行数一起滚动吗？</strong> 包括每次输入变化都重新渲染所有的代码行数，代价有点大。”</p>
+<p>因为，做之前稍微看了眼各个团队得到的评价（评论），了解了<a href="http://ife.baidu.com/2016/review/detail?workId=8467" target="_blank" rel="noopener">导师对这个任务实现的一些看法</a>，其中第四条指出：“指令输入编辑器显示代码行逻辑实现上有点不优雅。 <strong>一定要监听滚动才能实现左边指令行数一起滚动吗？</strong> 包括每次输入变化都重新渲染所有的代码行数，代价有点大。”</p>
 <p>于是，我花了很久来思考怎么才能避开我一开始预想的通过监听滚动来实现行号和内容的同步滚动。最终得到了这个实现。</p>
 </blockquote>
 <h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
@@ -338,7 +423,7 @@
 <h5 id="textarea-高度自适应的问题-法一"><a class="header-anchor" href="#textarea-高度自适应的问题-法一">¶</a>textarea 高度自适应的问题 - 法一</h5>
 <blockquote>
 <p><strong>参考：</strong><br>
-<a href="http://stackoverflow.com/questions/7477/autosizing-textarea-using-prototype" target="_blank" rel="external">Autosizing textarea using Prototype @SO</a> 提问中 Jan Miksovsky 的回答，以及回答下面的评论提出的一些修改意见。</p>
+<a href="http://stackoverflow.com/questions/7477/autosizing-textarea-using-prototype" target="_blank" rel="noopener">Autosizing textarea using Prototype @SO</a> 提问中 Jan Miksovsky 的回答，以及回答下面的评论提出的一些修改意见。</p>
 </blockquote>
 <p>可以查看 <a href=""><code>jsfiddle</code> 上的在线 demo</a>。</p>
 <p>这个解决方法 <strong>棒</strong> 在更多地依赖 HTML 和 CSS，而不是 JS 。</p>
@@ -348,12 +433,12 @@
 <h5 id="textarea-高度自适应的问题-其它方法"><a class="header-anchor" href="#textarea-高度自适应的问题-其它方法">¶</a>textarea 高度自适应的问题 - 其它方法</h5>
 <blockquote>
 <p>其它待读的相关资料：<br>
-<a href="https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize" target="_blank" rel="external">Creating a textarea with auto-resize</a></p>
+<a href="https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize" target="_blank" rel="noopener">Creating a textarea with auto-resize</a></p>
 <p>可以适当参考其它成熟实现：<br>
-<a href="https://babeljs.io/repl/" target="_blank" rel="external">babeljs.io</a></p>
+<a href="https://babeljs.io/repl/" target="_blank" rel="noopener">babeljs.io</a></p>
 </blockquote>
 <h4 id="小结"><a class="header-anchor" href="#小结">¶</a>小结</h4>
-<p>由于目前需要实现的并不是多么完备而成熟的文本编辑器（需求详见 <a href="http://ife.baidu.com/2016/task/detail?taskId=35" target="_blank" rel="external">task35 任务说明</a>），本次实现的文本编辑器还存在若干有待改进之处。</p>
+<p>由于目前需要实现的并不是多么完备而成熟的文本编辑器（需求详见 <a href="http://ife.baidu.com/2016/task/detail?taskId=35" target="_blank" rel="noopener">task35 任务说明</a>），本次实现的文本编辑器还存在若干有待改进之处。</p>
 <p><input type="checkbox" id="checkbox0"><label for="checkbox0"></label><strong>To Do</strong></p>
 <ol>
 <li><input type="checkbox" id="checkbox1"><label for="checkbox1">默认命令代码在一行内——未考虑到，当输入一行很长的代码，且不换行的情况下，行号间应该存在空隔。</label></li>
@@ -362,7 +447,7 @@
 <li>（有待补充。也强烈欢迎各位看官提出 bug ~）</li>
 </ol>
 <h2 id="compared-with-others"><a class="header-anchor" href="#compared-with-others">¶</a>Compared with others’</h2>
-<h3 id="任务得分第一的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2417" target="_blank" rel="external">任务得分第一的团队的 solution</a></h3>
+<h3 id="任务得分第一的团队的-solution"><a class="header-anchor" href="#任务得分第一的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=2417" target="_blank" rel="noopener">任务得分第一的团队的 solution</a></h3>
 <h4 id="一些实现上的差异比较"><a class="header-anchor" href="#一些实现上的差异比较">¶</a>一些实现上的差异比较</h4>
 <ul>
 <li><code>setTimeout</code> 还是 <code>setInterval</code>
@@ -389,12 +474,12 @@
 </ul>
 </li>
 </ul>
-<h3 id="任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=3569" target="_blank" rel="external">任务得分第二的团队的 solution</a></h3>
+<h3 id="任务得分第二的团队的-solution"><a class="header-anchor" href="#任务得分第二的团队的-solution">¶</a><a href="http://ife.baidu.com/2016/review/detail?workId=3569" target="_blank" rel="noopener">任务得分第二的团队的 solution</a></h3>
 <p><s>P.S. 这位的代码我没细看，但是这位的头像和（aiti？）一样，和我企鹅群里认识的那人是同一个人么OAO？。。</s></p>
 <h2 id="对-task36-的展望-恐慌"><a class="header-anchor" href="#对-task36-的展望-恐慌">¶</a>对 task36 的展望 <s>（恐慌）</s></h2>
 <p><s>看了眼 task36 前三的团队实现的 demo 和得到的评价，我觉得我可能要犯拖延了。。第一名的团队支持图片上传。。前三的某支团队甚至搞了一个 AST 。。大神们，请收下在下的膝盖 Orz 。。。</s></p>
-<p>在看了<a href="https://zhuanlan.zhihu.com/p/22213177" target="_blank" rel="external">一篇文章</a>的“害怕开展新项目怎么办？”“不要完美主义”的部分内容之后，决定还是克服拖延开始这个系列任务的最后一个吧。加油！！</p>
-<p>并且在原作者<a href="https://medium.freecodecamp.com/learning-to-code-when-it-gets-dark-e485edfb58fd#.t2ecehmpn" target="_blank" rel="external">另一篇文章</a>中得到了肯定：</p>
+<p>在看了<a href="https://zhuanlan.zhihu.com/p/22213177" target="_blank" rel="noopener">一篇文章</a>的“害怕开展新项目怎么办？”“不要完美主义”的部分内容之后，决定还是克服拖延开始这个系列任务的最后一个吧。加油！！</p>
+<p>并且在原作者<a href="https://medium.freecodecamp.com/learning-to-code-when-it-gets-dark-e485edfb58fd#.t2ecehmpn" target="_blank" rel="noopener">另一篇文章</a>中得到了肯定：</p>
 <blockquote>
 <p>The thing I am sure about is — <strong>if a person stays with coding long enough and makes the practice deliberate — they will get to any level they aspire to.</strong></p>
 <p>By <strong>deliberate practice</strong>, I mean:</p>
@@ -404,11 +489,14 @@
 <li>reading other people’s code to see how they solved these problems</li>
 <li>refactoring your old code</li>
 </ul>
-<p>To put it simply: <a href="http://jamesclear.com/stay-on-the-bus" target="_blank" rel="external">doing rework rather than trying new things and switching topics all the time</a><input type="checkbox" id="checkbox4"><label for="checkbox4">.</label></p>
+<p>To put it simply: <a href="http://jamesclear.com/stay-on-the-bus" target="_blank" rel="noopener">doing rework rather than trying new things and switching topics all the time</a><input type="checkbox" id="checkbox4"><label for="checkbox4">.</label></p>
 </blockquote>
 
       
     </div>
+
+    
+
     
     
     
@@ -464,17 +552,10 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -518,44 +599,85 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">20</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
               
+
               
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -571,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">¶My Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🔖-和-的使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">¶🔖 && 和 || 的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#logical-operators-mdn"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶Logical Operators @MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-js-运算符-和-的总结"><span class="nav-number">1.1.2.</span> <span class="nav-text">¶对 js 运算符 || 和 && 的总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我在自己的实现中的使用"><span class="nav-number">1.1.3.</span> <span class="nav-text">¶我在自己的实现中的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号"><span class="nav-number">1.2.</span> <span class="nav-text">¶🎀 textarea 避开监听滚动事件来实现同步滚动行号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">1.2.1.</span> <span class="nav-text">¶起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.2.2.</span> <span class="nav-text">¶思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.2.3.</span> <span class="nav-text">¶实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-法一"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">¶textarea 高度自适应的问题 - 法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-其它方法"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">¶textarea 高度自适应的问题 - 其它方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.2.4.</span> <span class="nav-text">¶小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">¶Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">¶任务得分第一的团队的 solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些实现上的差异比较"><span class="nav-number">2.1.1.</span> <span class="nav-text">¶一些实现上的差异比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">¶任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对-task36-的展望-恐慌"><span class="nav-number">3.</span> <span class="nav-text">¶对 task36 的展望 （恐慌）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-solution"><span class="nav-number">1.</span> <span class="nav-text">¶My Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#🔖-和-的使用方法"><span class="nav-number">1.1.</span> <span class="nav-text">¶🔖 &amp;&amp; 和 || 的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#logical-operators-mdn"><span class="nav-number">1.1.1.</span> <span class="nav-text">¶Logical Operators @MDN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对-js-运算符-和-的总结"><span class="nav-number">1.1.2.</span> <span class="nav-text">¶对 js 运算符 || 和 &amp;&amp; 的总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我在自己的实现中的使用"><span class="nav-number">1.1.3.</span> <span class="nav-text">¶我在自己的实现中的使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#🎀-textarea-避开监听滚动事件来实现同步滚动行号"><span class="nav-number">1.2.</span> <span class="nav-text">¶🎀 textarea 避开监听滚动事件来实现同步滚动行号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#起因"><span class="nav-number">1.2.1.</span> <span class="nav-text">¶起因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.2.2.</span> <span class="nav-text">¶思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.2.3.</span> <span class="nav-text">¶实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-法一"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">¶textarea 高度自适应的问题 - 法一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#textarea-高度自适应的问题-其它方法"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">¶textarea 高度自适应的问题 - 其它方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">1.2.4.</span> <span class="nav-text">¶小结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#compared-with-others"><span class="nav-number">2.</span> <span class="nav-text">¶Compared with others’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第一的团队的-solution"><span class="nav-number">2.1.</span> <span class="nav-text">¶任务得分第一的团队的 solution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些实现上的差异比较"><span class="nav-number">2.1.1.</span> <span class="nav-text">¶一些实现上的差异比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务得分第二的团队的-solution"><span class="nav-number">2.2.</span> <span class="nav-text">¶任务得分第二的团队的 solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对-task36-的展望-恐慌"><span class="nav-number">3.</span> <span class="nav-text">¶对 task36 的展望 （恐慌）</span></a></li></ol></div>
             
 
           </div>
@@ -592,16 +714,20 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baishusama</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -609,12 +735,13 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
 
 
 
 
         
+
 
 
 
@@ -634,7 +761,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -653,7 +783,11 @@
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -673,16 +807,6 @@
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -691,18 +815,13 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
 
 
 
@@ -710,29 +829,15 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
 
 
 
@@ -740,11 +845,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -768,6 +869,12 @@
   
 
   
+
+  
+  
+
+  
+
   
 
   
