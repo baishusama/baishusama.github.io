@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="¶前言 恍然间发现这个错误已经不复存在了，于是稍微看了下相关 issue、commit、PR。写篇笔记祭奠下～ ¶需求描述 一个使用 HttpInterceptor 的常见场景是实现基于 token 的验证机制。 为什么要使用拦截（intercepting）呢？ 因为，在基于 token 的验证机制中，证明用户身份的 token 需要被附带在每一个（需要验证的请求的）请求头。如果不使用拦截手段，那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NG 考古 - HttpInterceptor 循环引用错误">
+<meta property="og:url" content="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶前言 恍然间发现这个错误已经不复存在了，于是稍微看了下相关 issue、commit、PR。写篇笔记祭奠下～ ¶需求描述 一个使用 HttpInterceptor 的常见场景是实现基于 token 的验证机制。 为什么要使用拦截（intercepting）呢？ 因为，在基于 token 的验证机制中，证明用户身份的 token 需要被附带在每一个（需要验证的请求的）请求头。如果不使用拦截手段，那">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44579937-b6fbfc80-a7ca-11e8-9581-52a373fb24e4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44575832-8ebad080-a7bf-11e8-9578-81a064e4de39.png">
+<meta property="og:updated_time" content="2018-08-25T01:24:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NG 考古 - HttpInterceptor 循环引用错误">
+<meta name="twitter:description" content="¶前言 恍然间发现这个错误已经不复存在了，于是稍微看了下相关 issue、commit、PR。写篇笔记祭奠下～ ¶需求描述 一个使用 HttpInterceptor 的常见场景是实现基于 token 的验证机制。 为什么要使用拦截（intercepting）呢？ 因为，在基于 token 的验证机制中，证明用户身份的 token 需要被附带在每一个（需要验证的请求的）请求头。如果不使用拦截手段，那">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/"/>
+
+
+
+
+
+  <title> NG 考古 - HttpInterceptor 循环引用错误 | imo++ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">imo++</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">最可贵的是勇气和坚持。</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="baishusama">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="imo++">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="imo++" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NG 考古 - HttpInterceptor 循环引用错误
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T09:13:48+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2018/08/25/angular-cyclic-dependency-error-with-interceptor/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/25/angular-cyclic-dependency-error-with-interceptor/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<p>恍然间发现这个错误已经不复存在了，于是稍微看了下相关 issue、commit、PR。写篇笔记祭奠下～</p>
+<h2 id="需求描述"><a class="header-anchor" href="#需求描述">¶</a>需求描述</h2>
+<p>一个使用 <code>HttpInterceptor</code> 的常见场景是实现基于 token 的验证机制。</p>
+<p>为什么要使用拦截（intercepting）呢？</p>
+<p>因为，在基于 token 的验证机制中，证明用户身份的 token 需要被附带在每一个（需要验证的请求的）请求头。如果不使用拦截手段，那么（由 <code>HttpClient</code> 实例触发的）每一个请求都需要手动修改请求头（header）。显然手动修改是繁琐和难以维护的。所以，我们选择做拦截。</p>
+<p><a href="https://angular.io/guide/http#set-default-headers" target="_blank" rel="external">Angular 官网</a>也给出了范例，以下代码可以实现一个 <code>AuthInterceptor</code> 拦截器：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpEvent, HttpHandler, HttpInterceptor, HttpRequest &#125; <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs/Observable'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">'../auth.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> auth: AuthService</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getAuthorizationToken();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authReq = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(authReq);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h2>
+<p>但在 <a href="https://github.com/angular/angular/blob/master/CHANGELOG.md#523-2018-01-31" target="_blank" rel="external">5.2.3</a> 之前，执行上述官方给出的代码是会报错的。原因是 <strong>存在循环引用问题</strong>！</p>
+<a id="more"></a>
+<h3 id="依赖关系1"><a class="header-anchor" href="#依赖关系1">¶</a>依赖关系1</h3>
+<p>我们看一下上述代码：<code>AuthInterceptor</code> 由于需要使用 <code>AuthService</code> 服务提供的获取 token 的方法，依赖注入了 <code>AuthService</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor -&gt; AuthService  // AuthInterceptor 拦截器需要 AuthService 服务来获取 token</span><br></pre></td></tr></table></figure>
+<h3 id="依赖关系2"><a class="header-anchor" href="#依赖关系2">¶</a>依赖关系2</h3>
+<p>而一般情况下我们的 <code>AuthService</code> 需要做登录登出等操作，特别是需要和后端交互以获取 token，所以需要依赖注入 <code>HttpClient</code>，存在依赖关系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AuthService -&gt; HttpClient // AuthService 服务需要 HttpClient 服务来和后端交互</span><br></pre></td></tr></table></figure>
+<h3 id="依赖关系3"><a class="header-anchor" href="#依赖关系3">¶</a>依赖关系3</h3>
+<p>从下述源码可以看出，<code>HttpClient</code> 服务依赖注入了 <code>HttpHandler</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.x</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClient &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> handler: HttpHandler</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  request(...): Observable&lt;<span class="built_in">any</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> req: HttpRequest&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// Start with an Observable.of() the initial request, and run the handler (which</span></span><br><span class="line">    <span class="comment">// includes all interceptors) inside a concatMap(). This way, the handler runs</span></span><br><span class="line">    <span class="comment">// inside an Observable chain, which causes interceptors to be re-run on every</span></span><br><span class="line">    <span class="comment">// subscription (this also makes retries re-run the handler, including interceptors).</span></span><br><span class="line">    <span class="keyword">const</span> events$: Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; =</span><br><span class="line">        concatMap.call(of (req), <span class="function">(<span class="params">req: HttpRequest&lt;<span class="built_in">any</span>&gt;</span>) =&gt;</span> <span class="keyword">this</span>.handler.handle(req));</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而 <code>HttpHandler</code> 的依赖中包含可选的 <code>new Inject(HTTP_INTERCEPTORS)</code>：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.2</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [...],</span><br><span class="line">  providers: [</span><br><span class="line">    HttpClient,</span><br><span class="line">    <span class="comment">// HttpHandler is the backend + interceptors and is constructed</span></span><br><span class="line">    <span class="comment">// using the interceptingHandler factory function.</span></span><br><span class="line">    &#123;</span><br><span class="line">      provide: HttpHandler,</span><br><span class="line">      useFactory: interceptingHandler,</span><br><span class="line">      deps: [HttpBackend, [<span class="keyword">new</span> Optional(), <span class="keyword">new</span> Inject(HTTP_INTERCEPTORS)]],</span><br><span class="line">    &#125;,</span><br><span class="line">    HttpXhrBackend,</span><br><span class="line">    &#123;provide: HttpBackend, useExisting: HttpXhrBackend&#125;,</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClientModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>HTTP_INTERCEPTORS</code> 是一个 <code>InjectionToken</code> 实例，用于标识所有拦截器服务。<code>new Inject(HTTP_INTERCEPTORS)</code> 可以获取拦截器服务的实例们。</p>
+<blockquote>
+<p>这里的“token”是 Angular 的 DI 系统中用于标识以来对象的东西。token 可以是字符串或者 <code>Type</code>/<code>InjectionToken</code>/<code>OpaqueToken</code> 类的实例。</p>
+<p>P.S. 关于使用哪一种 token 更好的问题，可以【TODO:】看一下<a href="https://blog.thoughtram.io/angular/2016/05/23/opaque-tokens-in-angular-2.html" target="_blank" rel="external">这篇文章</a>（<a href="https://segmentfault.com/a/1190000008626348" target="_blank" rel="external">译文</a>）。</p>
+</blockquote>
+<p>也就是说，<code>HttpClient</code> 依赖于所有 <code>HttpInterceptor</code>s，包括 <code>AuthInterceptor</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpClient -&gt; AuthInterceptor // HttpClient 服务需要 AuthInterceptor 在内的所有拦截器服务来处理请求</span><br></pre></td></tr></table></figure>
+<h3 id="循环依赖"><a class="header-anchor" href="#循环依赖">¶</a>循环依赖</h3>
+<p>综上，我们有循环依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor -&gt; AuthService -&gt; HttpClient -&gt; AuthInterceptor -&gt; ...</span><br></pre></td></tr></table></figure>
+<p>而在 Angular 里，每一个服务实例的初始化所需要的依赖都是需要事先准备好的，但一个循环依赖是永远也准备不好的……Angular 因此会检测循环依赖的存在，并在循环依赖被检测到时报错，部分源码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.x</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> NgModuleProviderAnalyzer &#123;</span><br><span class="line">  <span class="keyword">private</span> _transformedProviders = <span class="keyword">new</span> Map&lt;<span class="built_in">any</span>, ProviderAst&gt;();</span><br><span class="line">  <span class="keyword">private</span> _seenProviders = <span class="keyword">new</span> Map&lt;<span class="built_in">any</span>, <span class="built_in">boolean</span>&gt;();</span><br><span class="line">  <span class="keyword">private</span> _allProviders: Map&lt;<span class="built_in">any</span>, ProviderAst&gt;;</span><br><span class="line">  <span class="keyword">private</span> _errors: ProviderError[] = [];</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> _getOrCreateLocalProvider(token: CompileTokenMetadata, eager: <span class="built_in">boolean</span>): ProviderAst|<span class="literal">null</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> resolvedProvider = <span class="keyword">this</span>._allProviders.get(tokenReference(token));</span><br><span class="line">    <span class="keyword">if</span> (!resolvedProvider) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> transformedProviderAst = <span class="keyword">this</span>._transformedProviders.get(tokenReference(token));</span><br><span class="line">    <span class="keyword">if</span> (transformedProviderAst) &#123;</span><br><span class="line">      <span class="keyword">return</span> transformedProviderAst;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>._seenProviders.get(tokenReference(token)) != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>._errors.push(</span><br><span class="line">        <span class="keyword">new</span> ProviderError(<span class="string">`Cannot instantiate cyclic dependency! <span class="subst">$&#123;tokenName(token)&#125;</span>`</span>, resolvedProvider.sourceSpan));</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>._seenProviders.set(tokenReference(token), <span class="literal">true</span>);</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>让我们稍微看一下代码：</p>
+<ul>
+<li><code>NgModuleProviderAnalyzer</code> 内部通过 <code>Map</code> 类型的 <code>_seenProviders</code> 来记录看到过的供应商。</li>
+<li>在其方法 <code>_getOrCreateLocalProvider</code> 内部判断是否已经看过，如果已经看过会在 <code>_errors</code> 中记录一个 <code>ProviderError</code> 错误。</li>
+</ul>
+<p>我用 5.2.2 版本的 Angular 编写了<a href="https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor" target="_blank" rel="external">一个遵循官方文档写法但出现“循环引用错误”的示例项目</a>。下面是我 <code>ng serve</code> 运行该应用后，在 <code>compiler.js</code> 中添加断点调试得到的结果：</p>
+<ul>
+<li>图一、截图时 <code>_seenProviders</code> 中已经记录的各个供应商：<br>
+<img src="https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png" alt="_seenProviders"></li>
+<li>图二、截图时 <code>token</code> 变量的值：<br>
+<img src="https://user-images.githubusercontent.com/9972503/44579937-b6fbfc80-a7ca-11e8-9581-52a373fb24e4.png" alt="token"></li>
+</ul>
+<p>在上述截图中，根据图二的 <code>token</code> 变量是能在 <code>_seenProviders</code> 中获取到非 <code>null</code> 值的，所以会向 <code>_errors</code> 中记录一个 <code>Cannot instantiate cyclic dependency!</code> 开头的错误。当执行完所有代码之后，控制台会出现该错误：</p>
+<p><img src="https://user-images.githubusercontent.com/9972503/44575832-8ebad080-a7bf-11e8-9578-81a064e4de39.png" alt="interceptor 循环引用报错"></p>
+<h2 id="用户的修复"><a class="header-anchor" href="#用户的修复">¶</a>用户的修复</h2>
+<p>那么在 5.2.2 及以前，作为 Angular 开发者，要如何解决上述问题呢？</p>
+<p>我们可以通过注入 <code>Injector</code> 手动懒加载 <code>AuthService</code> 而不是直接注入其到 <code>constructor</code>，来使依赖关系变为如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor --x-&gt; AuthService -&gt; HttpClient -&gt; AuthInterceptor --x-&gt;</span><br><span class="line">即 AuthService -&gt; HttpClient -&gt; AuthInterceptor，其中，在 AuthInterceptor 中懒加载 AuthService</span><br></pre></td></tr></table></figure>
+<p>即将官方的示例代码修改为如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable, Injector &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpEvent, HttpHandler, HttpInterceptor, HttpRequest &#125; <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs/Observable'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">'../auth.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">private</span> auth: AuthService;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> injector: Injector</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.auth = <span class="keyword">this</span>.injector.get(AuthService);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getAuthorizationToken();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authReq = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(authReq);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到和官方的代码相比，我们改为依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>intercept</code> 方法时才去获取 <code>auth</code> 服务实例，而不是将 <code>auth</code> 作为依赖注入、在调用构造函数的时候去获取。</p>
+<p>由此我们绕开了编译阶段的对循环依赖做的检查。</p>
+<h2 id="官方的修复"><a class="header-anchor" href="#官方的修复">¶</a>官方的修复</h2>
+<p>就像 <a href="https://github.com/angular/angular/pull/19809" target="_blank" rel="external">PR</a> 里提到的这样：</p>
+<blockquote>
+<p>Either HttpClient or the user has to deal specially with the circular dependency.</p>
+</blockquote>
+<p>所以，为了造福大众，最终官方做出了修改，原理和作为用户的我们的代码的思路是一致的——<strong>利用懒加载解决循环依赖问题！</strong></p>
+<p>因为<a href="https://github.com/angular/angular/commit/ed2b717" target="_blank" rel="external">修复的代码量</a>很少，所以这里整个摘录下。</p>
+<p>首先，新增 <code>HttpInterceptingHandler</code> 类（代码一）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.3</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * An `HttpHandler` that applies a bunch of `HttpInterceptor`s</span></span><br><span class="line"><span class="comment"> * to a request before passing it to the given `HttpBackend`.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The interceptors are loaded lazily from the injector, to allow</span></span><br><span class="line"><span class="comment"> * interceptors to themselves inject classes depending indirectly</span></span><br><span class="line"><span class="comment"> * on `HttpInterceptingHandler` itself.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpInterceptingHandler <span class="keyword">implements</span> HttpHandler &#123;</span><br><span class="line">  <span class="keyword">private</span> chain: HttpHandler|<span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> backend: HttpBackend, <span class="keyword">private</span> injector: Injector</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  handle(req: HttpRequest&lt;<span class="built_in">any</span>&gt;): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.chain === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> interceptors = <span class="keyword">this</span>.injector.get(HTTP_INTERCEPTORS, []);</span><br><span class="line">      <span class="keyword">this</span>.chain = interceptors.reduceRight(</span><br><span class="line">          (next, interceptor) =&gt; <span class="keyword">new</span> HttpInterceptorHandler(next, interceptor), <span class="keyword">this</span>.backend);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.chain.handle(req);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HttpHandler</code> 依赖的创建方式由原来的使用 <code>useFactory: interceptingHandler</code> 函数（代码二）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.2</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [...],</span><br><span class="line">  providers: [</span><br><span class="line">    HttpClient,</span><br><span class="line">    <span class="comment">// HttpHandler is the backend + interceptors and is constructed</span></span><br><span class="line">    <span class="comment">// using the interceptingHandler factory function.</span></span><br><span class="line">    &#123;</span><br><span class="line">      provide: HttpHandler,</span><br><span class="line">      useFactory: interceptingHandler,</span><br><span class="line">      deps: [HttpBackend, [<span class="keyword">new</span> Optional(), <span class="keyword">new</span> Inject(HTTP_INTERCEPTORS)]],</span><br><span class="line">    &#125;,</span><br><span class="line">    HttpXhrBackend,</span><br><span class="line">    &#123;provide: HttpBackend, useExisting: HttpXhrBackend&#125;,</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClientModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改为使用 <code>useClass: HttpInterceptingHandler</code> 类（代码三）：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.3</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [...],</span><br><span class="line">  providers: [</span><br><span class="line">    HttpClient,</span><br><span class="line">    &#123;provide: HttpHandler, useClass: HttpInterceptingHandler&#125;,</span><br><span class="line">    HttpXhrBackend,</span><br><span class="line">    &#123;provide: HttpBackend, useExisting: HttpXhrBackend&#125;,</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClientModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不难发现，在“代码一”中我们看到了熟悉的写法：依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>handle</code> 方法时才去获取 <code>HTTP_INTERCEPTORS</code> 拦截器依赖，而不是将 <code>interceptors</code> 作为依赖注入（在调用构造函数的时候去获取）。</p>
+<p>也就是官方修复的思路如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor -&gt; AuthService -&gt; HttpClient -x-&gt; AuthInterceptor</span><br><span class="line">即 AuthInterceptor -&gt; AuthService -&gt; HttpClient，其中，在 HttpClient 中懒加载 interceptors</span><br></pre></td></tr></table></figure>
+<p>因为 <code>AuthInterceptor</code> 对 <code>AuthService</code> 的引用和 <code>AuthService</code> 对 <code>HttpClient</code> 的引用是用户定义的，所以官方可以控制的只剩下 <code>HttpClient</code> 到拦截器的依赖引用了。所以，官方选择从 <code>HttpClient</code> 处切断依赖。</p>
+<blockquote>
+<p>那么，我们为什么选择从 <code>AuthInterceptor</code> 处而不是从 <code>AuthService</code> 处切断依赖呢？</p>
+<p>我觉得原因有二：</p>
+<ol>
+<li>一个是为了让 <code>AuthService</code> 尽可能保持透明——对 interceptor 引起的问题没有察觉。<strong>因为本质上这是 interceptors 不能依赖注入 <code>HttpClient</code> 的问题。</strong></li>
+<li>另一个是 <code>AuthService</code> 往往有很多能触发 <code>HttpClient</code> 使用的方法，那么在什么时候去通过 <code>injector</code> 来 get <code>HttpClient</code> 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 <code>intercept</code> 方法）的 <code>AuthInterceptor</code> 显然更为明智。</li>
+</ol>
+</blockquote>
+<h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
+<p>还是太年轻，以前翻 github 的时候没有及时订阅 issue，导致一些问题修复了都毫无察觉……</p>
+<p>从今天起，好好订阅 issue，好好整理笔记，共勉～</p>
+<blockquote>
+<p>P.S. 好久没写文章了，这篇文章简直在划水……所以我肯定很多地方没讲清楚（特别是代码都没有细讲），各位看官哪里没看明白的请务必指出，我会根据需要慢慢补充。望轻拍砖（逃</p>
+</blockquote>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
+<li><a href="https://github.com/angular/angular/blob/master/CHANGELOG.md" target="_blank" rel="external">Angular CHANGELOG.md</a></li>
+<li><a href="https://github.com/angular/angular/commit/ed2b717" target="_blank" rel="external">fix(common): allow HttpInterceptors to inject HttpClient</a></li>
+<li><a href="https://blog.angularindepth.com/insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular-103fbdb397bf" target="_blank" rel="external">Insider’s guide into interceptors and HttpClient mechanics in Angular</a>：这篇写得相当得好，深入了拦截器和 <code>HttpClient</code> 的内部机制，推荐阅读！</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+    <div style="text-align:center; color:#ccc; font-size:14px; font-family: 'Brush Script MT';">
+        ———————— THE END ————————
+    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/14/LC-461-Hamming-Distance/" rel="next" title="LC-461-Hamming-Distance">
+                <i class="fa fa-chevron-left"></i> LC-461-Hamming-Distance
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/08/25/angular-cyclic-dependency-error-with-interceptor/"
+     data-title="NG 考古 - HttpInterceptor 循环引用错误"
+     data-content=""
+     data-url="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/08/25/angular-cyclic-dependency-error-with-interceptor/"
+           data-title="NG 考古 - HttpInterceptor 循环引用错误" data-url="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ohz4k75du.bkt.clouddn.com/chitanta.JPG"
+               alt="baishusama" />
+          <p class="site-author-name" itemprop="name">baishusama</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">¶前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求描述"><span class="nav-number">2.</span> <span class="nav-text">¶需求描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">3.</span> <span class="nav-text">¶问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖关系1"><span class="nav-number">3.1.</span> <span class="nav-text">¶依赖关系1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖关系2"><span class="nav-number">3.2.</span> <span class="nav-text">¶依赖关系2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖关系3"><span class="nav-number">3.3.</span> <span class="nav-text">¶依赖关系3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环依赖"><span class="nav-number">3.4.</span> <span class="nav-text">¶循环依赖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户的修复"><span class="nav-number">4.</span> <span class="nav-text">¶用户的修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方的修复"><span class="nav-number">5.</span> <span class="nav-text">¶官方的修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">¶后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">¶参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">baishusama</span>
+  
+    <span style="margin-left:8px;">
+      <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+    </span>
+  
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        <!-- 
+ -->
+        
+
+  <div style="display: none;">
+    <script src="https://s4.cnzz.com/z_stat.php?id=1260968024&web_id=1260968024" language="JavaScript"></script>
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"baishusama"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
