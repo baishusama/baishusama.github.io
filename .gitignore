@@ -1,2 +1,10 @@
-node_modules/
+# editors
 .vscode/
+
+# dependencies
+node_modules/
+
+# hexo
+public/
+db.json
+theme/
