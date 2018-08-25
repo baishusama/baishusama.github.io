@@ -1,6 +1,6 @@
 ---
 title: es6 let & const
-tags:
+tags: [ECMAScript6]
 ---
 
 > 无特别说明为 ES2015  

@@ -1,6 +1,6 @@
 ---
 title: JavaScript 小技巧（不定期更新）
-tags: [javascript]
+tags: [JavaScript]
 ---
 
 ### 获取当前时间的毫秒数

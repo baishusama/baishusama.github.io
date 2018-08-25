@@ -1,6 +1,6 @@
 ---
 title: '[NOTE] What the heck is the event loop anyway?'
-tags: [javascript]
+tags: [JavaScript]
 ---
 
 单线程

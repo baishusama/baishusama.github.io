@@ -1,7 +1,7 @@
 ---
 title: Three Column Layouts Cheat Sheet
 date: 2017-04-21 22:24:46
-tags: [css]
+tags: [CSS]
 ---
 
 整理了下常见三栏布局的做法。

@@ -1,7 +1,7 @@
 ---
 title: setTimeout 中的 this 关键字
 date: 2017-04-25 22:26:22
-tags: [js]
+tags: [JavaScript]
 ---
 
 ## 概述

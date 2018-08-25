@@ -1,7 +1,7 @@
 ---
 title: 使用 JavaScript 操作 HTML 批量制作 Anki 卡片
 date: 2017-02-27 11:44:54
-tags: [anki,markdown,sublime,html,javascript]
+tags: [anki,markdown,sublime,HTML,JavaScript]
 ---
 
 ## 想要达到的效果

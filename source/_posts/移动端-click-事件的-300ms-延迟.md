@@ -1,7 +1,7 @@
 ---
 title: 移动端 click 事件 300ms 延迟的前世今生
 date: 2017-03-27 17:21:17
-tags: [html,javascript,mobile]
+tags: [HTML,JavaScript,mobile]
 ---
 
 ## 存疑

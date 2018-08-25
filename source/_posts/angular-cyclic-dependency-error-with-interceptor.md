@@ -1,7 +1,7 @@
 ---
-title: NG 考古 - HttpInterceptor 循环引用错误
+title: '[NG] 考古 - HttpInterceptor 循环引用错误'
 date: 2018-08-25 09:13:48
-tags:
+tags: [Angular]
 ---
 
 ## 前言

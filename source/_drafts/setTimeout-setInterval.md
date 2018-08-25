@@ -1,6 +1,6 @@
 ---
 title: setTimeout & setInterval
-tags: [js]
+tags: [JavaScript]
 ---
 
 ## 语法 & 参数
