@@ -1,7 +1,6 @@
 ---
 title: '[翻译] JavaScript 事件循环：说明'
-tags:
-  - javascript
+tags: [JavaScript]
 date: 2017-04-13 00:17:13
 ---
 
