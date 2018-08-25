@@ -7,4 +7,4 @@ node_modules/
 # hexo
 public/
 db.json
-theme/
+themes/
