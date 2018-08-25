@@ -315,7 +315,7 @@ AuthInterceptor -> AuthService -> HttpClient -x-> AuthInterceptor
 > 那么，我们为什么选择从 `AuthInterceptor` 处而不是从 `AuthService` 处切断依赖呢？
 >
 > 我觉得原因有二：
-> 
+>
 > 1. 一个是为了让 `AuthService` 尽可能保持透明——对 interceptor 引起的问题没有察觉。**因为本质上这是 interceptors 不能依赖注入 `HttpClient` 的问题。**
 > 2. 另一个是 `AuthService` 往往有很多能触发 `HttpClient` 使用的方法，那么在什么时候去通过 `injector` 来 get `HttpClient` 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 `intercept` 方法）的 `AuthInterceptor` 显然更为明智。
 

@@ -4,7 +4,12 @@
 # dependencies
 node_modules/
 
+# osx
+.DS_Store
+Thumbs.db
+
 # hexo
-public/
 db.json
-themes/
+*.log
+public/
+.deploy*/
