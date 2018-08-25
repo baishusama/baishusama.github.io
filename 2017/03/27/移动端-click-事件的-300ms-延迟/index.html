@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -38,10 +50,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,47 +58,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="javascript,html,mobile," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
-<meta name="keywords" content="javascript,html,mobile">
-<meta property="og:type" content="article">
-<meta property="og:title" content="移动端 click 事件 300ms 延迟的前世今生">
-<meta property="og:url" content="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/index.html">
-<meta property="og:site_name" content="imo++">
-<meta property="og:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-03-28T05:24:16.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动端 click 事件 300ms 延迟的前世今生">
-<meta name="twitter:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
 
 
 
@@ -99,15 +85,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.4',
+    version: '6.4.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -119,12 +103,38 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta name="keywords" content="mobile,JavaScript,HTML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端 click 事件 300ms 延迟的前世今生">
+<meta property="og:url" content="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/index.html">
+<meta property="og:site_name" content="imo++">
+<meta property="og:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-25T02:55:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端 click 事件 300ms 延迟的前世今生">
+<meta name="twitter:description" content="¶存疑 最开始，我遇到的其实是“移动端遮罩层滑动穿透”的问题。 在查找“滑动穿透”问题相关资料的时候，我搜到了很多 click 300ms 延迟的问题。我那个时候有些不知所云，因为我自己并没有真实遇到过 300ms 延迟现象，也就没怎么在意。 时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。">
+
+
+
+
+
 
   <link rel="canonical" href="http://baishusama.github.io/2017/03/27/移动端-click-事件的-300ms-延迟/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>移动端 click 事件 300ms 延迟的前世今生 | imo++</title>
   
@@ -135,6 +145,34 @@
 
 
 
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -154,19 +192,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">imo++</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
         <p class="site-subtitle">最可贵的是勇气和坚持。</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -174,35 +214,45 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
 
       
+      
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -210,12 +260,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -226,6 +284,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -250,11 +310,19 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">移动端 click 事件 300ms 延迟的前世今生</h1>
+          <h1 class="post-title" itemprop="name headline">移动端 click 事件 300ms 延迟的前世今生
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -262,13 +330,30 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T17:21:17+08:00">
-                2017-03-27
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2017-03-27 17:21:17" itemprop="dateCreated datePublished" datetime="2017-03-27T17:21:17+08:00">2017-03-27</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-25 10:55:47" itemprop="dateModified" datetime="2018-08-25T10:55:47+08:00">2018-08-25</time>
+              
             
           </span>
 
@@ -306,7 +391,7 @@
 <p>时至今日想动笔总结遇到了若干次的“滑动穿透”问题的时候，搜集资料的偶然间得以解惑 300ms 的前世今生。</p>
 <a id="more"></a>
 <h2 id="移动端-click-的-300ms-延迟"><a class="header-anchor" href="#移动端-click-的-300ms-延迟">¶</a>移动端 <code>click</code> 的 300ms 延迟</h2>
-<p>那么，<a href="http://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay" target="_blank" rel="external">这 300ms 延迟到底是从哪里来的呢？</a></p>
+<p>那么，<a href="http://www.telerik.com/blogs/what-exactly-is.....-the-300ms-click-delay" target="_blank" rel="noopener">这 300ms 延迟到底是从哪里来的呢？</a></p>
 <p>时间要追溯到 2007 年初代 iPhone 发布前夕，苹果为了解决“如何用手机这种小尺寸屏幕来显示 PC 端网页”这个问题，提出了很多聪明的约定（convention）。而后因为 iPhone 的大获成功，这些约定被各大手机浏览器争相效仿。</p>
 <p>这些约定之中，<strong>双击缩放（Double Tap to Zoom）</strong> 就是 300ms 的“元凶”——当用户在页面上 click 的时候，浏览器为了判断这个用户操作是单击还是双击，会等待 300-350ms 。如果 300ms 内，发生了第二次 click 事件，那么视为双击；否则为单击，等 300ms 时间过去之后，才触发 click 事件。</p>
 <p>在那个还不存在响应式设计和双指缩放（Pinch to Zoom）的时代，这个延迟是一个合理的预防措施。但不幸的是，<strong>这 300ms 的延迟已经成为用户觉得 web 应用比 native 应用更慢、性能不及后者的主要原因之一</strong>。诸如，链接、按钮、多选框等基于 click 交互的元素，以及 JS 对 click 事件的监听，都因此受到影响。</p>
@@ -338,7 +423,7 @@
   <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>原由：正如 <a href="https://codereview.chromium.org/18850005/" target="_blank" rel="external">Chromium Code Reviews</a> 上说的，<code>viewport</code> 的 <code>width</code> 设置得小于等于 <code>device-width</code> 的页面，是针对移动端优化过的或者是响应式的站点，其内容足够清晰，双击缩放失去了意义。因此，为包含上面这行代码的页面<strong>禁用双击缩放</strong>。同时，双指缩放得以保留，从而也就<strong>没有可用性和可访问性问题</strong>了。</p>
+<p>原由：正如 <a href="https://codereview.chromium.org/18850005/" target="_blank" rel="noopener">Chromium Code Reviews</a> 上说的，<code>viewport</code> 的 <code>width</code> 设置得小于等于 <code>device-width</code> 的页面，是针对移动端优化过的或者是响应式的站点，其内容足够清晰，双击缩放失去了意义。因此，为包含上面这行代码的页面<strong>禁用双击缩放</strong>。同时，双指缩放得以保留，从而也就<strong>没有可用性和可访问性问题</strong>了。</p>
 </li>
 <li>
 <p>支持情况：自 Chrome 32 开始，FF、IE/Edge 也随后支持了；2016 年 3 月，IOS 9.3 开始支持。</p>
@@ -348,7 +433,7 @@
 </li>
 </ul>
 <blockquote>
-<p>该解决方案的“禁止双击缩放”是遵守如下<a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="external">规则</a>的：</p>
+<p>该解决方案的“禁止双击缩放”是遵守如下<a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="noopener">规则</a>的：</p>
 <ul>
 <li>当页面设置了视窗宽度为设备宽度且是初始尺寸（页面尚未缩放），此时，双击缩放才是被禁止的。</li>
 <li>如果视窗尺寸不是初始尺寸（页面已经缩放），双击缩放是被允许的。</li>
@@ -362,37 +447,37 @@
   <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>, <span class="selector-tag">button</span>, <span class="selector-class">.myelements</span> &#123;</span><br><span class="line">    <span class="attribute">-ms-touch-action</span>: manipulation; <span class="comment">/* IE10  */</span></span><br><span class="line">    <span class="attribute">touch-action</span>: manipulation;     <span class="comment">/* IE11+ */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>根据<a href="https://w3c.github.io/pointerevents/#the-touch-action-css-property" target="_blank" rel="external">规范</a>：CSS 属性 <code>touch-action</code> 决定了触摸输入（touch input）能否触发 UA （User Agent）支持的默认行为。这包括但不限于诸如平移或缩放等行为。</p>
+<p>根据<a href="https://w3c.github.io/pointerevents/#the-touch-action-css-property" target="_blank" rel="noopener">规范</a>：CSS 属性 <code>touch-action</code> 决定了触摸输入（touch input）能否触发 UA （User Agent）支持的默认行为。这包括但不限于诸如平移或缩放等行为。</p>
 </li>
 <li>
-<p>根据 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action" target="_blank" rel="external">MDN</a>：<code>touch-action</code> 的 <code>manipulation</code> 值激活了平移和双指缩放手势，而禁用了双击缩放等非标准的手势。</p>
+<p>根据 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action" target="_blank" rel="noopener">MDN</a>：<code>touch-action</code> 的 <code>manipulation</code> 值激活了平移和双指缩放手势，而禁用了双击缩放等非标准的手势。</p>
 </li>
 <li>
-<p>支持情况：在 <a href="http://caniuse.com/#search=touch-action" target="_blank" rel="external">Can I Use</a> 上可以看出，除了 Opera Mini 不支持、FF 需要手动启用和 Android 4.x 的自带浏览器有些迷之外，其他浏览器支持良好。</p>
+<p>支持情况：在 <a href="http://caniuse.com/#search=touch-action" target="_blank" rel="noopener">Can I Use</a> 上可以看出，除了 Opera Mini 不支持、FF 需要手动启用和 Android 4.x 的自带浏览器有些迷之外，其他浏览器支持良好。</p>
 </li>
 <li>
 <p>推荐使用！</p>
 </li>
 </ul>
 <blockquote>
-<p>在只有 IE 支持指针事件的初期，诞生了不少<a href="https://thx.github.io/mobile/300ms-click-delay#%E6%8C%87%E9%92%88%E4%BA%8B%E4%BB%B6%E7%9A%84-polyfill" target="_blank" rel="external">指针事件的 polyfill 解决方案</a>。在仍不支持指针事件的浏览器上，这是一种变通的方式。</p>
+<p>在只有 IE 支持指针事件的初期，诞生了不少<a href="https://thx.github.io/mobile/300ms-click-delay#%E6%8C%87%E9%92%88%E4%BA%8B%E4%BB%B6%E7%9A%84-polyfill" target="_blank" rel="noopener">指针事件的 polyfill 解决方案</a>。在仍不支持指针事件的浏览器上，这是一种变通的方式。</p>
 <p><code>shim</code> VS <code>polyfill</code></p>
 <ol>
 <li>一个 shim 是一个库，它将一个新的 API 引入到一个旧的环境中，而且仅靠旧环境中已有的手段实现。</li>
-<li><a href="https://www.wikiwand.com/en/Polyfill" target="_blank" rel="external"><strong>polyfill 就是浏览器 API 的 shim 。</strong></a> 它用于实现浏览器并不支持的原生 API 的代码，是<strong>抹平</strong>新旧浏览器对原生 API 支持<strong>差异</strong>的封装。通常，polyfill 会先检查当前浏览器是否支持某个 API，如果不支持的话就加载它自己的实现，然后新旧浏览器就都可以使用这个 API 了。相当于“打补丁”，“刮腻子”。</li>
+<li><a href="https://www.wikiwand.com/en/Polyfill" target="_blank" rel="noopener"><strong>polyfill 就是浏览器 API 的 shim 。</strong></a> 它用于实现浏览器并不支持的原生 API 的代码，是<strong>抹平</strong>新旧浏览器对原生 API 支持<strong>差异</strong>的封装。通常，polyfill 会先检查当前浏览器是否支持某个 API，如果不支持的话就加载它自己的实现，然后新旧浏览器就都可以使用这个 API 了。相当于“打补丁”，“刮腻子”。</li>
 </ol>
 </blockquote>
-<h3 id="方案四-👍-轻量级库-fastclick"><a class="header-anchor" href="#方案四-👍-轻量级库-fastclick">¶</a>方案四、👍 <a href="https://github.com/ftlabs/fastclick" target="_blank" rel="external">轻量级库 FastClick</a></h3>
+<h3 id="方案四-👍-轻量级库-fastclick"><a class="header-anchor" href="#方案四-👍-轻量级库-fastclick">¶</a>方案四、👍 <a href="https://github.com/ftlabs/fastclick" target="_blank" rel="noopener">轻量级库 FastClick</a></h3>
 <ul>
 <li>
 <p>代码：</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener( <span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    FastClick.attach( <span class="built_in">document</span>.body ); <span class="comment">// 直接绑定到 &lt;body&gt; 上可以确保整个应用都能受益</span></span><br><span class="line">&#125;, <span class="literal">false</span> );</span><br></pre></td></tr></table></figure>
 </li>
 <li>
-<p>原理：FastClick 在检测到 <code>touchend</code> 事件的时候，会通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="external">DOM 自定义事件</a>立即触发一个模拟的 <code>click</code> 事件，并把浏览器 300ms 之后真正触发的 click 事件阻止掉。</p>
+<p>原理：FastClick 在检测到 <code>touchend</code> 事件的时候，会通过 <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent" target="_blank" rel="noopener">DOM 自定义事件</a>立即触发一个模拟的 <code>click</code> 事件，并把浏览器 300ms 之后真正触发的 click 事件阻止掉。</p>
 </li>
 <li>
-<p>无冲突：当 FastClick 检测到当前页面使用了基于 <code>&lt;meta&gt;</code> 标签或者 <code>touch-action</code> 属性的解决方案时，<a href="https://github.com/ftlabs/fastclick#when-it-isnt-needed" target="_blank" rel="external">会静静地看别的解决方案装逼</a>。</p>
+<p>无冲突：当 FastClick 检测到当前页面使用了基于 <code>&lt;meta&gt;</code> 标签或者 <code>touch-action</code> 属性的解决方案时，<a href="https://github.com/ftlabs/fastclick#when-it-isnt-needed" target="_blank" rel="noopener">会静静地看别的解决方案装逼</a>。</p>
 </li>
 <li>
 <p>唯一的缺点：文件大小占 10 KB……</p>
@@ -403,9 +488,9 @@
 </ul>
 <h2 id="关于-始作俑者-safari"><a class="header-anchor" href="#关于-始作俑者-safari">¶</a>关于“始作俑者” Safari</h2>
 <h3 id="起承转折"><a class="header-anchor" href="#起承转折">¶</a>起承转折</h3>
-<p><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="external">(2013) 300 毫秒点击延迟的来龙去脉</a>一文中提到的 IOS 特有的<strong>双击滚动（Double Tap to Scroll）：仍存在</strong>、并没有像原文猜测的那样消失。（亲测 IOS 10.2.1 Safari 已设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code> 的页面在屏幕上或下 1/4 处双击仍能滚动。）</p>
-<p>起初看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_1.html#//apple_ref/doc/uid/TP40014305-CH10-SW8" target="_blank" rel="external">2016 年 3 月发布的 IOS 9.3 移除了 300ms 延迟、从而实现了“fast-tap” </a>」时，我还欣慰地想道：最先提出“双击缩放”约定的苹果，在最后也顺应了历史潮流嘛。但是接着看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="external">IOS10 无视了禁用缩放（user-scalable）</a>」我的内心瞬间黑人问号：“？？？”。</p>
-<p>后来，静静地看了两篇文章（<a href="http://cloudless.studio/articles/39-safari-zoom-gesture-s-comeback-in-ios-10" target="_blank" rel="external">Safari zoom gesture’s comeback in iOS 10</a> 和 <a href="https://wouterdeschuyter.be/blog/how-to-disable-viewport-scaling-in-ios-10-you-dont-941140811" target="_blank" rel="external">How to disable viewport scaling in iOS 10? You don’t.</a>），做了点 <code>&lt;meta&gt;</code> 标签的测试。</p>
+<p><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="noopener">(2013) 300 毫秒点击延迟的来龙去脉</a>一文中提到的 IOS 特有的<strong>双击滚动（Double Tap to Scroll）：仍存在</strong>、并没有像原文猜测的那样消失。（亲测 IOS 10.2.1 Safari 已设置 <code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</code> 的页面在屏幕上或下 1/4 处双击仍能滚动。）</p>
+<p>起初看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_9_1.html#//apple_ref/doc/uid/TP40014305-CH10-SW8" target="_blank" rel="noopener">2016 年 3 月发布的 IOS 9.3 移除了 300ms 延迟、从而实现了“fast-tap” </a>」时，我还欣慰地想道：最先提出“双击缩放”约定的苹果，在最后也顺应了历史潮流嘛。但是接着看到「<a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="noopener">IOS10 无视了禁用缩放（user-scalable）</a>」我的内心瞬间黑人问号：“？？？”。</p>
+<p>后来，静静地看了两篇文章（<a href="http://cloudless.studio/articles/39-safari-zoom-gesture-s-comeback-in-ios-10" target="_blank" rel="noopener">Safari zoom gesture’s comeback in iOS 10</a> 和 <a href="https://wouterdeschuyter.be/blog/how-to-disable-viewport-scaling-in-ios-10-you-dont-941140811" target="_blank" rel="noopener">How to disable viewport scaling in iOS 10? You don’t.</a>），做了点 <code>&lt;meta&gt;</code> 标签的测试。</p>
 <h3 id="测试结果"><a class="header-anchor" href="#测试结果">¶</a>测试结果</h3>
 <p>测试环境：IOS 10.2.1</p>
 <ol>
@@ -423,10 +508,10 @@
 <h3 id="暮然回首"><a class="header-anchor" href="#暮然回首">¶</a>暮然回首</h3>
 <p>冷静下来后，重新审视上述变故，发现其实是两回事。前面提到过“我们应该抛弃双击缩放、拥抱双指缩放”，苹果没有打破这个原则。只是，<strong>苹果出于可访问性考虑，直接任性地完全无视了 <code>user-scalable=no</code></strong>。</p>
 <blockquote>
-<p><a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="external"><strong>Accessibility</strong><br>
+<p><a href="https://developer.apple.com/library/content/releasenotes/General/WhatsNewInSafari/Articles/Safari_10_0.html#//apple_ref/doc/uid/TP40014305-CH11-SW1" target="_blank" rel="noopener"><strong>Accessibility</strong><br>
 Pinch-to-zoom is always enabled for all users. The viewport setting for user-scalable is ignored.</a></p>
 </blockquote>
-<p>当然，这导致了觉得应该一切尽在掌控、想要完全禁用缩放以避免破坏布局的开发者的怨言。如果，你<strong>还是想完全禁用缩放，可以参考</strong> <a href="http://stackoverflow.com/questions/37808180/disable-viewport-zooming-ios-10-safari/38573198#38573198" target="_blank" rel="external">SO 上的这个回答</a>。</p>
+<p>当然，这导致了觉得应该一切尽在掌控、想要完全禁用缩放以避免破坏布局的开发者的怨言。如果，你<strong>还是想完全禁用缩放，可以参考</strong> <a href="http://stackoverflow.com/questions/37808180/disable-viewport-zooming-ios-10-safari/38573198#38573198" target="_blank" rel="noopener">SO 上的这个回答</a>。</p>
 <h2 id="解惑"><a class="header-anchor" href="#解惑">¶</a>解惑</h2>
 <p>最开始提到过，我至今没有遇到过这个问题。对这个现象我推理如下：</p>
 <p>我的肾机在开发移动端的半年间只在近期做过一次系统升级（目前已升到 10.2.1）。之前使用的具体的版本号已经无从得知了（P.S. 如果有谁知道怎么查看肾机本机上的版本更新历史，请务必告诉我233），但是更新到 IOS10 之前，我一直有使用 9.3+ 才支持的 Night Shift 功能，也就是说升级之前的系统版本号肯定在 9.3 或者以上。</p>
@@ -434,15 +519,18 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
 <p>这就是为什么之前我本机测试的时候一直没有遇到传说中的 300ms 延迟现象的原因了。</p>
 <h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
 <ol>
-<li><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="external">(2013) 300 毫秒点击延迟的来龙去脉</a></li>
-<li><a href="https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/" target="_blank" rel="external">(2014) 5-ways-prevent-300ms-click-delay-mobile-devices</a></li>
-<li><a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="external">(2015) Implement viewport-width-based fast-click heuristic</a></li>
-<li><a href="http://qiudeqing.com/mobile_web/2016/05/21/mobile-browser-click-300ms-delay.html" target="_blank" rel="external">(2016) 无线端浏览器 click 事件 300ms 延迟</a></li>
-<li><a href="https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away" target="_blank" rel="external">(2016) 300ms-tap-delay-gone-away</a></li>
+<li><a href="https://thx.github.io/mobile/300ms-click-delay" target="_blank" rel="noopener">(2013) 300 毫秒点击延迟的来龙去脉</a></li>
+<li><a href="https://www.sitepoint.com/5-ways-prevent-300ms-click-delay-mobile-devices/" target="_blank" rel="noopener">(2014) 5-ways-prevent-300ms-click-delay-mobile-devices</a></li>
+<li><a href="https://trac.webkit.org/changeset/191644/webkit" target="_blank" rel="noopener">(2015) Implement viewport-width-based fast-click heuristic</a></li>
+<li><a href="http://qiudeqing.com/mobile_web/2016/05/21/mobile-browser-click-300ms-delay.html" target="_blank" rel="noopener">(2016) 无线端浏览器 click 事件 300ms 延迟</a></li>
+<li><a href="https://developers.google.com/web/updates/2013/12/300ms-tap-delay-gone-away" target="_blank" rel="noopener">(2016) 300ms-tap-delay-gone-away</a></li>
 </ol>
 
       
     </div>
+
+    
+
     
     
     
@@ -457,11 +545,11 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-            <a href="/tags/html/" rel="tag"># html</a>
-          
             <a href="/tags/mobile/" rel="tag"># mobile</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/HTML/" rel="tag"># HTML</a>
           
         </div>
       
@@ -502,17 +590,10 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
-          
-
-
           
 
   
@@ -556,44 +637,85 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
+          
+            <nav class="site-state motion-element">
               
-                <a href="/archives/">
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">20</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-
-            
               
+
               
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
             
-
-          </nav>
-
           
-
-          
-
-          
-          
-
-          
-          
-
           
 
         </div>
@@ -630,16 +752,20 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">baishusama</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
 
 
 
@@ -647,12 +773,13 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
 
 
 
 
         
+
 
 
 
@@ -672,7 +799,10 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -691,7 +821,11 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -711,16 +845,6 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -729,18 +853,13 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
 
 
 
@@ -748,29 +867,15 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
 
 
 
@@ -778,11 +883,7 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
 
 
 
-
-
   
-
-
 
 
 
@@ -806,6 +907,12 @@ Pinch-to-zoom is always enabled for all users. The viewport setting for user-sca
   
 
   
+
+  
+  
+
+  
+
   
 
   
