@@ -166,7 +166,7 @@ export class NgModuleProviderAnalyzer {
 - `NgModuleProviderAnalyzer` 内部通过 `Map` 类型的 `_seenProviders` 来记录看到过的供应商。
 - 在其方法 `_getOrCreateLocalProvider` 内部判断是否已经看过，如果已经看过会在 `_errors` 中记录一个 `ProviderError` 错误。
 
-我用 5.2.2 版本的 Angular 编写了[一个遵循官方文档写法但出现“循环引用错误”的示例项目](https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor)。下面是我 `ng serve` 运行该应用后，在 `compiler.js` 中添加断点调试得到的结果：
+我用 5.2.2 版本的 Angular 编写了[一个遵循官方文档写法但出现“循环引用错误”的示例项目](https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor)。下面是我 `ng serve` 运行该应用后，在 `compiler.js` 中添加断点调试得到的结果：
 
 - 图一、截图时 `_seenProviders` 中已经记录的各个供应商：
 ![_seenProviders](https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png)
@@ -179,7 +179,7 @@ export class NgModuleProviderAnalyzer {
 
 ## 用户的修复
 
-那么在 5.2.2 及以前，作为 Angular 开发者，要如何解决上述问题呢？
+那么在 5.2.2 及以前，作为 Angular 开发者，要如何解决上述问题呢？
 
 我们可以通过注入 `Injector` 手动懒加载 `AuthService` 而不是直接注入其到 `constructor`，来使依赖关系变为如下：
 
@@ -216,9 +216,9 @@ export class AuthInterceptor implements HttpInterceptor {
 }
 ```
 
-可以看到和官方的代码相比，我们改为依赖注入 `Injector`，并通过其实例对象 `this.injector` 在调用 `intercept` 方法时才去获取 `auth` 服务实例，而不是将 `auth` 作为依赖注入、在调用构造函数的时候去获取。
+可以看到和官方的代码相比，我们改为依赖注入 `Injector`，并通过其实例对象 `this.injector` 在调用 `intercept` 方法时才去获取 `auth` 服务实例，而不是将 `auth` 作为依赖注入、在调用构造函数的时候去获取。
 
-由此我们绕开了编译阶段的对循环依赖做的检查。
+由此我们绕开了编译阶段的对循环依赖做的检查。
 
 ## 官方的修复
 
@@ -230,7 +230,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
 因为[修复的代码量](https://github.com/angular/angular/commit/ed2b717)很少，所以这里整个摘录下。
 
-首先，新增 `HttpInterceptingHandler` 类（代码一）：
+首先，新增 `HttpInterceptingHandler` 类（代码一）：
 
 ```typescript
 // v5.2.3
@@ -301,7 +301,7 @@ export class HttpClientModule {
 }
 ```
 
-不难发现，在“代码一”中我们看到了熟悉的写法：依赖注入 `Injector`，并通过其实例对象 `this.injector` 在调用 `handle` 方法时才去获取 `HTTP_INTERCEPTORS` 拦截器依赖，而不是将 `interceptors` 作为依赖注入（在调用构造函数的时候去获取）。
+不难发现，在“代码一”中我们看到了熟悉的写法：依赖注入 `Injector`，并通过其实例对象 `this.injector` 在调用 `handle` 方法时才去获取 `HTTP_INTERCEPTORS` 拦截器依赖，而不是将 `interceptors` 作为依赖注入（在调用构造函数的时候去获取）。
 
 也就是官方修复的思路如下：
 
@@ -312,23 +312,23 @@ AuthInterceptor -> AuthService -> HttpClient -x-> AuthInterceptor
 
 因为 `AuthInterceptor` 对 `AuthService` 的引用和 `AuthService` 对 `HttpClient` 的引用是用户定义的，所以官方可以控制的只剩下 `HttpClient` 到拦截器的依赖引用了。所以，官方选择从 `HttpClient` 处切断依赖。
 
-> 那么，我们为什么选择从 `AuthInterceptor` 处而不是从 `AuthService` 处切断依赖呢？
+> 那么，我们为什么选择从 `AuthInterceptor` 处而不是从 `AuthService` 处切断依赖呢？
 >
-> 我觉得原因有二：
+> 我觉得原因有二：
 >
-> 1. 一个是为了让 `AuthService` 尽可能保持透明——对 interceptor 引起的问题没有察觉。**因为本质上这是 interceptors 不能依赖注入 `HttpClient` 的问题。**
-> 2. 另一个是 `AuthService` 往往有很多能触发 `HttpClient` 使用的方法，那么在什么时候去通过 `injector` 来 get `HttpClient` 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 `intercept` 方法）的 `AuthInterceptor` 显然更为明智。
+> 1. 一个是为了让 `AuthService` 尽可能保持透明——对 interceptor 引起的问题没有察觉。**因为本质上这是 interceptors 不能依赖注入 `HttpClient` 的问题。**
+> 2. 另一个是 `AuthService` 往往有很多能触发 `HttpClient` 使用的方法，那么在什么时候去通过 `injector` 来 get `HttpClient` 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 `intercept` 方法）的 `AuthInterceptor` 显然更为明智。
 
 ## 后记
 
 还是太年轻，以前翻 github 的时候没有及时订阅 issue，导致一些问题修复了都毫无察觉……
 
-从今天起，好好订阅 issue，好好整理笔记，共勉～
+从今天起，好好订阅 issue，好好整理笔记，共勉～
 
-> P.S. 好久没写文章了，这篇文章简直在划水……所以我肯定很多地方没讲清楚（特别是代码都没有细讲），各位看官哪里没看明白的请务必指出，我会根据需要慢慢补充。望轻拍砖（逃
+> P.S. 好久没写文章了，这篇文章简直在划水……所以我肯定很多地方没讲清楚（特别是代码都没有细讲），各位看官哪里没看明白的请务必指出，我会根据需要慢慢补充。望轻拍砖（逃
 
 ## 参考
 
 - [Angular CHANGELOG.md](https://github.com/angular/angular/blob/master/CHANGELOG.md)
 - [fix(common): allow HttpInterceptors to inject HttpClient](https://github.com/angular/angular/commit/ed2b717)
-- [Insider’s guide into interceptors and HttpClient mechanics in Angular](https://blog.angularindepth.com/insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular-103fbdb397bf)：这篇写得相当得好，深入了拦截器和 `HttpClient` 的内部机制，推荐阅读！
+- [Insider’s guide into interceptors and HttpClient mechanics in Angular](https://blog.angularindepth.com/insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular-103fbdb397bf)：这篇写得相当得好，深入了拦截器和 `HttpClient` 的内部机制，推荐阅读！
