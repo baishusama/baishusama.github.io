@@ -1,1 +1,19 @@
 // Custom styles.
+input[type="checkbox"] {
+  display: none !important; // by imo: to overwrite styles in DuoShuo-Comments-Plugin
+}
+input[type="checkbox"] + label::before {
+  content: '\a0';
+  display: inline-block;
+  margin-right: .2em;
+  border: 1px solid;
+  border-radius: .2em;
+  width: .8em;
+  height: .8em;
+  vertical-align: .1em;
+  text-indent: .1em;
+  line-height: .7;
+}
+input[type="checkbox"]:checked + label::before {
+  content: '\2713';
+}

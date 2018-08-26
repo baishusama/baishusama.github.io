@@ -108,7 +108,7 @@ tags: [hexo,markdown]
 
 ## 参考
 * [配置 hexo-renderer-markdown-it](http://yangfch3.com/2016/05/08/hexo-experiences/hexo-renderer-marked-it.txt)
-* ~~[Hexo 中添加 emoji 表情](http://www.cnblogs.com/fsong/p/5929773.html)~~[Hexo 中添加 emoji 表情](http://chaxiaoniu.oschina.io/2017/07/10/HexoAddEmoji/)
+* ~~[Hexo 中添加 emoji 表情](http://www.cnblogs.com/fsong/p/5929773.html)~~ [Hexo 中添加 emoji 表情](http://chaxiaoniu.oschina.io/2017/07/10/HexoAddEmoji/)
 * [为 Hexo 添加可折叠的文章目录](http://moxfive.xyz/2016/06/13/hexo-collapsible-toc/)
 * [hexo-renderer-markdown-it 在 github 上的文档](https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/Advanced-Configuration)
 * [hexo-renderer-markdown-it 在 npm 上的文档](https://www.npmjs.com/package/hexo-renderer-markdown-it)
