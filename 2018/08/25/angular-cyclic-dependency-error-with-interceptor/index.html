@@ -119,7 +119,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44579937-b6fbfc80-a7ca-11e8-9581-52a373fb24e4.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/9972503/44575832-8ebad080-a7bf-11e8-9578-81a064e4de39.png">
-<meta property="og:updated_time" content="2018-08-25T03:59:32.000Z">
+<meta property="og:updated_time" content="2018-08-26T11:25:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[NG] 考古 - HttpInterceptor 循环引用错误">
 <meta name="twitter:description" content="¶前言 恍然间发现这个错误已经不复存在了，于是稍微看了下相关 issue、commit、PR。写篇笔记祭奠下～ ¶需求描述 一个使用 HttpInterceptor 的常见场景是实现基于 token 的验证机制。 为什么要使用拦截（intercepting）呢？ 因为，在基于 token 的验证机制中，证明用户身份的 token 需要被附带在每一个（需要验证的请求的）请求头。如果不使用拦截手段，那">
@@ -339,12 +339,24 @@
                 
               
 
-              <time title="Created: 2018-08-25 09:13:48 / Modified: 11:59:32" itemprop="dateCreated datePublished" datetime="2018-08-25T09:13:48+08:00">2018-08-25</time>
+              <time title="Created: 2018-08-25 09:13:48" itemprop="dateCreated datePublished" datetime="2018-08-25T09:13:48+08:00">2018-08-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-26 19:25:05" itemprop="dateModified" datetime="2018-08-26T19:25:05+08:00">2018-08-26</time>
               
             
           </span>
@@ -416,7 +428,7 @@
 <li><code>NgModuleProviderAnalyzer</code> 内部通过 <code>Map</code> 类型的 <code>_seenProviders</code> 来记录看到过的供应商。</li>
 <li>在其方法 <code>_getOrCreateLocalProvider</code> 内部判断是否已经看过，如果已经看过会在 <code>_errors</code> 中记录一个 <code>ProviderError</code> 错误。</li>
 </ul>
-<p>我用 5.2.2 版本的 Angular 编写了<a href="https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor" target="_blank" rel="noopener">一个遵循官方文档写法但出现“循环引用错误”的示例项目</a>。下面是我 <code>ng serve</code> 运行该应用后，在 <code>compiler.js</code> 中添加断点调试得到的结果：</p>
+<p>我用 5.2.2 版本的 Angular 编写了<a href="https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor" target="_blank" rel="noopener">一个遵循官方文档写法但出现“循环引用错误”的示例项目</a>。下面是我 <code>ng serve</code> 运行该应用后，在 <code>compiler.js</code> 中添加断点调试得到的结果：</p>
 <ul>
 <li>图一、截图时 <code>_seenProviders</code> 中已经记录的各个供应商：<br>
 <img src="https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png" alt="_seenProviders"></li>
@@ -426,13 +438,13 @@
 <p>在上述截图中，根据图二的 <code>token</code> 变量是能在 <code>_seenProviders</code> 中获取到非 <code>null</code> 值的，所以会向 <code>_errors</code> 中记录一个 <code>Cannot instantiate cyclic dependency!</code> 开头的错误。当执行完所有代码之后，控制台会出现该错误：</p>
 <p><img src="https://user-images.githubusercontent.com/9972503/44575832-8ebad080-a7bf-11e8-9578-81a064e4de39.png" alt="interceptor 循环引用报错"></p>
 <h2 id="用户的修复"><a class="header-anchor" href="#用户的修复">¶</a>用户的修复</h2>
-<p>那么在 5.2.2 及以前，作为 Angular 开发者，要如何解决上述问题呢？</p>
+<p>那么在 5.2.2 及以前，作为 Angular 开发者，要如何解决上述问题呢？</p>
 <p>我们可以通过注入 <code>Injector</code> 手动懒加载 <code>AuthService</code> 而不是直接注入其到 <code>constructor</code>，来使依赖关系变为如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor --x-&gt; AuthService -&gt; HttpClient -&gt; AuthInterceptor --x-&gt;</span><br><span class="line">即 AuthService -&gt; HttpClient -&gt; AuthInterceptor，其中，在 AuthInterceptor 中懒加载 AuthService</span><br></pre></td></tr></table></figure>
 <p>即将官方的示例代码修改为如下：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable, Injector &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; HttpEvent, HttpHandler, HttpInterceptor, HttpRequest &#125; <span class="keyword">from</span> <span class="string">'@angular/common/http'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Observable &#125; <span class="keyword">from</span> <span class="string">'rxjs/Observable'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AuthService &#125; <span class="keyword">from</span> <span class="string">'../auth.service'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">private</span> auth: AuthService;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> injector: Injector</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">this</span>.auth = <span class="keyword">this</span>.injector.get(AuthService);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getAuthorizationToken();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authReq = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(authReq);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到和官方的代码相比，我们改为依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>intercept</code> 方法时才去获取 <code>auth</code> 服务实例，而不是将 <code>auth</code> 作为依赖注入、在调用构造函数的时候去获取。</p>
-<p>由此我们绕开了编译阶段的对循环依赖做的检查。</p>
+<p>可以看到和官方的代码相比，我们改为依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>intercept</code> 方法时才去获取 <code>auth</code> 服务实例，而不是将 <code>auth</code> 作为依赖注入、在调用构造函数的时候去获取。</p>
+<p>由此我们绕开了编译阶段的对循环依赖做的检查。</p>
 <h2 id="官方的修复"><a class="header-anchor" href="#官方的修复">¶</a>官方的修复</h2>
 <p>就像 <a href="https://github.com/angular/angular/pull/19809" target="_blank" rel="noopener">PR</a> 里提到的这样：</p>
 <blockquote>
@@ -440,35 +452,35 @@
 </blockquote>
 <p>所以，为了造福大众，最终官方做出了修改，原理和作为用户的我们的代码的思路是一致的——<strong>利用懒加载解决循环依赖问题！</strong></p>
 <p>因为<a href="https://github.com/angular/angular/commit/ed2b717" target="_blank" rel="noopener">修复的代码量</a>很少，所以这里整个摘录下。</p>
-<p>首先，新增 <code>HttpInterceptingHandler</code> 类（代码一）：</p>
+<p>首先，新增 <code>HttpInterceptingHandler</code> 类（代码一）：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.3</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * An `HttpHandler` that applies a bunch of `HttpInterceptor`s</span></span><br><span class="line"><span class="comment"> * to a request before passing it to the given `HttpBackend`.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * The interceptors are loaded lazily from the injector, to allow</span></span><br><span class="line"><span class="comment"> * interceptors to themselves inject classes depending indirectly</span></span><br><span class="line"><span class="comment"> * on `HttpInterceptingHandler` itself.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpInterceptingHandler <span class="keyword">implements</span> HttpHandler &#123;</span><br><span class="line">  <span class="keyword">private</span> chain: HttpHandler|<span class="literal">null</span> = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> backend: HttpBackend, <span class="keyword">private</span> injector: Injector</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  handle(req: HttpRequest&lt;<span class="built_in">any</span>&gt;): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.chain === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> interceptors = <span class="keyword">this</span>.injector.get(HTTP_INTERCEPTORS, []);</span><br><span class="line">      <span class="keyword">this</span>.chain = interceptors.reduceRight(</span><br><span class="line">          (next, interceptor) =&gt; <span class="keyword">new</span> HttpInterceptorHandler(next, interceptor), <span class="keyword">this</span>.backend);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.chain.handle(req);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>HttpHandler</code> 依赖的创建方式由原来的使用 <code>useFactory: interceptingHandler</code> 函数（代码二）：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.2</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [...],</span><br><span class="line">  providers: [</span><br><span class="line">    HttpClient,</span><br><span class="line">    <span class="comment">// HttpHandler is the backend + interceptors and is constructed</span></span><br><span class="line">    <span class="comment">// using the interceptingHandler factory function.</span></span><br><span class="line">    &#123;</span><br><span class="line">      provide: HttpHandler,</span><br><span class="line">      useFactory: interceptingHandler,</span><br><span class="line">      deps: [HttpBackend, [<span class="keyword">new</span> Optional(), <span class="keyword">new</span> Inject(HTTP_INTERCEPTORS)]],</span><br><span class="line">    &#125;,</span><br><span class="line">    HttpXhrBackend,</span><br><span class="line">    &#123;provide: HttpBackend, useExisting: HttpXhrBackend&#125;,</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClientModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>改为使用 <code>useClass: HttpInterceptingHandler</code> 类（代码三）：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// v5.2.3</span></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [...],</span><br><span class="line">  providers: [</span><br><span class="line">    HttpClient,</span><br><span class="line">    &#123;provide: HttpHandler, useClass: HttpInterceptingHandler&#125;,</span><br><span class="line">    HttpXhrBackend,</span><br><span class="line">    &#123;provide: HttpBackend, useExisting: HttpXhrBackend&#125;,</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> HttpClientModule &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不难发现，在“代码一”中我们看到了熟悉的写法：依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>handle</code> 方法时才去获取 <code>HTTP_INTERCEPTORS</code> 拦截器依赖，而不是将 <code>interceptors</code> 作为依赖注入（在调用构造函数的时候去获取）。</p>
+<p>不难发现，在“代码一”中我们看到了熟悉的写法：依赖注入 <code>Injector</code>，并通过其实例对象 <code>this.injector</code> 在调用 <code>handle</code> 方法时才去获取 <code>HTTP_INTERCEPTORS</code> 拦截器依赖，而不是将 <code>interceptors</code> 作为依赖注入（在调用构造函数的时候去获取）。</p>
 <p>也就是官方修复的思路如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AuthInterceptor -&gt; AuthService -&gt; HttpClient -x-&gt; AuthInterceptor</span><br><span class="line">即 AuthInterceptor -&gt; AuthService -&gt; HttpClient，其中，在 HttpClient 中懒加载 interceptors</span><br></pre></td></tr></table></figure>
 <p>因为 <code>AuthInterceptor</code> 对 <code>AuthService</code> 的引用和 <code>AuthService</code> 对 <code>HttpClient</code> 的引用是用户定义的，所以官方可以控制的只剩下 <code>HttpClient</code> 到拦截器的依赖引用了。所以，官方选择从 <code>HttpClient</code> 处切断依赖。</p>
 <blockquote>
-<p>那么，我们为什么选择从 <code>AuthInterceptor</code> 处而不是从 <code>AuthService</code> 处切断依赖呢？</p>
-<p>我觉得原因有二：</p>
+<p>那么，我们为什么选择从 <code>AuthInterceptor</code> 处而不是从 <code>AuthService</code> 处切断依赖呢？</p>
+<p>我觉得原因有二：</p>
 <ol>
-<li>一个是为了让 <code>AuthService</code> 尽可能保持透明——对 interceptor 引起的问题没有察觉。<strong>因为本质上这是 interceptors 不能依赖注入 <code>HttpClient</code> 的问题。</strong></li>
-<li>另一个是 <code>AuthService</code> 往往有很多能触发 <code>HttpClient</code> 使用的方法，那么在什么时候去通过 <code>injector</code> 来 get <code>HttpClient</code> 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 <code>intercept</code> 方法）的 <code>AuthInterceptor</code> 显然更为明智。</li>
+<li>一个是为了让 <code>AuthService</code> 尽可能保持透明——对 interceptor 引起的问题没有察觉。<strong>因为本质上这是 interceptors 不能依赖注入 <code>HttpClient</code> 的问题。</strong></li>
+<li>另一个是 <code>AuthService</code> 往往有很多能触发 <code>HttpClient</code> 使用的方法，那么在什么时候去通过 <code>injector</code> 来 get <code>HttpClient</code> 服务实例呢？或者说所有方法都加上相关判断么？……所以为了避免问题的复杂化，选择选项更少（只有一个 <code>intercept</code> 方法）的 <code>AuthInterceptor</code> 显然更为明智。</li>
 </ol>
 </blockquote>
 <h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
 <p>还是太年轻，以前翻 github 的时候没有及时订阅 issue，导致一些问题修复了都毫无察觉……</p>
-<p>从今天起，好好订阅 issue，好好整理笔记，共勉～</p>
+<p>从今天起，好好订阅 issue，好好整理笔记，共勉～</p>
 <blockquote>
-<p>P.S. 好久没写文章了，这篇文章简直在划水……所以我肯定很多地方没讲清楚（特别是代码都没有细讲），各位看官哪里没看明白的请务必指出，我会根据需要慢慢补充。望轻拍砖（逃</p>
+<p>P.S. 好久没写文章了，这篇文章简直在划水……所以我肯定很多地方没讲清楚（特别是代码都没有细讲），各位看官哪里没看明白的请务必指出，我会根据需要慢慢补充。望轻拍砖（逃</p>
 </blockquote>
 <h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
 <ul>
 <li><a href="https://github.com/angular/angular/blob/master/CHANGELOG.md" target="_blank" rel="noopener">Angular CHANGELOG.md</a></li>
 <li><a href="https://github.com/angular/angular/commit/ed2b717" target="_blank" rel="noopener">fix(common): allow HttpInterceptors to inject HttpClient</a></li>
-<li><a href="https://blog.angularindepth.com/insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular-103fbdb397bf" target="_blank" rel="noopener">Insider’s guide into interceptors and HttpClient mechanics in Angular</a>：这篇写得相当得好，深入了拦截器和 <code>HttpClient</code> 的内部机制，推荐阅读！</li>
+<li><a href="https://blog.angularindepth.com/insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular-103fbdb397bf" target="_blank" rel="noopener">Insider’s guide into interceptors and HttpClient mechanics in Angular</a>：这篇写得相当得好，深入了拦截器和 <code>HttpClient</code> 的内部机制，推荐阅读！</li>
 </ul>
 
       
