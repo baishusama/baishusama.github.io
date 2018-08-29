@@ -166,7 +166,7 @@ export class NgModuleProviderAnalyzer {
 - `NgModuleProviderAnalyzer` 内部通过 `Map` 类型的 `_seenProviders` 来记录看到过的供应商。
 - 在其方法 `_getOrCreateLocalProvider` 内部判断是否已经看过，如果已经看过会在 `_errors` 中记录一个 `ProviderError` 错误。
 
-我用 5.2.2 版本的 Angular 编写了[一个遵循官方文档写法但出现“循环引用错误”的示例项目](https://github.com/baishusama/fe-grocery-store/tree/master/ng-5.2.2-cyclic-dep-err-with-interceptor)。下面是我 `ng serve` 运行该应用后，在 `compiler.js` 中添加断点调试得到的结果：
+我用 5.2.2 版本的 Angular 编写了[一个遵循官方文档写法但出现“循环引用错误”的示例项目](https://github.com/baishusama/fe-grocery-store/tree/master/ng-groceries/ng-5.2.2-cyclic-dep-err-with-interceptor)。下面是我 `ng serve` 运行该应用后，在 `compiler.js` 中添加断点调试得到的结果：
 
 - 图一、截图时 `_seenProviders` 中已经记录的各个供应商：
 ![_seenProviders](https://user-images.githubusercontent.com/9972503/44579887-87e58b00-a7ca-11e8-9c32-ca2dfbc18f69.png)
