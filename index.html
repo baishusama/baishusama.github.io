@@ -289,6 +289,161 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2018/09/08/weapp-reuse-page-object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="baishusama">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="imo++">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/08/weapp-reuse-page-object/" itemprop="url">
+                  [小程序] 复用下拉刷新、上拉加载页面配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-08 17:01:46 / Modified: 19:45:34" itemprop="dateCreated datePublished" datetime="2018-09-08T17:01:46+08:00">2018-09-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<p>之前使用 Ionic 开发公司的 app 的时候，写过通过 TS 的 <code>class</code> 的 <code>extends</code> 来达到复用目的的代码，减少了很多工作量，维护起来也更省心。</p>
+<p>这两周开始开发小程序，出于几个原因我只使用了小程序的原生开发能力：</p>
+<ul>
+<li>因为是第一个小程序项目，想 <strong>体验一下小程序的原生开发</strong> 过程</li>
+<li>有两个很优秀的第三方框架——<a href="https://github.com/Tencent/wepy" target="_blank" rel="noopener">wepy</a> 和 <a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 但我对这两个 <strong>框架选择困难</strong>。也只有开发过原生、了解原生开发的痛点所在之后，才能有理有据、有针对性地选择某一个框架。</li>
+<li>而且引入第三方框架存在风险，也许屏蔽了一些原生开发的坑，但是 <strong>框架也可能引入新的坑</strong>……</li>
+<li>这个小程序 <strong>需求比较简单</strong>，原生小程序开发理应 hold 住</li>
+</ul>
+<p>然后我又碰到了两个大部分逻辑（下拉刷新、上拉加载）相似的列表页。还是出于“懒惰“，我想尽可能复用代码。</p>
+<p>凭着刷过一遍文档的模糊印象，我本来以为小程序提供的 <code>Behaviors</code> 是为这个场景量身定制的，然后重看文档才发现 <a href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html" target="_blank" rel="noopener"><code>Behaviors</code> 仅支持 <code>Component</code> 的复用</a>……</p>
+<p>所以要怎么复用 <code>Page</code> 的相关代码呢？因为<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/details.html#%E5%AE%A2%E6%88%B7%E7%AB%AFes6-api-%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5" target="_blank" rel="noopener">小程序原生支持绝大多数 ES6 的 api</a>，我自然而然就想到了用 ES6 的 <code>class</code> 和 <code>extends</code> 的一套来实现！于是我掉进了坑里……</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/08/weapp-reuse-page-object/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2018/08/25/angular-cyclic-dependency-error-with-interceptor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1730,169 +1885,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://baishusama.github.io/2017/01/27/IFE-2016-SP-task31/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="baishusama">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="imo++">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/27/IFE-2016-SP-task31/" itemprop="url">
-                  IFE-2016-SP-task31 Linkage Inputs
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-01-27 15:25:32" itemprop="dateCreated datePublished" datetime="2017-01-27T15:25:32+08:00">2017-01-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-08-25 10:22:23" itemprop="dateModified" datetime="2018-08-25T10:22:23+08:00">2018-08-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="my-solution"><a class="header-anchor" href="#my-solution">¶</a>My Solution</h2>
-<p>My solution to task31 is available on jsfiddle:</p>
-<iframe scrolling="no" width="100%" height="400px" src="//jsfiddle.net/45v3nuLc/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/01/27/IFE-2016-SP-task31/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1939,7 +1936,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1980,7 +1977,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
