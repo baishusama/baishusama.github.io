@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="imo++">
 <meta property="og:description" content="¶前言 之前使用 Ionic 开发公司的 app 的时候，写过通过 TS 的 class 的 extends 来达到复用目的的代码，减少了很多工作量，维护起来也更省心。 这两周开始开发小程序，出于几个原因我只使用了小程序的原生开发能力：  因为是第一个小程序项目，想 体验一下小程序的原生开发 过程 有两个很优秀的第三方框架——wepy 和 mpvue 但我对这两个 框架选择困难。也只有开发过原生、">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-09-08T11:45:34.000Z">
+<meta property="og:updated_time" content="2018-09-08T11:50:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[小程序] 复用下拉刷新、上拉加载页面配置">
 <meta name="twitter:description" content="¶前言 之前使用 Ionic 开发公司的 app 的时候，写过通过 TS 的 class 的 extends 来达到复用目的的代码，减少了很多工作量，维护起来也更省心。 这两周开始开发小程序，出于几个原因我只使用了小程序的原生开发能力：  因为是第一个小程序项目，想 体验一下小程序的原生开发 过程 有两个很优秀的第三方框架——wepy 和 mpvue 但我对这两个 框架选择困难。也只有开发过原生、">
@@ -335,7 +335,7 @@
                 
               
 
-              <time title="Created: 2018-09-08 17:01:46 / Modified: 19:45:34" itemprop="dateCreated datePublished" datetime="2018-09-08T17:01:46+08:00">2018-09-08</time>
+              <time title="Created: 2018-09-08 17:01:46 / Modified: 19:50:21" itemprop="dateCreated datePublished" datetime="2018-09-08T17:01:46+08:00">2018-09-08</time>
             
 
             
@@ -413,6 +413,10 @@
 <p>我们通过工厂函数来快速生成需要的对象。在复用页面配置对象的这个场景里，我们将会在这个对象里，定义我们多个页面共用的代码（e.g. <code>onLoad</code>, <code>onReachBottom</code>…）。这样我们就不用在多个不同的页面分别编写和维护这部分代码，以达到代码复用的目的。</p>
 <blockquote>
 <p>TODO:【到底要不要贴全部的代码？一点一点地贴代码更好么？……】</p>
+<ul>
+<li>此时调用方的代码如何？</li>
+<li>以及代码可以借助 <code>prototype</code> 进一步优化？</li>
+</ul>
 </blockquote>
 <h2 id="附录"><a class="header-anchor" href="#附录">¶</a>附录</h2>
 <h3 id="附录a-本文相关的核心代码-demo"><a class="header-anchor" href="#附录a-本文相关的核心代码-demo">¶</a>附录A. 本文相关的核心代码 DEMO</h3>
